@@ -1,5 +1,6 @@
-# 로컬 미리보기용 (사이트 동작에는 불필요)
-.claude/
+# 로컬 미리보기 서버만 제외 (.claude/skills 는 저장소에 포함)
+.claude/serve.js
+.claude/launch.json
 
 # OS
 Thumbs.db
