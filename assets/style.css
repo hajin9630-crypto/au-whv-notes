@@ -348,6 +348,11 @@ background:var(--canvas);text-decoration:none;color:var(--fg)}
 .mcard.wide{grid-column:1/-1;flex-direction:row;align-items:center;gap:var(--s-lg);min-height:0}
 .mcard.wide .ico{margin:0;font-size:28px}
 .mcard.wide .tx{flex:1;min-width:0}
+/* ⭐ 개수 배지 — 제목과 같은 줄에 둔다.
+   카드 우측에 형제로 두면 좁은 화면에서 설명 텍스트를 밀어내서, 제목 행 안으로 넣었다. */
+.mcard .ttlrow{display:flex;align-items:center;gap:var(--s-md);flex-wrap:wrap}
+.mcard .ttlrow .badge{flex:none}
+.mcard small{display:block}
 .mcard.primary{background:var(--weak-bg);border-color:transparent}
 .mcard.primary:hover{background:#dbeafe}
 @media(prefers-color-scheme:dark){.mcard.primary:hover{background:#24405f}}
