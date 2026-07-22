@@ -61,11 +61,12 @@ overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .metarow{display:flex;flex-wrap:wrap;gap:var(--s-sm);margin-top:var(--s-lg)}
 
 /* ---- badge (descriptive, never an action) ---- */
-.badge{display:inline-block;padding:5px 10px;border-radius:var(--r-md);font-size:13px;line-height:18px;font-weight:600;background:var(--weak-bg);color:var(--weak-fg)}
-.badge.neutral{background:var(--surface);color:var(--body)}
+/* 기본은 중립. 배지가 60개인 화면에서 기본이 파랑이면 파랑이 무의미해진다. */
+.badge{display:inline-block;padding:5px 10px;border-radius:var(--r-md);font-size:13px;line-height:18px;font-weight:600;background:var(--surface);color:var(--body)}
+.badge.neutral,.badge.ok,.badge.warn{background:var(--surface);color:var(--body)}
 .badge.danger{background:var(--danger-bg);color:var(--danger)}
-.badge.ok{background:var(--ok-bg);color:var(--ok)}
-.badge.warn{background:var(--warn-bg);color:var(--warn-fg)}
+/* 드물게 파랑이 필요할 때만 */
+.badge.accent{background:var(--weak-bg);color:var(--weak-fg)}
 .badge.sm{font-size:12px;padding:3px 7px}
 
 /* ---- tabs ---- */
@@ -114,12 +115,9 @@ padding:var(--s-xl);margin-bottom:var(--s-md)}
 /* ============================================================
    ⭐ 내가 직접 모은 내용 표시
    ============================================================ */
-.card.mine,.job.mine{
-  border-left:3px solid var(--primary);
-  background:var(--weak-bg);
-  border-top-color:transparent;border-right-color:transparent;border-bottom-color:transparent}
-@media(prefers-color-scheme:dark){
-  .card.mine,.job.mine{background:var(--weak-bg)}}
+/* 배경색을 쓰지 않는다. 카드 48개가 파란 면이 되면 파랑이 정보를 잃는다.
+   왼쪽 3px 선 + 오른쪽 위 ⭐ 만으로 구분한다. */
+.card.mine,.job.mine{border-left:3px solid var(--primary)}
 /* ⭐ 는 카드 오른쪽 위 모서리에 붙인다.
    카드마다 내부 구조가 달라(h3 직계 / h4 직계 / .cardhead>h3 / 제목 없음)
    제목을 기준으로 잡으면 절반 정도가 새므로 카드 자체에 건다. */
@@ -130,12 +128,9 @@ padding:var(--s-xl);margin-bottom:var(--s-md)}
 /* 별과 겹치지 않도록 첫 줄에 여백 확보 */
 .card.mine>.cardhead,.job.mine>.top,
 .card.mine>:is(h3,h4):first-child,.job.mine>h3:first-child{padding-right:24px}
-.card.mine h3,.card.mine h4,.job.mine h3{color:var(--fg)}
-.card.mine p,.card.mine ul.plain li,.job.mine .pros{color:var(--fg)}
-
-/* 참고자료(meljang 미러) 카드 */
-.card.ref{background:var(--surface);border-color:transparent}
-.card.ref>h3::before,.card.ref>.cardhead h3::before{content:'';}
+/* 참고자료 카드도 기본 카드와 같다. 눌러둘 이유가 없고,
+   기본이 흰색이어야 예외(경고)가 눈에 들어온다. */
+.card.ref{background:var(--canvas)}
 
 /* ⭐ 필터 툴바 */
 .minebar{display:flex;align-items:center;gap:var(--s-md);flex-wrap:wrap;
@@ -189,7 +184,8 @@ border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
 /* ---- step rows ---- */
 .step{display:grid;grid-template-columns:56px 1fr;gap:var(--s-lg);padding:var(--s-lg) 0;border-bottom:1px solid var(--border)}
 .step:first-of-type{padding-top:0}.step:last-child{border-bottom:0;padding-bottom:0}
-.step .n{font-size:13px;line-height:18px;font-weight:600;color:var(--weak-fg);background:var(--weak-bg);
+/* 순번은 순서를 알려줄 뿐이라 중립. 색은 .step.warn 에만 남긴다. */
+.step .n{font-size:13px;line-height:18px;font-weight:600;color:var(--body);background:var(--surface);
 border-radius:var(--r-md);padding:5px 0;text-align:center;height:fit-content}
 .step b{display:block;font-size:16px;line-height:24px;font-weight:600;margin-bottom:var(--s-xs)}
 .step .d{font-size:14px;line-height:21px;color:var(--body)}
@@ -246,17 +242,18 @@ border-radius:var(--r-lg);overflow:hidden;margin:var(--s-lg) 0}
 .facts div{background:var(--canvas);padding:10px var(--s-md)}
 .facts span{display:block;font-size:12px;line-height:18px;color:var(--muted)}
 .facts b{font-size:14px;line-height:21px;font-weight:600}
-.job.mine .facts div{background:var(--weak-bg)}
+/* .facts 는 카드가 파랗던 시절 배경을 맞추려던 것. 카드가 흰색이 된 지금은 불필요. */
 .pros{font-size:14px;line-height:22px;color:var(--body);margin:0}
 .pros .up{color:var(--weak-fg);font-weight:600}
 .pros .down{color:var(--danger);font-weight:600}
 
 /* ---- callout ---- */
 .note{border-radius:var(--r-xl);padding:var(--s-lg) var(--s-xl);font-size:14px;line-height:22px;margin-bottom:var(--s-md)}
-.note.info{background:var(--weak-bg);color:var(--weak-fg)}
+/* 색은 하나만 남긴다 — 진짜 경고(warn). 나머지는 중립.
+   4색 단계는 위계가 아니라 소음이었다. */
+.note.info,.note.ok{background:var(--surface);color:var(--body)}
+.note.caution{background:var(--surface);color:var(--body);border-left:3px solid var(--warn-fg)}
 .note.warn{background:var(--danger-bg);color:var(--danger)}
-.note.caution{background:var(--warn-bg);color:var(--warn-fg)}
-.note.ok{background:var(--ok-bg);color:var(--ok)}
 .note b{font-weight:600}
 .note p{margin:0 0 var(--s-sm)}.note p:last-child{margin:0}
 .note ul{margin:var(--s-sm) 0 0;padding-left:var(--s-lg)}
@@ -316,7 +313,8 @@ color:var(--body);border-radius:999px;font:600 13px/1 var(--font);cursor:pointer
 .flist{display:grid;gap:var(--s-sm)}
 .frow{display:grid;grid-template-columns:46px 1fr;gap:var(--s-md);align-items:start;
 padding:var(--s-md) var(--s-lg);border:1px solid var(--border);border-radius:var(--r-lg);background:var(--canvas)}
-.frow .st{font-size:11px;line-height:16px;font-weight:700;color:var(--weak-fg);background:var(--weak-bg);
+/* 80개가 전부 같은 파란 칩이면 파랑이 아무것도 구분해주지 않는다 */
+.frow .st{font-size:11px;line-height:16px;font-weight:700;color:var(--body);background:var(--surface);
 border-radius:var(--r-sm);padding:3px 0;text-align:center}
 .frow b{display:block;font-size:15px;line-height:22px;font-weight:600}
 /* 위치·업종은 실제로 읽어야 하는 정보라 --muted(대비 3.0)가 아니라 --body(대비 7.0)를 쓴다 */
