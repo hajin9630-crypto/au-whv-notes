@@ -1,0 +1,1109 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>호주 워홀 정착 플랜</title><style>
+/* Design system: Toss (TDS Mobile + toss.im marketing). Flat color layering, no shadow tokens. */
+:root{
+--primary:#3182f6;--primary-hover:#2272eb;
+--canvas:#fff;--fg:#191f28;--body:#4e5968;--muted:#8b95a1;
+--surface:#f2f4f6;--border:#e5e8eb;--on-primary:#fff;
+--weak-bg:#e8f3ff;--weak-fg:#1b64da;--danger:#e42939;
+--danger-bg:#fdeaec;
+--r-sm:4px;--r-md:6px;--r-btn:7px;--r-lg:14px;--r-xl:16px;
+--s-xs:4px;--s-sm:6px;--s-md:8px;--s-lg:16px;--s-xl:24px;--s-xxl:32px;
+--tabbar:#fffffff2}
+/* Local extension — dark scheme is not part of the verified TDS token set. */
+@media(prefers-color-scheme:dark){:root{
+--canvas:#17171c;--fg:#f2f4f6;--body:#b0b8c1;--muted:#8b95a1;
+--surface:#202127;--border:#2e3138;--weak-bg:#1c2b41;--weak-fg:#82b3fb;
+--danger:#f4707c;--danger-bg:#33191d;--tabbar:#17171cf2}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--canvas);color:var(--fg);
+font-family:"Toss Product Sans",-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",sans-serif;
+font-size:16px;line-height:24px;font-weight:400;-webkit-font-smoothing:antialiased}
+.wrap{max-width:920px;margin:auto;padding:var(--s-lg) var(--s-lg) 64px}
+
+/* ---- header ---- */
+.hero{padding:var(--s-xxl) 0 var(--s-xl)}
+.hero .eyebrow{font-size:14px;line-height:21px;font-weight:600;color:var(--weak-fg)}
+.hero h1{font-size:36px;line-height:46px;font-weight:700;margin:var(--s-md) 0 var(--s-lg);letter-spacing:-1px}
+.hero p{font-size:16px;line-height:24px;color:var(--body);margin:0 0 var(--s-md)}
+.metarow{display:flex;flex-wrap:wrap;gap:var(--s-sm);margin-top:var(--s-lg)}
+
+/* ---- badge (descriptive, never an action) ---- */
+.badge{display:inline-block;padding:5px 10px;border-radius:var(--r-md);font-size:13px;line-height:18px;font-weight:600;background:var(--weak-bg);color:var(--weak-fg)}
+.badge.neutral{background:var(--surface);color:var(--body)}
+.badge.danger{background:var(--danger-bg);color:var(--danger)}
+.badge.sm{font-size:12px;padding:3px 7px}
+
+/* ---- tabs ---- */
+.tabwrap{position:sticky;top:0;z-index:20;background:var(--tabbar);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);margin:0 calc(var(--s-lg) * -1);padding:0 var(--s-lg)}
+.tabs{display:flex;gap:var(--s-sm);overflow-x:auto;padding:var(--s-md) 0;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;border:1px solid var(--border);background:var(--canvas);border-radius:var(--r-btn);height:40px;padding:0 var(--s-lg);font:600 15px/1 "Toss Product Sans",-apple-system,"Noto Sans KR",sans-serif;color:var(--body);cursor:pointer}
+.tab:hover{background:var(--surface)}
+.tab.active{background:var(--primary);border-color:var(--primary);color:var(--on-primary)}
+.tab:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.panel{display:none}.panel.active{display:block}
+
+/* ---- section ---- */
+.sec{padding-top:var(--s-xxl)}
+.sec>h2{font-size:24px;line-height:34px;font-weight:600;margin:0 0 var(--s-md);letter-spacing:-.5px}
+.sec>.lead{font-size:15px;line-height:23px;color:var(--body);margin:0 0 var(--s-lg)}
+
+/* ---- card ---- */
+.card{background:var(--canvas);border:1px solid var(--border);border-radius:var(--r-xl);padding:var(--s-xl);margin-bottom:var(--s-md)}
+.card.quiet{background:var(--surface);border-color:transparent}
+.card h3{font-size:18px;line-height:26px;font-weight:600;margin:0 0 var(--s-md)}
+.card h4{font-size:15px;line-height:22px;font-weight:600;margin:var(--s-lg) 0 var(--s-md)}
+.card p{font-size:15px;line-height:23px;color:var(--body);margin:0 0 var(--s-md)}
+.card p:last-child,.card ul:last-child{margin-bottom:0}
+.cardhead{display:flex;justify-content:space-between;align-items:flex-start;gap:var(--s-md);margin-bottom:var(--s-md)}
+.cardhead h3{margin:0}
+
+/* ---- list ---- */
+ul.plain{margin:0;padding:0;list-style:none}
+ul.plain li{position:relative;padding:0 0 0 var(--s-lg);margin-bottom:var(--s-sm);font-size:15px;line-height:23px;color:var(--body)}
+ul.plain li::before{content:'';position:absolute;left:var(--s-xs);top:10px;width:4px;height:4px;border-radius:50%;background:var(--muted)}
+ul.plain li:last-child{margin-bottom:0}
+ul.plain li b{color:var(--fg);font-weight:600}
+
+/* ---- agreement / checklist ---- */
+.check{display:flex;gap:var(--s-md);align-items:flex-start;padding:var(--s-md) 0;border-bottom:1px solid var(--border);cursor:pointer}
+.check:last-child{border-bottom:0;padding-bottom:0}
+.check input{appearance:none;flex:none;width:22px;height:22px;margin:1px 0 0;border:1.5px solid var(--border);border-radius:var(--r-md);background:var(--canvas);cursor:pointer;position:relative}
+.check input:checked{background:var(--primary);border-color:var(--primary)}
+.check input:checked::after{content:'';position:absolute;left:7px;top:3px;width:5px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.check input:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.check .txt{font-size:15px;line-height:23px}
+.check .txt small{display:block;font-size:13px;line-height:20px;color:var(--muted);margin-top:2px}
+.check input:checked+.txt{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--border)}
+.check input:checked+.txt small{text-decoration:none}
+
+/* ---- day / step rows ---- */
+.step{display:grid;grid-template-columns:56px 1fr;gap:var(--s-lg);padding:var(--s-lg) 0;border-bottom:1px solid var(--border)}
+.step:first-of-type{padding-top:0}.step:last-child{border-bottom:0;padding-bottom:0}
+.step .n{font-size:13px;line-height:18px;font-weight:600;color:var(--weak-fg);background:var(--weak-bg);border-radius:var(--r-md);padding:5px 0;text-align:center;height:fit-content}
+.step b{display:block;font-size:16px;line-height:24px;font-weight:600;margin-bottom:var(--s-xs)}
+.step .d{font-size:14px;line-height:21px;color:var(--body)}
+.step.warn .n{background:var(--danger-bg);color:var(--danger)}
+.quote{margin:0;padding:var(--s-md) 0 var(--s-md) var(--s-lg);border-left:3px solid var(--danger);font-size:15px;line-height:23px;color:var(--fg);font-weight:600}
+.quote+.quote{margin-top:var(--s-md)}
+
+/* ---- table ---- */
+.tablewrap{overflow-x:auto;border:1px solid var(--border);border-radius:var(--r-xl)}
+table{width:100%;border-collapse:collapse;font-size:14px;line-height:21px;min-width:560px}
+th{text-align:left;font-weight:600;font-size:13px;color:var(--muted);background:var(--surface);padding:10px var(--s-lg);white-space:nowrap}
+td{padding:12px var(--s-lg);border-top:1px solid var(--border);color:var(--body);vertical-align:top}
+td b{color:var(--fg);font-weight:600}
+td.num{white-space:nowrap;font-variant-numeric:tabular-nums}
+/* DS asserts no canonical monospace token, so path chips keep the sans family. */
+code{display:inline-block;background:var(--surface);color:var(--body);border-radius:var(--r-sm);padding:1px 5px;font-family:inherit;font-size:13px;word-break:break-all}
+/* ---- links ---- */
+a.lnk{color:var(--weak-fg);font-weight:600;text-decoration:none;border-bottom:1px solid transparent}
+a.lnk:hover{border-bottom-color:currentColor}
+a.lnk:focus-visible{outline:2px solid var(--primary);outline-offset:2px;border-radius:var(--r-sm)}
+a.lnk .host{display:block;font-size:12px;line-height:18px;font-weight:400;color:var(--muted)}
+a.lnk:hover .host{color:var(--weak-fg)}
+a.pathlnk{text-decoration:none}
+a.pathlnk code{cursor:pointer}
+a.pathlnk:hover code{background:var(--weak-bg);color:var(--weak-fg)}
+a.pathlnk:focus-visible{outline:2px solid var(--primary);outline-offset:2px;border-radius:var(--r-sm)}
+
+/* ---- job card grid ---- */
+.grid{display:grid;gap:var(--s-md)}
+@media(min-width:720px){.grid.two{grid-template-columns:1fr 1fr}}
+.job{border:1px solid var(--border);border-radius:var(--r-xl);padding:var(--s-xl)}
+.job .top{display:flex;justify-content:space-between;align-items:flex-start;gap:var(--s-md)}
+.job h3{font-size:18px;line-height:26px;font-weight:600;margin:0}
+.job .where{font-size:13px;line-height:20px;color:var(--muted);margin-top:2px}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-radius:var(--r-lg);overflow:hidden;margin:var(--s-lg) 0}
+.facts div{background:var(--canvas);padding:10px var(--s-md)}
+.facts span{display:block;font-size:12px;line-height:18px;color:var(--muted)}
+.facts b{font-size:14px;line-height:21px;font-weight:600}
+.pros{font-size:14px;line-height:22px;color:var(--body);margin:0}
+.pros .up{color:var(--weak-fg);font-weight:600}
+.pros .down{color:var(--danger);font-weight:600}
+
+/* ---- callout ---- */
+.note{border-radius:var(--r-xl);padding:var(--s-lg) var(--s-xl);font-size:14px;line-height:22px;margin-bottom:var(--s-md)}
+.note.info{background:var(--weak-bg);color:var(--weak-fg)}
+.note.warn{background:var(--danger-bg);color:var(--danger)}
+.note b{font-weight:600}
+.note p{margin:0 0 var(--s-sm)}.note p:last-child{margin:0}
+
+/* ---- ask block (copyable english questions) ---- */
+.ask{background:var(--surface);border-radius:var(--r-lg);padding:var(--s-lg);font-size:14px;line-height:24px;color:var(--fg)}
+.ask ol{margin:0;padding-left:var(--s-xl)}
+.ask li{margin-bottom:var(--s-sm)}.ask li:last-child{margin-bottom:0}
+
+/* ---- buttons ---- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--s-sm);height:40px;padding:0 var(--s-lg);border-radius:var(--r-btn);background:var(--weak-bg);color:var(--weak-fg);font:600 15px/1 "Toss Product Sans",-apple-system,"Noto Sans KR",sans-serif;text-decoration:none;border:0;cursor:pointer}
+.btn:hover{background:#dbeafe}
+.btn:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.btn.fill{background:var(--primary);color:var(--on-primary)}.btn.fill:hover{background:var(--primary-hover)}
+.btnrow{display:flex;flex-wrap:wrap;gap:var(--s-md);margin-top:var(--s-lg)}
+
+/* ---- sub tabs ---- */
+.subtabs{display:flex;gap:var(--s-sm);overflow-x:auto;scrollbar-width:none;margin-bottom:var(--s-lg)}
+.subtabs::-webkit-scrollbar{display:none}
+.subtab{flex:none;height:38px;padding:0 var(--s-lg);border:1px solid var(--border);background:var(--canvas);color:var(--body);border-radius:10px;font:600 14px/1 "Toss Product Sans",-apple-system,"Noto Sans KR",sans-serif;cursor:pointer}
+.subtab.active{background:var(--fg);border-color:var(--fg);color:var(--canvas)}
+.subpanel{display:none}.subpanel.active{display:block}
+
+.foot{margin-top:var(--s-xxl);padding-top:var(--s-lg);border-top:1px solid var(--border);font-size:13px;line-height:20px;color:var(--muted)}
+@media(max-width:520px){.hero h1{font-size:30px;line-height:40px}.card,.job{padding:var(--s-lg)}}
+</style></head><body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="eyebrow">2026.09.22 — 친구 귀국 이후</div>
+  <h1>워홀 정착 &<br>세컨비자 플랜</h1>
+  <p>여행 일정표가 아닙니다. <b>일자리가 정해져야 다음 일정이 정해지는</b> 구간이라, 날짜가 아니라 마감일과 분기로 짰습니다.</p>
+  <p>브리즈번 6박은 여행이자 정착 준비 캠프입니다. 유심 → 은행 → TFN → 레주메 순서만 지키면 9/22부터 바로 움직일 수 있습니다.</p>
+  <div class="metarow">
+    <span class="badge">417 세컨 = 지정업무 88일</span>
+    <span class="badge">서드 = 6개월(179일)</span>
+    <span class="badge neutral">브리즈번 교통 = go card</span>
+    <span class="badge danger">12월 중순 이후 구직 금지</span>
+    <span class="badge danger">계약서 전 보증금 = 사기</span>
+  </div>
+</header>
+
+<div class="tabwrap">
+  <nav class="tabs" role="tablist">
+    <button class="tab active" role="tab" aria-selected="true" aria-controls="p1" data-p="p1">액션</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="p2" data-p="p2">로드맵</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="p3" data-p="p3">지역</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="p4" data-p="p4">공장·농장</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="p5" data-p="p5">리조트·기타</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="p6" data-p="p6">체크</button>
+  </nav>
+</div>
+
+<!-- =============== 1. 액션 =============== -->
+<section id="p1" class="panel active" role="tabpanel">
+
+  <div class="sec">
+    <h2>브리즈번 6박 — 여행 중 병행 미션</h2>
+    <p class="lead">여행 일정은 그대로 두고, 하루에 하나씩만 끼워 넣습니다. 이 6개를 놓치면 9/22부터 발이 묶입니다.</p>
+    <div class="card">
+      <div class="step"><div class="n">1일차</div><div><b>유심 / 호주 번호</b><div class="d">공항에서 유심 또는 eSIM 개통. 은행·TFN·구직 연락·숙소 연락이 전부 호주 번호 기준입니다. 이 날은 이것만 하고 쉬세요.</div></div></div>
+      <div class="step"><div class="n">2일차</div><div><b>은행 + TFN + go card</b><div class="d">오전 은행 방문(여권·비자 승인 레터·호주 번호·숙소 주소 지참) → 계좌 활성화·카드 수령. 오후 go card 구매. 저녁 TFN 온라인 신청 후 <b>Receipt ID 캡처</b>. TFN은 최대 28일 걸릴 수 있어 빠를수록 좋습니다.</div></div></div>
+      <div class="step"><div class="n">3일차</div><div><b>영문 레주메 + 1차 지원</b><div class="d">레주메 완성하고 GrainCorp · Hamilton Island · Backpacker Job Board · SEEK에 바로 뿌립니다. 집 구하기보다 이게 먼저입니다.</div></div></div>
+      <div class="step"><div class="n">4일차</div><div><b>지역 컨택</b><div class="d">Gatton · Bundaberg · Bowen · Cairns 쪽 전화. 자격증(RSA·White Card)은 농장·공장 갈 거면 지금 필수 아닙니다.</div></div></div>
+      <div class="step"><div class="n">5일차</div><div><b>전화 인터뷰 + 준비물 구매</b><div class="d">연락 온 곳 조건 확인. 작업화·긴팔 작업복·모자·선크림·장갑·물병·자물쇠·상비약 구매.</div></div></div>
+      <div class="step"><div class="n">6일차</div><div><b>이동지 확정 + 서류 백업</b><div class="d">여권·비자·보험·은행정보·TFN 접수번호를 구글드라이브에 저장. 담당자와 최종 연락, 교통편 예약, 빨래·짐 정리.</div></div></div>
+    </div>
+    <div class="note info"><b>Myki는 멜버른 카드입니다.</b> 브리즈번·골드코스트 등 퀸즐랜드 남동부는 go card를 씁니다. 버스·기차·페리·트램 모두 사용 가능.</div>
+    <div class="note info"><b>ABN은 지금 만들지 마세요.</b> 개인사업자 방식으로 일할 때만 필요하고, 세컨 증빙은 페이슬립 + 고용주 정보가 훨씬 안전합니다. Photo ID 카드도 주소가 안정된 뒤에.</div>
+  </div>
+
+  <div class="sec">
+    <h2>Week 1 — 9/22 ~ 9/28</h2>
+    <p class="lead">방부터 오래 잡지 말고 브리즈번(Sunnybank 등) 단기숙소 7~10일로 버티면서, <b>일 시작일이 확정된 곳</b>으로만 움직입니다.</p>
+    <div class="card">
+      <label class="check"><input type="checkbox" data-k="w1-1"><span class="txt">GrainCorp · Agri Labour · SEEK 온라인 지원<small>남부 QLD / 북부 NSW는 10월 중순 시즌. 지금이 지원 타이밍</small></span></label>
+      <label class="check"><input type="checkbox" data-k="w1-2"><span class="txt">Gatton · Laidley 패킹쉐드 전화<small>브리즈번에서 가장 가까운 현실적 첫 이동지</small></span></label>
+      <label class="check"><input type="checkbox" data-k="w1-3"><span class="txt">Bundaberg · Bowen · Ayr 백패커에 "일 바로 시작 가능?" 확인<small>"숙소 먼저 와라, 일은 곧 준다"는 거르기</small></span></label>
+      <label class="check"><input type="checkbox" data-k="w1-4"><span class="txt">숙소 픽업 여부 확인<small>차 없으면 픽업 제공이 사실상 채용 조건</small></span></label>
+      <label class="check"><input type="checkbox" data-k="w1-5"><span class="txt">workplace postcode · ABN · payslip 3종 확인<small>"세컨 가능"이라는 공고 문구만 믿으면 88일이 날아갑니다</small></span></label>
+      <label class="check"><input type="checkbox" data-k="w1-6"><span class="txt">NT 다윈·캐서린 망고 패킹 동시 지원<small>망고 시즌 9~12월. 9월 도착자에게 타이밍이 맞습니다</small></span></label>
+      <label class="check"><input type="checkbox" data-k="w1-7"><span class="txt">일 시작일이 확정된 곳으로 이동<small>확정 전에는 짐 풀지 않기</small></span></label>
+    </div>
+    <div class="note warn"><b>핵심은 그물 던지기입니다.</b> 좋은 곳 하나를 기다리지 말고 동시에 20~30군데 뿌리세요. 한 곳만 붙잡고 기다리다 시즌을 놓치는 게 가장 흔한 실패입니다.</div>
+  </div>
+
+  <div class="sec">
+    <h2>동시 지원 그룹</h2>
+    <p class="lead">순차로 하지 말고 네 그룹을 같은 주에 전부 던집니다.</p>
+    <div class="grid two">
+      <div class="job"><div class="top"><div><h3>1차 — 돈·타이밍</h3><div class="where">지금 바로</div></div><span class="badge sm">최우선</span></div>
+        <p class="pros" style="margin-top:16px">GrainCorp / Agri Labour / grain harvest<br>Dalby · Goondiwindi · St George · Chinchilla · Roma · Moree · Narrabri</p></div>
+      <div class="job"><div class="top"><div><h3>2차 — 접근성</h3><div class="where">QLD 내 이동</div></div><span class="badge sm neutral">병행</span></div>
+        <p class="pros" style="margin-top:16px">Bowen / Ayr / Home Hill / Bundaberg / Childers / Gatton 패킹쉐드</p></div>
+      <div class="job"><div class="top"><div><h3>3차 — 시즌</h3><div class="where">NT</div></div><span class="badge sm neutral">병행</span></div>
+        <p class="pros" style="margin-top:16px">Darwin · Katherine 망고 패킹, NT 로드하우스, NT 호스피탈리티</p></div>
+      <div class="job"><div class="top"><div><h3>보험</h3><div class="where">안 될 때</div></div><span class="badge sm neutral">대기</span></div>
+        <p class="pros" style="margin-top:16px">타즈매니아 육가공 · 베리팜 · 애플/채소 패킹, QLD 육가공, Innisfail·Tully 바나나</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== 2. 로드맵 =============== -->
+<section id="p2" class="panel" role="tabpanel">
+  <div class="sec">
+    <h2>9월 → 4월 로드맵</h2>
+    <p class="lead">세컨 88일을 한 번에 채우기는 어렵습니다. 시즌을 이어 붙이는 게임이라고 보면 됩니다.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>시기</th><th>1순위 행동</th><th>2순위 행동</th></tr></thead>
+        <tbody>
+          <tr><td><b>9/16~9/22</b><br>브리즈번 6박</td><td>유심 · 은행 · TFN · 레주메 완성</td><td>GrainCorp / NT망고 / QLD패킹 동시 지원</td></tr>
+          <tr><td><b>9월 말~10월 초</b></td><td>남부 QLD · 북부 NSW GrainCorp 이동 시도</td><td>NT 망고 패킹 대기</td></tr>
+          <tr><td><b>10~11월</b></td><td>grain 또는 패킹쉐드에서 날짜 쌓기</td><td>더 안정적인 곳 있으면 이동</td></tr>
+          <tr><td><b>11월 말 전</b></td><td>12월까지 이어지는 시프트 확정</td><td>숙소 · 교통 · 페이슬립 확인</td></tr>
+          <tr><td><b>12월 중순~1월 초</b></td><td>새 구직 최소화, 현재 일 유지</td><td>코튼진 공고 모니터링</td></tr>
+          <tr><td><b>1~2월</b></td><td>코튼진 지원 / 대기명단 등록</td><td>여름 과일·패킹 보험 지원</td></tr>
+          <tr><td><b>3~4월</b></td><td>코튼진 시작 노리기</td><td>QLD / NSW cotton 지역 이동</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h2>시즌 캘린더</h2>
+    <div class="grid two">
+      <div class="job"><h3>GrainCorp</h3><div class="where">곡물 저장소 · 1~4개월 단기 캐주얼</div>
+        <ul class="plain" style="margin-top:16px"><li>중부 QLD <b>8~9월</b> — 9월 중순 도착이면 이미 늦을 수 있음</li><li>남부 QLD · 북부 NSW <b>10월 중순~</b> — 여기를 노릴 것</li><li>남부 NSW · VIC <b>10월 말~11월</b></li></ul></div>
+      <div class="job"><h3>NT 망고</h3><div class="where">Darwin · Katherine</div>
+        <ul class="plain" style="margin-top:16px"><li>시즌 <b>9~12월</b>, 공고상 9/1~11/29 사례</li><li>NT 전역이 regional postcode라 지역 조건 확인이 단순</li><li>피킹보다 패킹·선별·라벨링·스태킹 권장</li></ul></div>
+      <div class="job"><h3>QLD 농장</h3><div class="where">Bowen · Ayr · Home Hill</div>
+        <ul class="plain" style="margin-top:16px"><li><b>8~11월</b> 토마토·채소·멜론·망고</li><li>Innisfail·Tully 바나나는 연중</li><li>Stanthorpe 딸기·사과·포도는 10~4월</li></ul></div>
+      <div class="job"><h3>코튼진</h3><div class="where">Cotton Gin</div>
+        <ul class="plain" style="margin-top:16px"><li>실제 시즌 <b>4~8월</b> (Moura 3월~8월말, Emerald 4월~10월말)</li><li>1월은 "지원·대기명단 등록"용, 시작은 3~4월</li><li>12시간 주야간 교대, Bag/Press Operator 등</li></ul></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h2>12월 크리스마스 리스크</h2>
+    <div class="note warn">
+      <p><b>12월 15일 이후 "이제 구해볼까?"는 늦습니다.</b></p>
+      <p>농장이 다 닫는 건 아니지만 사무실·에이전시·패킹쉐드·공장 온보딩 담당자가 크리스마스~연초에 쉽니다. 식품 제조업체가 1월 첫 2주를 shutdown으로 잡는 사례도 있습니다. 구직자는 몰리고 담당자는 없는 최악의 조합입니다.</p>
+      <p>공장들은 <b>크리스마스 이전에 미리 뽑아 교육을 끝내고</b> 성수기 물량을 준비합니다. 즉 12월 지원보다 <b>10~11월 입사</b>가 압도적으로 유리합니다.</p>
+    </div>
+    <div class="note info"><b>1월 코튼진만 믿고 9~12월을 느슨하게 보내면 안 됩니다.</b> 코튼진은 좋은 카드지만 실제 시즌은 3~4월이라 1~2월 공백이 생깁니다. 9~11월에 먼저 날짜를 쌓고 → 12월 전에 안정된 일자리 유지 → 1월부터 코튼진 지원 → 3~4월 본게임이 가장 안전합니다.</div>
+  </div>
+</section>
+
+<!-- =============== 3. 지역 =============== -->
+<section id="p3" class="panel" role="tabpanel">
+  <div class="sec">
+    <h2>이동 후보 TOP 5</h2>
+    <p class="lead">퀸즐랜드만 고집하지 않는 편이 좋습니다. 9월 도착 기준 순위입니다.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>#</th><th>지역</th><th>직종</th><th>시기</th><th>세컨</th><th>난이도</th><th>이유</th></tr></thead>
+        <tbody>
+          <tr><td class="num"><b>1</b></td><td><b>남부 QLD + 북부 NSW</b></td><td>GrainCorp / 곡물 저장소 / 그레인 핸들러</td><td class="num">9월 말~11월</td><td>높음</td><td class="num">★★★★☆</td><td>브리즈번에서 이동 쉽고 시즌 타이밍 최적</td></tr>
+          <tr><td class="num"><b>2</b></td><td><b>NT 다윈 · 캐서린</b></td><td>망고 피킹·패킹 / 호스피탈리티</td><td class="num">9~12월</td><td>높음</td><td class="num">★★★★☆</td><td>9월 도착자에게 시즌이 잘 맞음</td></tr>
+          <tr><td class="num"><b>3</b></td><td><b>QLD 보웬·에어·홈힐</b></td><td>토마토·멜론·망고·채소 패킹</td><td class="num">8~11월</td><td>높음</td><td class="num">★★★★☆</td><td>퀸즐랜드 안에서 가장 현실적</td></tr>
+          <tr><td class="num"><b>4</b></td><td><b>타즈매니아</b></td><td>육가공 / 베리 / 애플 / 채소</td><td class="num">연중+여름</td><td>높음</td><td class="num">★★★☆☆</td><td>세컨 따기 안정형, 날씨 선선</td></tr>
+          <tr><td class="num"><b>5</b></td><td><b>WA 리저널 로드하우스</b></td><td>주유소·카페·하우스키핑</td><td class="num">연중</td><td>조건부</td><td class="num">★★★★☆</td><td>돈은 모이지만 너무 멀고 영어 필요</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note info"><b>"퀸즐랜드니까 무조건 가능"은 아닙니다.</b> QLD는 우편번호가 세부적으로 나뉘어 regional centres / other regional areas로 지정됩니다. 지역명이 아니라 <b>실제 근무지 postcode</b>를 확인해야 합니다. 관광·호스피탈리티는 Northern 또는 Remote/Very Remote 조건이 추가로 붙습니다.</div>
+  </div>
+
+  <div class="sec">
+    <h2>퀸즐랜드 인근 12개 후보</h2>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>#</th><th>지역</th><th>적기</th><th>직종</th><th>난이도</th><th>한줄평</th></tr></thead>
+        <tbody>
+          <tr><td class="num">1</td><td><b>GrainCorp 남부QLD·북부NSW</b></td><td class="num">10월 중순~</td><td>곡물 저장, 샘플링, weighbridge</td><td class="num">★★★★☆</td><td>돈·시프트 좋은데 시즌 짧고 영어 필요</td></tr>
+          <tr><td class="num">2</td><td><b>Gatton / Laidley / Boonah</b></td><td class="num">연중</td><td>채소 수확·선별·패킹, 토마토, 멜론</td><td class="num">★★★☆☆</td><td>브리즈번에서 가까워 첫 이동지로 현실적</td></tr>
+          <tr><td class="num">3</td><td><b>Bundaberg / Childers / Gin Gin</b></td><td class="num">연중</td><td>토마토, 베리, 멜론, 아보카도, 마카다미아</td><td class="num">★★★★☆</td><td>일은 많지만 백패커 숙소 장사 조심</td></tr>
+          <tr><td class="num">4</td><td><b>Bowen / Ayr / Home Hill</b></td><td class="num">8~11월</td><td>토마토, 채소, 멜론, 망고, 패킹</td><td class="num">★★★★☆</td><td>9월 도착자에게 타이밍 괜찮음</td></tr>
+          <tr><td class="num">5</td><td><b>Innisfail / Tully / Lakeland</b></td><td class="num">연중</td><td>바나나 팜·패킹, farm hand</td><td class="num">★★★★★</td><td>세컨은 따기 좋지만 몸 갈리는 루트</td></tr>
+          <tr><td class="num">6</td><td><b>Mareeba / Atherton</b></td><td class="num">망고 10~1월</td><td>망고, 아보카도, 바나나, 채소, 패킹</td><td class="num">★★★★☆</td><td>차 있으면 훨씬 유리</td></tr>
+          <tr><td class="num">7</td><td><b>Stanthorpe / Granite Belt</b></td><td class="num">10~4월</td><td>딸기, 사과·배, 포도, 캡시컴</td><td class="num">★★★☆☆</td><td>퀸즐랜드인데 비교적 선선</td></tr>
+          <tr><td class="num">8</td><td><b>Cairns / Port Douglas</b></td><td class="num">5~10월</td><td>하우스키핑, F&amp;B, 키친핸드, 투어</td><td class="num">★★★☆☆</td><td>농장 싫으면 북부 호스피탈리티</td></tr>
+          <tr><td class="num">9</td><td><b>Hamilton Is. / Airlie Beach</b></td><td class="num">5~12월</td><td>하우스키핑, 리조트 F&amp;B, 키친</td><td class="num">★★★☆☆</td><td>생활환경 좋고 세컨도 노릴 수 있음</td></tr>
+          <tr><td class="num">10</td><td><b>Townsville / Magnetic Is.</b></td><td class="num">5~12월</td><td>로드하우스, 카페, 편의점, 주방</td><td class="num">★★★★☆</td><td>영어 필요, 외질수록 시프트 많음</td></tr>
+          <tr><td class="num">11</td><td><b>Goondiwindi / St George / Dalby</b></td><td class="num">시즌별</td><td>grain, cotton, farm hand, machinery</td><td class="num">★★★★☆</td><td>차 있으면 강력, 초보는 에이전시</td></tr>
+          <tr><td class="num">12</td><td><b>QLD 육가공</b></td><td class="num">연중</td><td>육가공, 패킹, process worker</td><td class="num">★★★★☆</td><td>시프트 안정적이나 냄새·추위·반복</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h2>목적별 추천 루트</h2>
+    <div class="grid two">
+      <div class="job"><h3>돈 우선</h3><p class="pros" style="margin-top:12px">GrainCorp → 육가공 → 로드하우스<br><span class="down">단</span> 영어·외진 지역·시프트 강도가 따라옵니다.</p></div>
+      <div class="job"><h3>안정성 우선</h3><p class="pros" style="margin-top:12px">육가공 → Gatton/Laidley 패킹 → Bundaberg 패킹<br><span class="up">장점</span> 몸은 힘들어도 시프트가 비교적 안정적입니다.</p></div>
+      <div class="job"><h3>생활환경 우선</h3><p class="pros" style="margin-top:12px">Hamilton Island → Cairns/Port Douglas → Townsville<br><span class="up">장점</span> 영어 늘리기 좋음. <span class="down">단</span> 경쟁률이 높습니다.</p></div>
+      <div class="job"><h3>피해야 할 루트</h3><p class="pros" style="margin-top:12px"><span class="down">주의</span> 바나나 백패커스 무작정 입주 · 저수익 시트러스 피킹 · "세컨 가능"만 말하고 페이슬립 애매한 컨트랙터</p></div>
+    </div>
+    <div class="note warn"><b>한국인 과밀 주의 지역</b> — Bundaberg(번다버그), Caboolture(카불쳐)는 한국인 워홀러가 너무 몰려서, 시즌 핑계로 일을 제대로 못 받거나 숙소·일자리 문제로 이용당하는 사례가 보고됩니다.</div>
+  </div>
+
+  <div class="sec">
+    <h2>지역 거점 3곳</h2>
+    <p class="lead">"허브 도시에 살면서 주변 농장·공장으로 출퇴근"하는 구조가 가능한 곳들입니다.</p>
+
+    <div class="card">
+      <div class="cardhead"><h3>벤디고 (Bendigo) · VIC</h3><span class="badge">공장 다양</span></div>
+      <p>빅토리아주 3번째 도시. 멜버른 서던크로스역에서 V/Line 약 2시간. 농장보다 <b>공장</b> 위주라 날씨 영향이 적고 시프트가 안정적입니다. 한국인이 적어 영어 쓸 기회가 많습니다(한국인 약 200명 추정).</p>
+      <h4>공장 목록</h4>
+      <ul class="plain">
+        <li><b>Hezelden's</b> (닭, 풀타임) — 차 없으면 Kangaroo Flat이나 벤디고 거주 + 카쉐어 / SEEK·이메일·Range agency</li>
+        <li><b>Moira Mac</b> (닭, 캐주얼 오전) — 근처 살면 도보 가능, 퇴근 시 버스 있음 / SEEK</li>
+        <li><b>Balco</b> (건초, 캐주얼 12시간 2교대) — 북쪽 멀어 차 필수 / SEEK</li>
+        <li><b>SBA</b> (달걀부화장, 풀타임) — Huntly 거주 + 카쉐어 / Range, Programmed, APG</li>
+        <li><b>Don</b> (육포·소세지, 캐주얼·풀타임) — Castlemaine역에서 버스, 메디컬 빡세지만 일은 쉬움 / SEEK</li>
+        <li><b>J.L King</b> (즉석조리식품, 오전·오후·나이트) — 근처 살면 도보 가능 / SEEK, 직컨</li>
+      </ul>
+      <h4>타이밍과 전략</h4>
+      <ul class="plain">
+        <li>고용 피크 <b>9~12월</b>(여름), 고용 드묾 <b>5~8월</b>(겨울)</li>
+        <li>공장 채용 정보는 온라인에 거의 없음 — <b>이력서 들고 직접 방문해 HR을 만나는 것</b>이 가장 효과적</li>
+        <li>직컨 전에 SEEK로 먼저 지원한 뒤, 방문해서 "온라인도 넣었고 직접 드리고 싶었다"고 어필</li>
+        <li>임시숙소: The Graduate Bendigo — 인근에 Moira Mac, JL King. 1달 이상 거주 예정이라고 말하면 방값이 저렴해짐</li>
+      </ul>
+      <div class="btnrow"><a class="btn" href="https://www.thegraduatebendigo.com.au/" target="_blank" rel="noopener">임시숙소 사이트</a><a class="btn" href="https://maps.app.goo.gl/ALm6DdPub2LcWBKu9" target="_blank" rel="noopener">공장+숙소 지도</a></div>
+    </div>
+
+    <div class="card">
+      <div class="cardhead"><h3>쉐파튼 (Shepparton) · VIC</h3><span class="badge neutral">제조 + 농업</span></div>
+      <p>빅토리아주의 큰 시골 마을. 농업뿐 아니라 제조업 일자리도 있습니다. <b>호스피탈리티는 세컨 인정이 안 되므로</b> 반드시 농장·제조 업무여야 합니다.</p>
+      <h4>일자리</h4>
+      <ul class="plain">
+        <li><b>SPC Global Ltd</b> (Andrew Fairley Ave) — "쉐파튼의 삼성급" 대기업 공장, 기차역 근처, 대우·복지·급여 좋은 편</li>
+        <li><b>Geoffrey Thompson</b> (14/30 Wheeler St) — 시내 팩킹쉐드, 규모 있음</li>
+        <li><b>Prima Fresh Orchards</b> (460 Craven Rd, Tatura) — 과일 팩킹쉐드</li>
+        <li><b>Tatura Milk Industries</b> (236 Hogan St, Tatura) — 유제품 공장, 고용 확대 언급</li>
+        <li><b>Ardmona Packhouse</b> (540 Simson Rd, Ardmona) — 영상 제작자가 세컨 취득 후 3년 근무 / 채용 담당 0494 173 114</li>
+        <li><b>Flavorite Tatura</b> — 비닐하우스, 과거 한국인 채용 관련 안 좋은 후기 있음</li>
+      </ul>
+      <h4>숙소 · 에이전시</h4>
+      <ul class="plain">
+        <li>The Harvest Lodge (17-19 Wyndham St) — 기차역 도보 35분</li>
+        <li>Black Bull, Mooroopna (220 McLennan St) — 캐빈 렌탈, 농업 종사자 많아 정보 공유 좋음</li>
+        <li>Wyndham St 모텔거리 — 단기숙소로 추천, 공휴일엔 빨리 참</li>
+        <li>MADEC Australia (461 Wyndham St, 1800 062 332) / Chandler Macleod (100B Wyndham St)</li>
+        <li>Facebook 쉐파튼 커뮤니티가 매우 활성화 — 조건을 직접 글로 올리는 방식 추천</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="cardhead"><h3>번버리 (Bunbury) · WA</h3><span class="badge neutral">퍼스 남쪽 175km</span></div>
+      <p>서호주 3번째 도시(인구 약 7만). 퍼스에서 차·버스로 약 3시간. 마트·영화관·아시안 식당이 갖춰져 시골이라기보다 근교 도시 느낌입니다. 번버리 자체보다 <b>주변 농장·공장으로 출퇴근</b>하는 구조입니다.</p>
+      <h4>타겟 지역</h4>
+      <ul class="plain">
+        <li><b>마이얼럽 (Myalup)</b> — 대규모 농장 지대</li>
+        <li><b>하비 (Harvey)</b> — Harvey Beef 등 육가공 공장</li>
+        <li><b>도니브룩 (Donnybrook)</b> — 사과·베리 등 과일 농장 밀집</li>
+      </ul>
+      <h4>워킹 호스텔</h4>
+      <ul class="plain">
+        <li>돌핀 리트릿 (Dolphin Retreat) — 인기, 예약 금방 참</li>
+        <li>원더 인 (Wander Inn) — 자체 출퇴근 차량 운영하기도 함</li>
+      </ul>
+      <ul class="plain" style="margin-top:16px">
+        <li>퍼스↔번버리 대체버스(Transwa) 첫차 약 $18.4, 막차 시간대 약 $36.8</li>
+        <li>대중교통이 열악해 <b>차량이 사실상 필수</b>. 없으면 커뮤니티에서 차 있는 일행 구하기</li>
+        <li>비자 기간이 촉박하면 날씨 타는 농장보다 <b>시프트 안정적인 공장</b>이 유리</li>
+      </ul>
+      <div class="note warn" style="margin-top:16px"><b>워킹 호스텔 사기 주의</b> — "일자리가 있다"며 숙박을 유도한 뒤 실제로는 일을 주지 않고 숙박비만 챙기는 사례가 있습니다.</div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== 4. 공장·농장 =============== -->
+<section id="p4" class="panel" role="tabpanel">
+  <div class="sec">
+    <h2>공장 · 농장 전체</h2>
+    <p class="lead">후기 기준 정리입니다. 시급·주급은 촬영 시점 기준이라 변동될 수 있습니다.</p>
+    <div class="subtabs" role="tablist">
+      <button class="subtab active" data-s="s1">공장</button>
+      <button class="subtab" data-s="s2">농장</button>
+      <button class="subtab" data-s="s3">순위·비교</button>
+    </div>
+
+    <!-- 공장 -->
+    <div id="s1" class="subpanel active">
+      <div class="grid two">
+
+        <div class="job">
+          <div class="top"><div><h3>바이아다 닭공장</h3><div class="where">Wingfield · Parafield, 애들레이드 SA</div></div><span class="badge">추천</span></div>
+          <div class="facts">
+            <div><span>시급</span><b>$30~31 → $32~33</b></div>
+            <div><span>주급</span><b>$1,300~1,700</b></div>
+            <div><span>저축</span><b>주 $800~900</b></div>
+            <div><span>지원</span><b>APG / Sandler</b></div>
+          </div>
+          <p class="pros"><span class="up">장점</span> 시내에서 차로 10~20분. <b>도시 생활 + 세컨비자를 동시에</b> 할 수 있는 드문 공장. 육가공 중 난이도 낮은 편(닭이라 가볍고 냄새 적음). 시프트 안정적, 구인 규모 큼. Early Morning +$2.6/hr, Night +$6/hr.</p>
+          <p class="pros" style="margin-top:8px"><span class="down">단점</span> 작업장 1~2도 — 후드티·플리스·기모바지·두꺼운 양말 필수. 나이트 시프트는 대중교통이 끊겨 <b>차량 거의 필수</b>. 직접 지원 거의 불가, 에이전시 경유(Sandler가 관리 체계적이고 갑작스러운 해고 적음).</p>
+          <p class="pros" style="margin-top:8px">거주 추천: Wingfield(공장 최근접·코스트코) &gt; Parafield(차 5~10분) &gt; Adelaide CBD(편의성↑ 렌트↑)</p>
+        </div>
+
+        <div class="job">
+          <div class="top"><div><h3>타즈매니아 육가공</h3><div class="where">Tasmania</div></div><span class="badge">추천</span></div>
+          <div class="facts">
+            <div><span>시급</span><b>$29.34 → +$2 (3개월)</b></div>
+            <div><span>세후 주급</span><b>$947~1,000+</b></div>
+            <div><span>근무</span><b>06:00~14:00</b></div>
+            <div><span>숙소</span><b>독방 주 $180</b></div>
+          </div>
+          <p class="pros"><span class="up">장점</span> 도축이 아닌 가공 파트. 농장보다 훨씬 편하고 시프트 안정적이라 <b>세컨 따기 가장 무난한 축</b>. 오후 2~3시 퇴근이라 개인시간 확보.</p>
+          <p class="pros" style="margin-top:8px"><span class="down">단점</span> 고기·피 냄새, 음악 금지. 지원은 페이스북 그룹 + 구인 사이트.</p>
+        </div>
+
+        <div class="job">
+          <div class="top"><div><h3>육가공 공장 (QLD)</h3><div class="where">시내 근접 · 자차 10~15분</div></div><span class="badge neutral">현실 후기</span></div>
+          <div class="facts">
+            <div><span>준비 기간</span><b>지원~출근 약 4주</b></div>
+            <div><span>필수 접종</span><b>Q Fever (2주)</b></div>
+            <div><span>초기 비용</span><b>첫 주급 $11 공제</b></div>
+            <div><span>근무</span><b>풀타임 주 38시간</b></div>
+          </div>
+          <p class="pros">SEEK 지원 → Microsoft Teams 화상 면접. 구역은 <b>킬 플로어</b>(도축·내장, 비위 약하면 힘듦), <b>보닝 룸</b>(부위별 분할), <b>패킹</b>(최대 12kg, 고기 종류마다 포장법이 계속 바뀌어 집중력 필요).</p>
+          <p class="pros" style="margin-top:8px"><span class="up">장점</span> 시프트 고정이라 세컨에 유리, 시골 오지가 아닌 시내 근접, 영어·기술 없어도 가능.</p>
+          <p class="pros" style="margin-top:8px"><span class="down">단점</span> 손가락 마디·손목·어깨 통증으로 밤에 깰 정도(<b>한국 파스 강력 추천</b>), 영하에 가까운 온도에서 8시간 서서 근무, 레일이 멈추지 않는 압박. 작성자는 슈퍼바이저 괴롭힘으로 한 달 만에 퇴사 — HR·제너럴 매니저 면담은 전문적으로 대응해줬다고 함.</p>
+        </div>
+
+        <div class="job">
+          <div class="top"><div><h3>SunRice 쌀공장</h3><div class="where">Leeton, NSW</div></div><span class="badge">고수익</span></div>
+          <div class="facts">
+            <div><span>포지션</span><b>Plant Operator</b></div>
+            <div><span>정규 주급</span><b>$1,715 (주4일)</b></div>
+            <div><span>최대 주급</span><b>$3,175 (OT 24h)</b></div>
+            <div><span>시프트</span><b>4 ON 4 OFF (12h)</b></div>
+          </div>
+          <p class="pros"><span class="up">장점</span> 식품 가공 분류라 <b>한 곳에서 6개월 이상 근무 가능</b>(서드까지 한 번에). 완전 시골이라 세컨·서드 지역 요건 충족. 시즌을 안 타서 연중 안정적 — <b>커플 저축에 최적</b>. OT는 2배 수당 또는 2배 휴가(TIL) 선택.</p>
+          <p class="pros" style="margin-top:8px"><span class="down">단점</span> 공휴일 2배 수당 없음. 수습 6개월간 매달 성과 측정(중간 해고 사례 있음). 4주 트레이닝 + 연락까지 1~2달 걸리므로 <b>여유 두고 지원</b>. 5 ON 2 OFF(8시간, 주말 포함) 옵션도 있음.</p>
+        </div>
+
+        <div class="job">
+          <div class="top"><div><h3>잉햄 달걀농장</h3><div class="where">Ingham's · NSW 외곽</div></div><span class="badge neutral">안정형</span></div>
+          <div class="facts">
+            <div><span>평일 시급</span><b>$25.5~26.73</b></div>
+            <div><span>토 / 일</span><b>$37~38 / $48~50</b></div>
+            <div><span>주급</span><b>$900~1,300</b></div>
+            <div><span>지원</span><b>Backpacker Job Board</b></div>
+          </div>
+          <p class="pros"><span class="up">장점</span> 과일농장 같은 능력제(piece rate)가 아닌 <b>시급제</b>라 수입이 안정적. 대기업 운영이라 근무복·장화·안전장비 지급, 페이슬립 정상 발급. 호주인·유럽 워홀러 비율이 높아 영어 실전 사용량 많음.</p>
+          <p class="pros" style="margin-top:8px"><span class="down">단점</span> 암모니아(닭똥) 냄새 — 여름·고온다습일수록 심함. 닭털 알레르기 있으면 재고. 외곽이라 <b>차량 사실상 필수</b>(우버 출퇴근 시 하루 약 $60). 유닛별 슈퍼바이저·근무일수 복불복.</p>
+          <p class="pros" style="margin-top:8px">업무: 플로어 워크(떨어진 달걀 수거·죽은 닭 처리·청소) / 패킹(분류·선별·포장) / 에그 피킹(레일 위 깨진 달걀 제거·등급 분류)</p>
+        </div>
+
+        <div class="job">
+          <div class="top"><div><h3>브리즈번 케이크 공장</h3><div class="where">Brisbane, QLD</div></div><span class="badge danger">채용 축소</span></div>
+          <div class="facts">
+            <div><span>Day</span><b>06:00~14:00</b></div>
+            <div><span>Afternoon</span><b>14:00~22:00</b></div>
+            <div><span>휴게</span><b>20분 + 30분</b></div>
+            <div><span>추천 지원</span><b>연초 1~3월</b></div>
+          </div>
+          <p class="pros"><span class="up">장점</span> 공장 안이 버터·초콜릿·캐러멜 향. 당 떨어지면 <b>케이크를 먹을 수 있음</b>. 냉동창고·무거운 박스 운반이 적어 상대적으로 수월. 슈퍼바이저 간섭 적고 분위기 좋음. 얼굴인식 출입, 휴게실에 전자레인지·에어프라이어·자판기.</p>
+          <p class="pros" style="margin-top:8px"><span class="down">단점</span> 최근 2~3개월 신규 채용 거의 없고 <b>한국인 채용이 크게 줄었음</b>. 주변에 식당이 없어 도시락 필수. 브리즈번 여름 자외선이 강해 양산·우산 필요.</p>
+          <p class="pros" style="margin-top:8px">업무: 케이크·머핀 제조, 데코레이션, 초콜릿 토핑, "Happy Birthday" 문구 작업, 포장. 하루 1,500~2,000개 이상.</p>
+        </div>
+
+        <div class="job">
+          <div class="top"><div><h3>토마토 공장</h3><div class="where">백패커스 경유</div></div><span class="badge neutral">★★★</span></div>
+          <div class="facts">
+            <div><span>주급</span><b>약 $1,700</b></div>
+            <div><span>근무</span><b>주 38시간+</b></div>
+            <div><span>업무</span><b>토마토 선별</b></div>
+            <div><span>강도</span><b>중 · 영어 낮음</b></div>
+          </div>
+          <p class="pros"><span class="up">장점</span> 시프트가 안정적이라 세컨 날짜 쌓기 좋음.</p>
+          <p class="pros" style="margin-top:8px"><span class="down">단점</span> 휴대폰·음악 금지 상태로 7~8시간 반복 작업. 육체보다 <b>정신적으로 힘든</b> 유형.</p>
+        </div>
+
+        <div class="job">
+          <div class="top"><div><h3>양파 공장</h3><div class="where">멜버른 시골</div></div><span class="badge danger">★★</span></div>
+          <div class="facts">
+            <div><span>시급</span><b>최저시급</b></div>
+            <div><span>보장</span><b>주 30시간+</b></div>
+            <div><span>지원</span><b>인력사무소 직접 방문</b></div>
+            <div><span>강도</span><b>높음</b></div>
+          </div>
+          <p class="pros">차 사서 멜버른 시골 인력 에이전시를 돌며 레주메를 직접 제출하는 발품형. 썩은 양파 선별을 7~8시간.</p>
+          <p class="pros" style="margin-top:8px"><span class="down">단점</span> 손목 통증 심함. 음악·휴대폰·전자기기 전면 금지. 먼지 많고 환기 불량해 기관지 부담. 백인 관리자는 쉬운 업무, 유색인종은 노동 비중이 높다는 인종차별 체감도 언급됨.</p>
+        </div>
+
+        <div class="job">
+          <div class="top"><div><h3>바나나 공장 / 백패커스</h3><div class="where">Innisfail · Tully 등</div></div><span class="badge danger">비추천</span></div>
+          <div class="facts">
+            <div><span>숙소</span><b>8인 1실 주 $220</b></div>
+            <div><span>시프트</span><b>불안정</b></div>
+            <div><span>업무</span><b>대형 송이 운반</b></div>
+            <div><span>추천도</span><b>★</b></div>
+          </div>
+          <div class="note warn" style="margin-top:16px"><b>숙소 장사 위험</b> — 숙소는 다 채우고 일은 안 주는 사례. 실제로 5~10명이 집값만 내며 무급 대기한 경우가 보고됐습니다.</div>
+          <p class="pros" style="margin-top:12px"><span class="down">단점</span> 손목·팔 부담, 벌레 많음, 약품으로 인한 피부 트러블·알레르기, 갑작스러운 셧다운. 세컨 일수는 채우기 쉬우나 몸이 갈립니다.</p>
+        </div>
+
+      </div>
+
+      <div class="card" style="margin-top:16px">
+        <div class="cardhead"><h3>실제 경험자 7곳 — 대만인 웬디, 4년 워홀</h3><span class="badge neutral">퍼스트~포스</span></div>
+        <p>퍼스트·세컨드·서드·포스(코로나 특별비자)까지 4년을 대부분 공장에서 보낸 사람의 실측 리스트입니다. <b>시급이 높다고 세컨이 되는 건 아니라는 것</b>을 가장 잘 보여주는 표입니다.</p>
+        <div class="tablewrap" style="margin-top:16px">
+          <table>
+            <thead><tr><th>공장</th><th>지역</th><th>업무</th><th>시급</th><th>세컨</th><th>특징</th></tr></thead>
+            <tbody>
+              <tr><td><b>Primo</b> 베이컨</td><td>브리즈번 인근</td><td>살라미·베이컨·햄 포장</td><td class="num">약 $33</td><td><b>불가</b></td><td>시급 최고, 야간수당. 부서 이동 가능, 국적 무관 채용, 분위기 좋음. 시티에서 40분 — <b>차량 거의 필수</b></td></tr>
+              <tr><td><b>Sumich</b> 양파</td><td>Tasmania</td><td>양파 선별(A/B급·부패 제거)</td><td class="num">—</td><td>가능</td><td>수출 물량 따라 시즌 영향 큼. 비수기엔 근무시간 감소·계약 종료 가능</td></tr>
+              <tr><td><b>Nippys</b> 오렌지</td><td>South Australia</td><td>오렌지 포장</td><td class="num">약 $25</td><td>—</td><td>육체적으로 덜 힘든 반복 작업. 시즌 약 6개월, 근무시간 안정적</td></tr>
+              <tr><td><b>Cotton Inspection Lab</b></td><td>New South Wales</td><td>면화 샘플 검사·기계 분석</td><td class="num">약 $31</td><td>—</td><td><b>육체적으로 가장 편한 축</b>. 전문 검사 업무에 시급도 높음. 대신 매우 시골, 편의시설 거의 없음</td></tr>
+              <tr><td><b>Harvest Moon</b> 샐러드</td><td>Queensland</td><td>샐러드 용기에 재료 담기</td><td class="num">약 $28</td><td>—</td><td>일은 쉬우나 <b>하루 4~5시간</b>으로 짧음. 내부가 매우 추워 양말 두 겹</td></tr>
+              <tr><td><b>ACC Meat</b></td><td>North Brisbane</td><td>고기·내장 5kg 단위 포장</td><td class="num">—</td><td>—</td><td><b>7곳 중 가장 힘듦.</b> 피·내장 생고기 작업, 매우 무거움. 같은 육류라도 Primo 같은 가공육 공장이 훨씬 낫다는 평</td></tr>
+              <tr><td><b>Trumps Nut</b></td><td>Queensland</td><td>견과류 포장·기계 세척</td><td class="num">—</td><td>—</td><td>시급·주급 양호. 무난한 편</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note warn" style="margin-top:16px"><b>Primo가 이 표의 교훈입니다.</b> 시급 $33로 가장 높은데 브리즈번 인근이라 <b>세컨·서드 인정 지역이 아닙니다.</b> 돈만 모으는 구간이면 후보지만, 88일 채우는 용도로 잡으면 시간을 통째로 날립니다. 지역 조건은 시급과 완전히 별개입니다.</div>
+        <div class="grid two" style="margin-top:16px">
+          <div class="job"><h3>공장 구하는 법 — 우선순위</h3>
+            <ul class="plain" style="margin-top:16px">
+              <li><b>① 친구 소개</b> ⭐ 가장 추천 — 분위기·시급·숙소·근무환경을 미리 다 알 수 있음</li>
+              <li><b>② 에이전시</b> — Agri Labour 등 Labour Hire 업체, 온라인 지원 가능</li>
+              <li><b>③ 페이스북 그룹</b> — Factory Jobs / Farm Jobs / Working Holiday Jobs</li>
+              <li><b>④ 회사 홈페이지 직접</b> — Primo처럼 자사 채용 페이지로 뽑는 곳이 늘어남</li>
+            </ul>
+          </div>
+          <div class="job"><h3>웬디가 가장 강조한 것</h3>
+            <p class="pros" style="margin-top:12px"><b>다양한 국적 친구를 많이 만들 것.</b> 일자리 정보·추천 채용·지역 이동 정보·숙소 정보가 전부 사람을 타고 옵니다.</p>
+            <p class="pros" style="margin-top:8px">한국 커뮤니티에만 머물면 정보가 그만큼 제한됩니다. 대만·일본 워홀러들과 교류하면 기회가 늘어납니다.</p>
+            <p class="pros" style="margin-top:8px"><b>영어를 못해도 되나?</b> — "잘하면 좋지만 공장은 옆 사람이 알려주기 때문에 충분히 일할 수 있다." 실제로 일본·대만·말레이시아 워홀러들도 영어 없이 많이 근무합니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 농장 -->
+    <div id="s2" class="subpanel">
+      <div class="grid two">
+
+        <div class="job">
+          <div class="top"><div><h3>GrainCorp</h3><div class="where">QLD · NSW · VIC 곡물 저장소</div></div><span class="badge">1순위</span></div>
+          <div class="facts">
+            <div><span>주급</span><b>$2,000+</b></div>
+            <div><span>근무</span><b>10~12시간 무휴</b></div>
+            <div><span>기간</span><b>1.5~4개월</b></div>
+            <div><span>지원</span><b>공식 홈페이지</b></div>
+          </div>
+          <p class="pros"><span class="up">장점</span> 시급제라 피킹보다 "일한 시간" 계산이 깔끔. 사이트에 따라 <b>모텔 제공</b>. 돈 모으기 + 세컨 목적이면 가장 먼저 찔러볼 카드.</p>
+          <p class="pros" style="margin-top:8px"><span class="down">단점</span> 시즌이 짧고 <b>갑작스러운 계약 종료</b> 가능. 무전(웨이브릿지) 사용이 많아 영어 필수. 채용이 뜨면 즉시 지원해야 하는 선착순 구조. 숙소 미제공 사이트는 직접 구해야 함.</p>
+          <p class="pros" style="margin-top:8px">지역: Dalby · Goondiwindi · St George · Chinchilla · Roma · Toowoomba 외곽 · Moree · Narrabri</p>
+        </div>
+
+        <div class="job">
+          <div class="top"><div><h3>카셀라 와이너리</h3><div class="where">Yenda, NSW (Griffith 10~15분)</div></div><span class="badge">최상위</span></div>
+          <div class="facts">
+            <div><span>시급</span><b>약 $39.78 (2024)</b></div>
+            <div><span>세후 주급</span><b>$1,400 → $2,100</b></div>
+            <div><span>근무</span><b>월~금 06:30~14:30</b></div>
+            <div><span>OT</span><b>1.5배 / 2배</b></div>
+          </div>
+          <p class="pros"><span class="up">장점</span> 세컨·서드 <b>인정 사례 다수</b>(제작자는 2023·2024 두 시즌으로 세컨·서드 모두 승인, HR에도 사전 확인). 단순 반복이 아니라 매일 Work Sheet·작업 계획·Chemical 투입을 직접 판단하는 업무라 지루함이 적음. 무전기·협업으로 영어 사용량 많음. 유니폼·워크부츠 무료(훼손 시 교체), 매주 과일박스·우유·커피, 시즌 종료 후 와인 12병 또는 맥주 24병 바우처.</p>
+          <p class="pros" style="margin-top:8px">Health &amp; Safety 체계가 매우 우수. 에스토니아·아르헨티나·영국·아일랜드·독일·이탈리아·인도네시아 등 다국적 팀. 경력 2~3년차가 되면 주말(오버타임) 기회가 늘어 수입이 크게 증가.</p>
+          <p class="pros" style="margin-top:8px">생활권 Griffith에 Woolworths·Coles·Kmart·영화관·볼링장 있음.</p>
+        </div>
+
+        <div class="job">
+          <div class="top"><div><h3>블루베리 농장</h3><div class="where">문두버라 등 · 시즌 8~10월</div></div><span class="badge neutral">추억형</span></div>
+          <div class="facts">
+            <div><span>단가</span><b>kg당 약 $3.5</b></div>
+            <div><span>수확량</span><b>하루 30~45kg</b></div>
+            <div><span>숙소</span><b>주 $150~180 (8인)</b></div>
+            <div><span>교통비</span><b>왕복 $10/일</b></div>
+          </div>
+          <p class="pros"><span class="up">장점</span> 영어를 못해도 몸으로 배울 수 있음. 열심히 하면 더 벌 수 있고(빠른 사람 80kg, 작황 좋으면 100kg) 전날 오후 6시까지 말하면 원하는 만큼 쉴 수 있었음. 사람들과 유대감이 강하게 생기는 편.</p>
+          <p class="pros" style="margin-top:8px"><span class="down">단점</span> 대부분 <b>Piece Rate</b>라 작황에 수입이 좌우됨(낮을 땐 $2.8). 숙소 랜덤 — 좋으면 개인 수영장, 나쁘면 파리·바퀴벌레·도마뱀·에어컨 없음. 가시에 손가락 베임, 화장실 가기 어려움.</p>
+          <div class="note warn" style="margin-top:12px"><b>입주·퇴실 때 사진 필수</b> — 보증금을 늦게 주거나 안 돌려주는 경우가 있습니다. 퇴실 시 청소기까지 돌리고 나오세요. 그리고 슈퍼바이저가 마약을 권하는 사례가 보고됐습니다. 무조건 거절하세요.</div>
+          <p class="pros" style="margin-top:12px">실전 팁: 종료 5분 전 미리 트럭에 가서 무게 재기(줄 짧음) / 버킷·벨트를 안 주는 농장은 좋은 농장이 아닐 수 있음 / 얼굴 전체 가리는 햇빛 차단 장비는 한국에서 사갈 것 / 매일 저녁 7~8시 WhatsApp 단톡방에 다음날 픽업 정보 공유</p>
+        </div>
+
+        <div class="job">
+          <div class="top"><div><h3>시트러스 피킹</h3><div class="where">멜버른 근교 · 5~9월</div></div><span class="badge danger">최하위</span></div>
+          <div class="facts">
+            <div><span>수입</span><b>주 $500 이하</b></div>
+            <div><span>숙소</span><b>독방 주 $230</b></div>
+            <div><span>지원</span><b>카톡 농장 구인방</b></div>
+            <div><span>추천도</span><b>★</b></div>
+          </div>
+          <p class="pros">4~5m 쇠사다리를 쓰고 어깨에 수확 자루를 메고 이동. 키 크고 체력 좋은 사람이 유리합니다.</p>
+          <p class="pros" style="margin-top:8px"><span class="down">단점</span> 가시로 상처가 많고 체력 소모가 큰데 수입은 가장 낮음. 성과 압박이 강해 <b>1주 만에 해고된 사례</b>도 있습니다. 숙소비가 수입을 넘길 위험.</p>
+        </div>
+
+        <div class="job">
+          <div class="top"><div><h3>로빈베일 (Robinvale)</h3><div class="where">VIC · 10월~5월</div></div><span class="badge neutral">참고</span></div>
+          <div class="facts">
+            <div><span>시급</span><b>약 $26</b></div>
+            <div><span>근무</span><b>8시간 · 주 5일</b></div>
+            <div><span>구성</span><b>대만인 70~80%</b></div>
+            <div><span>지원</span><b>대만인 FB 그룹</b></div>
+          </div>
+          <p class="pros">컨트랙터에게 직접 연락하는 구조. 한국인이 적어 커뮤니티 진입이 관건입니다.</p>
+        </div>
+
+        <div class="job">
+          <div class="top"><div><h3>농장 구직법 (공통)</h3><div class="where">모든 농장 적용</div></div><span class="badge neutral">방법</span></div>
+          <ul class="plain" style="margin-top:16px">
+            <li><b>Backpacker Job Board</b>가 1순위 — 88일 농장 일자리 정리가 잘 되어 있고 이력서 한 번 등록하면 다중 지원 가능</li>
+            <li>병행: 선브리즈번, 호주나라, Jora, SEEK, Gumtree, 지역별 오픈채팅</li>
+            <li><b>페이스북 지역 커뮤니티에 직접 글 올리기</b>가 이력서 지원보다 연락이 훨씬 잘 옴 ("성실하게 일하겠습니다" + 자연을 좋아한다는 내용이 도움)</li>
+            <li>친구와 함께면 각자 다른 사이트에서 지원 → 한 명이 연락받으면 "친구 몇 명 더 있는데 같이 가도 되나요?"로 묶기</li>
+            <li>일 시작 <b>1달 전쯤</b> 미리 연락하는 게 가장 좋음 — 타이밍이 전부</li>
+            <li>시골 숙소는 "app plus backpackers" 등으로 검색해 미리 예약(풀부킹 잦음), 마트·카페 있는 곳 우선</li>
+            <li>이동은 라이드쉐어 활용(브리즈번→문두버라 $50 사례). 커뮤니티 단톡방에서 도움 요청</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 순위 -->
+    <div id="s3" class="subpanel">
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>직종</th><th>추천도</th><th>시급 / 주급</th><th>강도</th><th>영어</th></tr></thead>
+          <tbody>
+            <tr><td><b>퍼스 주유소</b></td><td>⭐⭐⭐⭐⭐</td><td class="num">주 $2,200+</td><td>높음</td><td>필수</td></tr>
+            <tr><td><b>육가공 (타즈매니아)</b></td><td>⭐⭐⭐⭐⭐</td><td class="num">시급 $29.34+</td><td>중</td><td>보통</td></tr>
+            <tr><td><b>GrainCorp</b></td><td>⭐⭐⭐⭐⭐</td><td class="num">주 $2,000+</td><td>높음</td><td>중요</td></tr>
+            <tr><td><b>해밀턴 아일랜드 리조트</b></td><td>⭐⭐⭐⭐</td><td class="num">주 35시간+</td><td>중</td><td>필요</td></tr>
+            <tr><td><b>토마토 공장</b></td><td>⭐⭐⭐</td><td class="num">주 $1,700</td><td>중</td><td>낮음</td></tr>
+            <tr><td><b>양파 공장</b></td><td>⭐⭐</td><td class="num">최저시급</td><td>높음</td><td>낮음</td></tr>
+            <tr><td><b>시트러스 피킹</b></td><td>⭐</td><td class="num">주 $500 이하</td><td>매우 높음</td><td>낮음</td></tr>
+            <tr><td><b>바나나 공장</b></td><td>⭐</td><td class="num">불안정</td><td>매우 높음</td><td>낮음</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="grid two" style="margin-top:16px">
+        <div class="job"><h3>돈이 가장 잘 모이는 곳</h3><p class="pros" style="margin-top:12px">GrainCorp · 퍼스 주유소 · 육가공</p></div>
+        <div class="job"><h3>생활환경이 좋은 곳</h3><p class="pros" style="margin-top:12px">Hamilton Island 리조트 · Cairns · Townsville</p></div>
+        <div class="job"><h3>세컨 따기 가장 무난</h3><p class="pros" style="margin-top:12px">육가공 · GrainCorp · 리조트</p></div>
+        <div class="job"><h3>가장 비추천</h3><p class="pros" style="margin-top:12px"><span class="down">주의</span> 바나나 백패커스(숙소 장사 위험) · 저수익 시트러스 피킹</p></div>
+      </div>
+      <div class="note info" style="margin-top:16px"><b>공통 조언</b> — 페이스북 지역 그룹은 무조건 가입 · SEEK 병행 · 레주메 여러 군데 뿌리기 · 가능하면 시티에서 먼저 경력 만들기 · 영어와 인맥이 생각보다 훨씬 중요 · 장기적으로는 농장보다 호스피탈리티가 커리어와 영어에 유리</div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== 5. 리조트·기타 =============== -->
+<section id="p5" class="panel" role="tabpanel">
+  <div class="sec">
+    <h2>세컨·서드 가능 리조트 17곳</h2>
+    <p class="lead">선정 기준은 <b>직원 숙소 제공</b>입니다. 월세가 절약되고 차 없이 출퇴근이 되며 지방 이동이 쉬워집니다. 다만 대부분 관련 <b>경력을 선호</b>하므로, 시티에서 먼저 경험을 쌓고 지원하는 편이 유리합니다.</p>
+
+    <div class="card">
+      <h3>노던 테리토리 (NT)</h3>
+      <ul class="plain">
+        <li><b>Ayers Rock Resort</b> — 울루루 앞 Yulara. 워홀러 채용 많고 직원 숙소 저렴. Housekeeping·Room Attendant·F&amp;B·Kitchen·Front Office. 공식 채용에서 지역을 'Northern Territory'로 선택</li>
+        <li><b>Longitude 131°</b> (Baillie Lodges) — 울루루 근처 럭셔리. 규모는 작지만 워홀러 꾸준히 채용, 에어즈락과 같은 숙소 단지 사용. 계열: Capella Lodge, Southern Ocean Lodge, Silky Oaks Lodge(숙소 미제공)</li>
+        <li><b>Cooinda Lodge Kakadu</b> — 카카두 국립공원 내부. 직원 숙소 + <b>식사 제공</b>, 공항 인접. SEEK 연결</li>
+        <li><b>Discovery Resorts Kings Canyon</b> — 채용 페이지에서 'Alice Springs'로 검색. 공고에 <b>"Live On-site Accommodation"</b>이 있으면 숙소 제공. 계열 중 Wilpena Pound(SA), Rottnest Island(WA)도 숙소 제공</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>웨스턴 오스트레일리아 (WA)</h3>
+      <ul class="plain">
+        <li><b>Cable Beach Club Resort</b> — Broome. 공항·Woolworths 가까워 생활 편리. 건기(성수기) 채용 활발. Housekeeping·F&amp;B·Kitchen·Maintenance</li>
+        <li><b>RAC Monkey Mia Dolphin Resort</b> — Shark Bay. RAC는 WA·SA에 9개 리조트 보유, 대부분 숙소 제공. RAC Careers → Resort Jobs</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>태즈메이니아 (TAS)</h3>
+      <ul class="plain">
+        <li><b>Freycinet Lodge</b> — 프레이시넷 국립공원 내. 자연환경 매우 좋음. 운영사 NRMA</li>
+        <li><b>Cradle Mountain Hotel</b> — 같은 NRMA 계열, 숙소 제공</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>퀸즐랜드 (QLD)</h3>
+      <ul class="plain">
+        <li><b>Tangalooma Island Resort</b> — 브리즈번 근교 모튼 아일랜드. 섬 거주 필수, <b>경쟁률 매우 높음</b></li>
+        <li><b>Hamilton Island</b> — 휘트선데이. 350개 이상 직무(bartender·housekeeper·handyperson 등), 직원 커뮤니티 활성화. 지원은 SEEK</li>
+        <li><b>Hayman Island / Daydream Island</b> — 각 공식 채용 페이지 확인</li>
+        <li><b>Lizard Island Resort</b> — 케언즈 북부 프라이빗 럭셔리, 채용 페이지 정리 잘 됨</li>
+        <li><b>Lady Elliot Island</b> — 그레이트 배리어 리프. 채용매니저 이메일 직접 지원, 워홀러 환영</li>
+        <li><b>Green Island Resort</b> — 케언즈. <b>주 2일만 섬 거주</b>, 나머지는 케언즈 생활. 갇힌 느낌이 싫은 사람에게 적합</li>
+        <li><b>Fitzroy Island Resort</b> — 케언즈 근교, 누디비치로 유명. Housekeeping·Guest Service Agent</li>
+      </ul>
+      <div class="note info" style="margin-top:16px">케언즈 지역 고용주는 <b>"이미 케언즈에 거주 중인 지원자"</b>를 선호하는 경우가 많습니다.</div>
+    </div>
+
+    <div class="card">
+      <h3>기타</h3>
+      <ul class="plain">
+        <li><b>Norfolk Island</b> — 호주와 뉴질랜드 사이. 이민성 사이트에 7번째 주로 기재. 울릉도 절반 크기. 고용주가 워홀러의 3개월 근무 패턴에 익숙하고 장기 근무 환영. 바리스타로 세컨 취득 사례</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h2>리조트 1년, 실제로 얼마 남나</h2>
+    <p class="lead">룸어텐던트(Room Attendant) 1년 근무 · 페이슬립 26장 기준 실측입니다.</p>
+    <div class="grid two">
+      <div class="job"><h3>수입</h3>
+        <div class="facts">
+          <div><span>시급</span><b>$26 → $27</b></div>
+          <div><span>멀티하이어</span><b>$32</b></div>
+          <div><span>세전</span><b>A$60,000</b></div>
+          <div><span>세후</span><b>A$52,000</b></div>
+        </div>
+        <p class="pros">환율 917원 기준 세전 약 5,500만 원 / 세후 약 4,700만 원. 공휴일은 2배 지급.</p>
+      </div>
+      <div class="job"><h3>추가 혜택 — 약 A$3,200</h3>
+        <ul class="plain" style="margin-top:16px">
+          <li>이주 지원금 <b>A$700</b> (6개월 이상 근무, 영수증 제출)</li>
+          <li>휴가 지원금 <b>A$700</b> (1년 근무, 한국 휴가 항공권 제출)</li>
+          <li>어텐던스 보너스 <b>A$866</b> (최대 약 A$1,000)</li>
+          <li>직원 숙소 보증금 반환 <b>A$400</b></li>
+          <li>은행 이자 <b>A$560</b> (고금리 계좌 A$20,000 예치)</li>
+          <li>유급휴가 — 휴가 기간도 급여 지급, <b>세컨·서드 근무기간으로 인정</b></li>
+        </ul>
+      </div>
+    </div>
+    <div class="card quiet">
+      <h3>지출과 저축</h3>
+      <p>직원 숙소 <b>주 A$98</b>(1년 약 467만 원) — 전기·수도·에어컨 무료. 리조트 내 생활이라 교통비가 거의 없습니다. 세후 급여 + 추가 혜택 − 숙소비 − 생활비 = <b>약 4,500만 원 저축 가능</b>.</p>
+      <p style="margin-bottom:0"><b>워홀 1억?</b> 가능은 하지만 대부분 3년 정도 근무해야 현실적입니다. 1~2년 만에는 고소득 직종(건설·광산·공장)이 아니면 쉽지 않습니다.</p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h2>에어즈락 리조트 — 지원 전 경고</h2>
+    <div class="grid two">
+      <div class="job"><h3>알고 가야 할 것</h3>
+        <ul class="plain" style="margin-top:16px">
+          <li>사막이라 바다·푸른 자연이 없고 <b>고립된 환경</b></li>
+          <li>40도 이상 극심한 더위가 1주일 넘게 이어질 수 있음</li>
+          <li>혼자 보내는 시간이 많아 외로움</li>
+          <li>외국인들과의 문화 차이, 사회 경험이 적으면 갈등 해결이 어려움</li>
+        </ul>
+      </div>
+      <div class="job"><h3>그래도 좋은 점</h3>
+        <ul class="plain" style="margin-top:16px">
+          <li>하루 8시간 · 주 40시간 <b>고정 스케줄</b></li>
+          <li>슈퍼바이저가 재촉하지 않고 점심시간도 편함</li>
+          <li>약 7개월간 <b>2만 달러 저축</b> 가능 (개인차)</li>
+          <li>전기세 포함 월세라 생활비 부담 적음</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note warn"><b>이런 사람은 지원하지 마세요</b><p style="margin-top:8px">혼자 있는 시간을 싫어하는 사람 · 자주 욕하는 사람 · 환경의 단점만 크게 보는 사람 · 도시 생활에 익숙한 사람 · 세컨/서드가 간절하지 않은 사람 · <b>힘들 때 힘들다고 말 못 하는 사람</b>(업무량이 늘 때 솔직히 요청해야 하는데 못 하면 고생만 커집니다)</p></div>
+  </div>
+
+  <div class="sec">
+    <h2>기타 고수익 직종</h2>
+    <div class="grid two">
+
+      <div class="job">
+        <div class="top"><div><h3>퍼스 주유소</h3><div class="where">Perth 외곽 리저널</div></div><span class="badge">1위</span></div>
+        <div class="facts">
+          <div><span>주급</span><b>$2,200+</b></div>
+          <div><span>근무</span><b>주 7일</b></div>
+          <div><span>숙소</span><b>컨테이너 주 $130</b></div>
+          <div><span>지원</span><b>지역 FB 그룹</b></div>
+        </div>
+        <p class="pros">이름은 주유소지만 실제로는 <b>카페 + 편의점 + 레스토랑 + 슈퍼</b>를 합친 형태. 계산·커피 제조·샌드위치·과일 판매·담배 판매·청소·마감·튀김 조리까지 전부 담당합니다.</p>
+        <p class="pros" style="margin-top:8px">Perth·Brisbane·Melbourne·Sydney 페이스북 그룹에 이력서와 구직 의사를 올리면 연락이 옵니다. 약 30분 전화 인터뷰(강점 / 영어 가능 / 커피 제조 / 주문 응대).</p>
+        <p class="pros" style="margin-top:8px"><span class="down">단점</span> 매우 외진 지역, 업무 강도 높음, 영어 필수.</p>
+      </div>
+
+      <div class="job">
+        <div class="top"><div><h3>FIFO Utility</h3><div class="where">광산 빌리지 · Fly-In Fly-Out</div></div><span class="badge">고저축</span></div>
+        <div class="facts">
+          <div><span>Utility 시급</span><b>$30~40+</b></div>
+          <div><span>Operator</span><b>$40~50+</b></div>
+          <div><span>패턴</span><b>2주 근무 / 1주 휴무</b></div>
+          <div><span>근무시간</span><b>하루 12시간</b></div>
+        </div>
+        <p class="pros">FIFO는 직업이 아니라 <b>근무 방식</b>이고, Utility가 직무입니다. 광산 안이 아니라 <b>광산 근로자 숙소(빌리지)를 운영</b>하는 호스피탈리티 직군입니다.</p>
+        <p class="pros" style="margin-top:8px"><span class="up">저축률이 압도적</span> 숙소·식사·헬스장·수영장·비행기·교통 전부 무료. 시급은 높은데 돈 쓸 곳이 없습니다.</p>
+        <p class="pros" style="margin-top:8px">직군 난이도: Kitchen Hand ★★★★★(가장 힘듦) &gt; Housekeeping ★★★★ &gt; Utility/Houseman &gt; Laundry &gt; Grounds &gt; <b>Store Person ⭐(가장 편함)</b>. Mine Site Cleaner만 광산 내부 진입. Bus Driver는 HR License 필요.</p>
+        <p class="pros" style="margin-top:8px"><span class="down">단점</span> 구직 난이도가 매우 높음 — 일부 에이전시는 지원자 4,000명 이상. 온라인 지원만 하지 말고 이메일·전화·직컨을 병행하세요. 자격증은 <b>호주 운전면허 &gt; RSA &gt; White Card</b> 순.</p>
+        <p class="pros" style="margin-top:8px">사이트 postcode 확인 필수. 여름 40도지만 건조해서 한국 여름보다 낫다는 평. 뱀 발견 시 즉시 보고.</p>
+      </div>
+
+      <div class="job">
+        <div class="top"><div><h3>에이지드 케어 (AIN)</h3><div class="where">요양시설</div></div><span class="badge neutral">고시급</span></div>
+        <div class="facts">
+          <div><span>시급(캐주얼)</span><b>약 $36</b></div>
+          <div><span>Morning</span><b>06:00~14:00</b></div>
+          <div><span>Afternoon</span><b>14:00~22:00</b></div>
+          <div><span>Night</span><b>22:00~06:00</b></div>
+        </div>
+        <p class="pros">AIN(Assistant in Nursing) = 한국 간호조무사와 유사. 간호사 면허가 있어도 호주 면허가 없으면 이 직분입니다. 비전공자는 현지 <b>6개월 에이지드 케어 코스</b> 수료로 자격 취득 — 영주권 발판이 되기도 합니다.</p>
+        <p class="pros" style="margin-top:8px">2인 1조(Buddy System)로 화장실 보조·샤워·기저귀 교체·식사 서빙 및 피딩. 휴식 15분(유급) + 30분(무급)을 <b>엄격하게 보장</b>하고 오버타임 없이 칼퇴합니다.</p>
+        <p class="pros" style="margin-top:8px"><span class="up">장점</span> 밤·주말·공휴일 페널티 레이트로 급여가 크게 올라감. 어르신들의 "Thank you, Darling" 같은 표현에서 오는 정서적 보람.</p>
+        <p class="pros" style="margin-top:8px"><span class="down">단점</span> 대소변을 직접 처리해야 해 비위가 약하면 매우 힘듦. 하루 1만 보 이상, 호이스트를 써도 근력이 필요합니다. 시티 외곽은 교통이 불편해 <b>차량 필수</b>.</p>
+      </div>
+
+      <div class="job">
+        <div class="top"><div><h3>호스피탈리티 (카페·레스토랑)</h3><div class="where">시티 → 리저널</div></div><span class="badge neutral">장기전</span></div>
+        <p class="pros" style="margin-top:16px">영어와 경력이 핵심입니다. Starbucks·Subway·프랜차이즈 카페·레스토랑 경력이 유리하고, 한 리조트 채용에 <b>지원자가 450명 이상</b> 몰린 사례가 있습니다.</p>
+        <p class="pros" style="margin-top:8px">추천 루트: 시드니·멜버른·브리즈번 시티에서 먼저 근무 → 경력 확보 → 리저널 이동 → 세컨 진행.</p>
+        <div class="note warn" style="margin-top:12px"><b>브리즈번 시티·골드코스트·선샤인코스트 일반 카페는 세컨 목적으로 위험합니다.</b> 호스피탈리티가 다 인정되는 게 아니라 <b>Northern Australia 또는 remote/very remote</b> 조건이 핵심입니다. 쉐파튼도 호스피탈리티는 세컨 인정이 안 됩니다.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =============== 6. 체크 =============== -->
+<section id="p6" class="panel" role="tabpanel">
+
+  <div class="sec">
+    <h2>구직 사기 — 실제 피해 사례</h2>
+    <p class="lead">세컨비자 구직 글을 보고 <b>허비베이 패킹공장 슈퍼바이저를 사칭한 한국인 남성</b>이 먼저 연락해 온 사건입니다. 피해자는 보증금 $500을 송금했고, 같은 수법의 피해자가 여러 명이었습니다. 일부는 $1,000을 보내고 실제로 현지 공항까지 갔다가 연락이 끊겼습니다.</p>
+
+    <div class="card">
+      <h3>수법 6단계 — 순서까지 똑같습니다</h3>
+      <div class="step warn"><div class="n">1</div><div><b>절박한 사람을 먼저 찾아옴</b><div class="d">농장·공장 일자리를 찾는 페이스북 게시글을 보고 <b>상대가 먼저</b> 연락합니다. 내가 지원한 게 아니라 저쪽이 찾아온 구조입니다.</div></div></div>
+      <div class="step warn"><div class="n">2</div><div><b>거절하기 힘든 조건을 한꺼번에</b><div class="d">높은 시급 + 주 30~35시간 보장 + 독방 가능 숙소 + 공항 픽업 + 출퇴근 차량. 하나씩이면 정상이지만 <b>풀세트로 완벽하면</b> 오히려 신호입니다.</div></div></div>
+      <div class="step warn"><div class="n">3</div><div><b>구체적인 설명으로 신뢰를 만듦</b><div class="d">공장명·숙소 주소·숙소 사진·업무 내용을 막힘없이 답합니다. 질문에 즉답하니 실제 담당자처럼 보입니다.</div></div></div>
+      <div class="step warn"><div class="n">4</div><div><b>비행기부터 예약하게 만듦</b><div class="d">"비행기 예약 내역이 있어야 숙소를 확정할 수 있다." 이미 돈과 시간을 쓴 사람은 쉽게 빠져나오지 못합니다. 이게 이 수법의 핵심 장치입니다.</div></div></div>
+      <div class="step warn"><div class="n">5</div><div><b>계약서보다 돈을 먼저 요구</b><div class="d">정식 근로계약서·숙소계약서를 주기 전에 보증금 $500. <b>여기서 멈췄어야 합니다.</b></div></div></div>
+      <div class="step warn"><div class="n">6</div><div><b>추가 입금 요구</b><div class="d">첫 송금 뒤 "2주치가 아니라 3주치였다"며 $250을 더 요구. 이 시점에 사기임을 확신하게 됩니다.</div></div></div>
+    </div>
+
+    <div class="card">
+      <h3>들통난 지점 4개</h3>
+      <ul class="plain">
+        <li>온라인 커뮤니티에 <b>들었던 설명과 거의 똑같은 사기 사례</b>가 이미 올라와 있었음</li>
+        <li>그 공장의 <b>실제 근무 후기가 전혀 없었음</b></li>
+        <li>알려준 <b>사업자번호(ABN)가 처음 말한 공장명과 불일치</b></li>
+        <li>추가 입금 요구</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>이 말이 나오면 즉시 멈추세요</h3>
+      <p class="quote">"오늘 안에 보내야 자리가 확정됩니다."</p>
+      <p class="quote">"다른 지원자도 많습니다."</p>
+      <p class="quote">"입금해야 계약서를 보내드립니다."</p>
+      <p class="quote">"회사 정책이라 어쩔 수 없습니다."</p>
+      <p class="quote">"비행기표를 먼저 보내야 숙소 예약이 됩니다."</p>
+      <div class="note warn" style="margin-top:16px"><b>정식 계약서·고용주 정보·근무지 확인 없이 보증금이나 등록비를 먼저 보내라고 하면, 그 자체가 결론입니다.</b></div>
+    </div>
+
+    <div class="grid two">
+      <div class="job">
+        <h3>공장에 직접 전화하기</h3>
+        <p class="pros" style="margin-top:12px"><b>상대가 준 번호 말고</b> 구글 지도나 공식 홈페이지에 공개된 번호로 겁니다.</p>
+        <ul class="plain" style="margin-top:12px">
+          <li>그 이름의 슈퍼바이저가 실제로 근무하는지</li>
+          <li>현재 한국인 직원을 채용 중인지</li>
+          <li>숙소 보증금을 개인 계좌로 받고 있는지</li>
+          <li>이 채용 제안이 공식적인 것인지</li>
+        </ul>
+        <div class="note warn" style="margin-top:12px">다른 피해자는 이 전화 한 통으로 <b>"한국인 슈퍼바이저가 없다"</b>는 답을 받았습니다.</div>
+      </div>
+      <div class="job">
+        <h3>ABN은 존재 여부만 보면 안 됩니다</h3>
+        <p class="pros" style="margin-top:12px">사기범은 <b>실존하는 다른 업체의 사업자번호</b>를 가져다 씁니다. 조회해서 "있네"로 끝내면 걸립니다. 아래가 전부 일치해야 합니다.</p>
+        <ul class="plain" style="margin-top:12px">
+          <li>업체명</li><li>사업장 주소</li><li>업종</li><li>연락처</li>
+          <li>계약서에 적힌 고용주명</li>
+          <li><b>급여명세서를 발급하는 사업체명</b></li>
+        </ul>
+      </div>
+      <div class="job">
+        <h3>숙소는 보고 나서 송금</h3>
+        <ul class="plain" style="margin-top:16px">
+          <li>실제 주소와 건물 상태</li>
+          <li>집주인 또는 정식 관리인 신원</li>
+          <li>함께 거주하는 사람</li>
+          <li>계약서</li>
+          <li>보증금 반환 조건</li>
+          <li>보증금이 정식 기관에 등록되는지</li>
+        </ul>
+      </div>
+      <div class="job">
+        <h3>이 조합이 한 번에 나오면 검증</h3>
+        <div class="metarow" style="margin-top:16px">
+          <span class="badge danger">경력 없이 바로 채용</span><span class="badge danger">높은 시급</span>
+          <span class="badge danger">근무시간 무조건 보장</span><span class="badge danger">숙소 제공</span>
+          <span class="badge danger">출퇴근 차량</span><span class="badge danger">공항 픽업</span>
+          <span class="badge danger">즉시 세컨 가능</span><span class="badge danger">자리 얼마 안 남음</span>
+        </div>
+        <p class="pros" style="margin-top:16px">조건이 풀세트로 완벽하면 현실이 아니라 <b>대본</b>일 수 있습니다. 너무 완벽하면 레드카펫이 아니라 레드플래그입니다.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>당했다면 — 순서대로</h3>
+      <div class="step"><div class="n">1</div><div><b>추가 송금 절대 금지</b><div class="d">돈을 돌려주겠다며 수수료나 추가 보증금을 요구해도 보내면 안 됩니다.</div></div></div>
+      <div class="step"><div class="n">2</div><div><b>은행에 즉시 연락</b><div class="d">앱 채팅보다 <b>전화나 지점 방문이 빠릅니다.</b> 송금 취소·계좌 지급정지 요청·사기 신고 접수를 문의하세요. 호주 은행은 첫 송금 계좌에 이체 보류가 걸리는 경우가 있어, 빠르면 취소되기도 합니다.</div></div></div>
+      <div class="step"><div class="n">3</div><div><b>증거 전부 보존</b><div class="d">대화 내용·계좌번호·프로필·게시글·숙소 사진·통화 녹음·항공권·계약 자료. <b>절대 삭제하지 마세요.</b></div></div></div>
+      <div class="step"><div class="n">4</div><div><b>기관 신고</b><div class="d">은행 접수번호를 받은 뒤 호주 금융분쟁조정기관 <b>AFCA</b>, 경찰, 온라인 사기 신고기관에 신고합니다.</div></div></div>
+      <div class="step"><div class="n">5</div><div><b>다른 피해 사례 검색</b><div class="d">상대 이름·전화번호·계좌번호·지역명·공장명을 <b>한국어와 영어로 각각</b> 검색하세요.</div></div></div>
+      <div class="step"><div class="n">6</div><div><b>자신을 탓하지 않기</b><div class="d">사기범은 절박함과 신뢰를 이용해 정교하게 접근합니다. 잘못은 속인 쪽에 있습니다. 빨리 신고하고 회복 절차에 집중하세요.</div></div></div>
+    </div>
+
+    <div class="note info"><b>실제 회수 결과</b><p style="margin-top:8px">사기범 계좌에 잔액이 없어 직접 회수는 실패했지만, 은행이 피해 사실과 신고 이력을 검토해 <b>선의의 보상으로 $500을 반환</b>했습니다(모든 경우에 보상되지는 않으며, 빠른 신고와 충분한 증거 제출이 주효한 것으로 보입니다). 환불 불가 항공권도 항공사 고객센터에 직접 문의해 추가 비용을 내고 <b>목적지를 케언즈로 변경</b>해 전액 손실은 피했습니다.</p></div>
+  </div>
+
+  <div class="sec">
+    <h2>지원 전 반드시 물어볼 7가지</h2>
+    <p class="lead">이걸 안 물어보면 88일을 채우고도 인정이 안 되는 일이 생깁니다. 그대로 복사해서 쓰세요.</p>
+    <div class="ask">
+      <ol>
+        <li>Is this job eligible for 2nd / 3rd year Working Holiday visa?</li>
+        <li>What is the workplace postcode?</li>
+        <li>What is the company ABN?</li>
+        <li>Do you provide payslips every week?</li>
+        <li>How many hours per week are guaranteed?</li>
+        <li>Is accommodation available? How much per week?</li>
+        <li>Is there any unpaid waiting period before starting work?</li>
+      </ol>
+    </div>
+    <div class="note info" style="margin-top:16px"><b>공고 문구를 믿지 마세요.</b> 구인 사이트도 "second year visa job"이라 적힌 공고가 전부 정부 기준을 보장하는 건 아니라고 스스로 경고합니다. <b>우편번호 · 업무내용 · 페이슬립 · ABN · 실제 근무일수</b>가 문구보다 중요합니다.</div>
+  </div>
+
+  <div class="sec">
+    <h2>레드 플래그</h2>
+    <div class="note warn">
+      <p><b>"숙소 먼저 와라, 일은 곧 줄게"</b> — 가장 위험한 멘트입니다. 방값만 빠져나갑니다.</p>
+      <p><b>무급 대기 기간이 있는 곳</b> — 5~10명이 집값만 내며 대기한 사례가 실제로 있습니다.</p>
+      <p><b>버킷·벨트 같은 기본 장비를 안 주는 농장</b> — 좋은 농장이 아닐 가능성이 큽니다.</p>
+      <p><b>페이슬립이 애매한 컨트랙터</b> — 세컨 증빙이 안 됩니다.</p>
+      <p><b>슈퍼바이저가 마약을 권하는 경우</b> — "합법이다", "부작용 없다"고 해도 무조건 거절하세요.</p>
+      <p style="margin-bottom:0"><b>계약서보다 보증금을 먼저 요구하는 경우</b> — 위 「구직 사기」 섹션의 실제 피해 사례와 동일한 수법입니다.</p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h2>이동 전 준비물</h2>
+    <div class="card">
+      <h4>작업</h4>
+      <div class="metarow">
+        <span class="badge neutral">작업화 / 안전화</span><span class="badge neutral">긴팔 작업복</span><span class="badge neutral">검정 바지</span>
+        <span class="badge neutral">넓은 챙 모자</span><span class="badge neutral">선크림</span><span class="badge neutral">장갑</span>
+        <span class="badge neutral">물병</span><span class="badge neutral">얼굴 전체 가리는 차단 장비</span>
+      </div>
+      <h4>생활</h4>
+      <div class="metarow">
+        <span class="badge neutral">작은 자물쇠</span><span class="badge neutral">빨래망</span><span class="badge neutral">멀티탭 / 어댑터</span>
+        <span class="badge neutral">상비약</span><span class="badge neutral">한국 파스</span><span class="badge neutral">도시락통</span>
+        <span class="badge neutral">후드티 / 플리스 (냉장 공장용)</span><span class="badge neutral">두꺼운 양말</span>
+      </div>
+      <h4>서류 — 전부 구글드라이브에 백업</h4>
+      <div class="metarow">
+        <span class="badge">여권 사본</span><span class="badge">비자 승인 레터</span><span class="badge">보험 증서</span>
+        <span class="badge">항공권</span><span class="badge">은행 계좌 정보</span><span class="badge">TFN 접수번호 캡처</span>
+        <span class="badge">영문 레주메 PDF</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h2>사이트 · 앱</h2>
+    <div class="grid two">
+      <div class="job"><h3>구직</h3><ul class="plain" style="margin-top:16px">
+        <li><a class="lnk" href="https://www.backpackerjobboard.com.au/" target="_blank" rel="noopener noreferrer">Backpacker Job Board</a> — 88일 일자리 정리가 가장 잘 됨</li>
+        <li><a class="lnk" href="https://www.seek.com.au/" target="_blank" rel="noopener noreferrer">SEEK</a> — 공장·리조트 지원의 기본</li>
+        <li><a class="lnk" href="https://www.graincorp.com.au/" target="_blank" rel="noopener noreferrer">GrainCorp</a> — 채용 뜨는 즉시 지원해야 하는 선착순</li>
+        <li><a class="lnk" href="http://www.sunbrisbane.com/brsb/bbs/board.php?theme=brsb&amp;bo_table=job" target="_blank" rel="noopener noreferrer">선브리즈번 구인구직</a> — 브리즈번 한인 커뮤니티. 이번 루트에 가장 맞는 곳 <span class="host" style="display:inline">(http 사이트)</span></li>
+        <li><a class="lnk" href="https://au.jora.com/" target="_blank" rel="noopener noreferrer">Jora</a> · <a class="lnk" href="https://www.gumtree.com.au/" target="_blank" rel="noopener noreferrer">Gumtree</a> · <a class="lnk" href="https://www.hojunara.com/" target="_blank" rel="noopener noreferrer">호주나라</a></li>
+        <li>페이스북 지역 그룹 (Perth / Brisbane / Melbourne / Sydney)</li>
+        <li>에이전시: Agri Labour, MADEC, Chandler Macleod, APG, Sandler, Programmed, Range</li>
+      </ul></div>
+      <div class="job"><h3>정착</h3><ul class="plain" style="margin-top:16px">
+        <li><a class="lnk" href="https://www.ato.gov.au/" target="_blank" rel="noopener noreferrer">ATO</a> — TFN 신청 · <a class="lnk" href="https://my.gov.au/" target="_blank" rel="noopener noreferrer">myGov</a> 연결 (세금·super)</li>
+        <li><a class="lnk" href="https://translink.com.au/tickets-and-fares/go-card" target="_blank" rel="noopener noreferrer">go card (Translink)</a> — 퀸즐랜드 교통 (Myki는 멜버른)</li>
+        <li><a class="lnk" href="https://www.commbank.com.au/" target="_blank" rel="noopener noreferrer">Commonwealth Bank</a> · <a class="lnk" href="https://www.nab.com.au/" target="_blank" rel="noopener noreferrer">NAB</a></li>
+        <li>숙소: <a class="lnk" href="https://flatmates.com.au/" target="_blank" rel="noopener noreferrer">Flatmates</a> · <a class="lnk" href="https://www.gumtree.com.au/" target="_blank" rel="noopener noreferrer">Gumtree</a> · <a class="lnk" href="https://www.airbnb.com.au/" target="_blank" rel="noopener noreferrer">Airbnb</a></li>
+        <li>마트 적립: <a class="lnk" href="https://www.flybuys.com.au/" target="_blank" rel="noopener noreferrer">Flybuys</a> · <a class="lnk" href="https://www.everyday.com.au/" target="_blank" rel="noopener noreferrer">Everyday Rewards</a></li>
+        <li>WhatsApp — 농장 픽업 공지는 대부분 여기</li>
+      </ul></div>
+      <div class="job"><h3>생활비 절약</h3><ul class="plain" style="margin-top:16px">
+        <li><a class="lnk" href="https://eatclub.com.au/" target="_blank" rel="noopener noreferrer">EatClub</a> — 레스토랑 35% 할인</li>
+        <li><a class="lnk" href="https://www.toogoodtogo.com/" target="_blank" rel="noopener noreferrer">TooGoodToGo</a> — 마감 음식 저렴하게</li>
+        <li>맥도날드 · Hungry Jacks · KFC 앱 쿠폰</li>
+        <li>오후 2시 이후 해피아워 (메뉴당 $3 수준)</li>
+        <li>유심 환승 — <a class="lnk" href="https://www.coles.com.au/" target="_blank" rel="noopener noreferrer">Coles</a> / <a class="lnk" href="https://www.woolworths.com.au/" target="_blank" rel="noopener noreferrer">Woolworths</a>에서 $35 유심을 $12~15에. 연 $240 절약</li>
+      </ul></div>
+      <div class="job"><h3>도구 · 자격증</h3><ul class="plain" style="margin-top:16px">
+        <li><b>모리평 번역</b> — Ctrl+호버 번역, Alt+A 전체 번역, 유튜브·넷플릭스 이중 자막. ChatGPT 엔진 선택 가능</li>
+        <li><a class="lnk" href="https://www.usi.gov.au/students/create-your-usi" target="_blank" rel="noopener noreferrer">USI 발급</a> — VET 과정 수강용 고유번호, 평생 1회, RSA 신청 전 필수</li>
+        <li><a class="lnk" href="https://galaxytraining.com.au/rsa-online.aspx" target="_blank" rel="noopener noreferrer">RSA (Galaxy Training)</a> — 온라인 약 $26. 83문제 + 시나리오 영상 4개</li>
+        <li>White Card — 건설 현장용. QLD 카드는 타주에서도 인정</li>
+        <li><a class="lnk" href="https://immi.homeaffairs.gov.au/what-we-do/whm-program/specified-work-conditions/specified-work-417" target="_blank" rel="noopener noreferrer">Home Affairs 지정업무 (417)</a> — 세컨·서드 최종 확인은 여기서 (한국 여권은 보통 417)</li>
+        <li><a class="lnk" href="https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/work-holiday-417/second-working-holiday-417" target="_blank" rel="noopener noreferrer">세컨 신청 안내</a> · <a class="lnk" href="https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/work-holiday-417/third-working-holiday-417" target="_blank" rel="noopener noreferrer">서드 신청 안내</a></li>
+      </ul></div>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <div class="cardhead"><h3>한인 커뮤니티 — 도시별</h3><span class="badge neutral">2026.07 확인</span></div>
+      <p>세컨비자 농장·공장 구직의 <b>1순위는 아닙니다.</b> Backpacker Job Board와 SEEK가 먼저고, 이쪽은 시티 잡·쉐어하우스·중고차·귀국세일을 구할 때 씁니다.</p>
+      <div class="tablewrap" style="margin-top:16px">
+        <table>
+          <thead><tr><th>사이트</th><th>지역</th><th>구직</th><th>직거래 · 쉐어</th><th>비고</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><a class="lnk" href="https://www.hojunara.com/" target="_blank" rel="noopener noreferrer">호주나라<span class="host">hojunara.com</span></a></td>
+              <td><b>시드니</b></td>
+              <td>구인/구직/과외 게시판</td>
+              <td>부동산(쉐어)이 가장 활발, 중고거래·자동차</td>
+              <td>뉴스·커뮤니티가 당일 갱신될 만큼 활발. 농장 구직처로도 언급되는 곳</td>
+            </tr>
+            <tr>
+              <td><a class="lnk" href="https://hojubada.com/" target="_blank" rel="noopener noreferrer">호주바다<span class="host">hojubada.com</span></a></td>
+              <td>멜번</td>
+              <td>구인 게시판 별도<br><a class="pathlnk" href="https://hojubada.com/bbs/board.php?bo_table=genguin" target="_blank" rel="noopener noreferrer"><code>/bbs/board.php?bo_table=genguin</code></a></td>
+              <td>직거래 <a class="pathlnk" href="https://hojubada.com/goods" target="_blank" rel="noopener noreferrer"><code>/goods</code></a> — 차·가전·명품·귀국세일</td>
+              <td>CBD·글렌웨이벌리·사우스뱅크·질롱 등. 최신글 7/18</td>
+            </tr>
+            <tr>
+              <td><a class="lnk" href="https://woorimel.com/" target="_blank" rel="noopener noreferrer">우리멜번<span class="host">woorimel.com</span></a></td>
+              <td>멜번</td>
+              <td><a class="pathlnk" href="https://woorimel.com/board/melbourne-jobs" target="_blank" rel="noopener noreferrer"><code>/board/melbourne-jobs</code></a></td>
+              <td>장터 <a class="pathlnk" href="https://woorimel.com/board/melbourne-market" target="_blank" rel="noopener noreferrer"><code>/board/melbourne-market</code></a> — 팝니다·삽니다·무료드림</td>
+              <td>당일 글 올라옴. 주택 쉐어·렌트, 개인광고·과외도 있음</td>
+            </tr>
+            <tr>
+              <td><a class="lnk" href="https://meljang.com/" target="_blank" rel="noopener noreferrer">호주장터<span class="host">meljang.com</span></a></td>
+              <td>멜번</td>
+              <td>구인 메뉴 있음</td>
+              <td>중고·쉐어·할인정보 통합 표방</td>
+              <td>일부 페이지가 외부 접근을 막아둠 — 직접 들어가서 확인 필요</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note warn" style="margin-top:16px"><b>4곳 중 3곳이 멜버른 전용입니다.</b> 브리즈번 → 남부 QLD·북부 NSW·NT 루트에서는 쓸 일이 적고, <b>타즈매니아 육가공 / 벤디고 / 쉐파튼(모두 VIC)</b>으로 방향을 틀 때 본격적으로 쓰게 됩니다.</div>
+      <div class="note warn"><b>한인 커뮤니티 구인은 세컨 인정 여부가 불명확한 경우가 섞여 있습니다.</b> 여기서 구한 자리에도 위의 영문 질문 7개를 그대로 적용하세요. 특히 postcode · ABN · 주급 페이슬립.</div>
+      <div class="note info"><b>진짜 쓸모는 중고차입니다.</b> 달걀농장·번버리·쉐파튼·바이아다 전부 "차량 사실상 필수"로 나옵니다. 워홀러가 많이 사는 차는 Toyota Corolla, Hyundai Elantra(아반떼), Mazda 3이고, 이 사이트들의 직거래·귀국세일 게시판이 주요 매물처입니다.</div>
+    </div>
+
+    <div class="note info" style="margin-top:16px"><b>자격증은 갈 곳이 정해진 뒤에.</b> 농장·패킹쉐드·식품공장만 갈 거면 RSA도 White Card도 지금 필수가 아닙니다. 도시 식당·카페 가능성을 열어둘 거면 RSA, 건설·청소·컨트랙터를 생각하면 White Card를 고려하세요.</div>
+  </div>
+
+  <p class="foot">출처: 「+ 유투브 요약」 문서 (유튜브 후기 정리 + 개인 기록). 시급·시즌·채용 조건은 촬영 시점 기준이며 변동될 수 있습니다. 세컨·서드 인정 여부는 반드시 Home Affairs 지정업무 안내와 실제 근무지 postcode로 최종 확인하세요.</p>
+</section>
+
+</div>
+<script>
+(function(){
+  var tabs=document.querySelectorAll('.tab');
+  tabs.forEach(function(t){
+    t.addEventListener('click',function(){
+      tabs.forEach(function(x){x.classList.remove('active');x.setAttribute('aria-selected','false')});
+      document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active')});
+      t.classList.add('active');t.setAttribute('aria-selected','true');
+      document.getElementById(t.dataset.p).classList.add('active');
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+  });
+  var subs=document.querySelectorAll('.subtab');
+  subs.forEach(function(s){
+    s.addEventListener('click',function(){
+      subs.forEach(function(x){x.classList.remove('active')});
+      document.querySelectorAll('.subpanel').forEach(function(p){p.classList.remove('active')});
+      s.classList.add('active');
+      document.getElementById(s.dataset.s).classList.add('active');
+    });
+  });
+  // checklist persistence
+  document.querySelectorAll('.check input[data-k]').forEach(function(c){
+    var k='wh_'+c.dataset.k;
+    try{ if(localStorage.getItem(k)==='1') c.checked=true; }catch(e){}
+    c.addEventListener('change',function(){
+      try{ localStorage.setItem(k,c.checked?'1':'0'); }catch(e){}
+    });
+  });
+})();
+</script>
+</body></html>

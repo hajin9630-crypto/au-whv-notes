@@ -1,0 +1,10 @@
+# 로컬 미리보기용 (사이트 동작에는 불필요)
+.claude/
+
+# OS
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# 개인 문서 — 실수로 이 폴더에 넣더라도 커밋되지 않게
+*.pdf

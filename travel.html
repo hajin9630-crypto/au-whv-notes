@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#3182f6">
+<title>여행 일정 | 호주 워홀 자료실</title>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+/* travel.html 전용 — 원본 구조를 유지하되 토스 토큰으로 매핑 */
+.day{display:none;scroll-margin-top:112px}
+.day.active{display:block}
+.dayhead{margin:var(--s-lg) 2px var(--s-md)}
+.dayhead h2{font-size:26px;line-height:34px;font-weight:700;margin:0;letter-spacing:-.8px}
+.date{font-size:13px;line-height:20px;color:var(--muted);margin-top:4px}
+.content-grid{display:block}
+@media(min-width:760px){.content-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:var(--s-md);align-items:start}}
+
+.card.hotel .hotel-title{display:flex;justify-content:space-between;align-items:flex-start;gap:var(--s-md)}
+.card.hotel .hotel-title h3{margin:0}
+.address{font-size:12.5px;line-height:19px;color:var(--muted);margin-top:3px}
+
+.notice-list{margin:0;padding-left:19px;font-size:14px;line-height:24px;color:var(--body)}
+.notice-list li{margin:2px 0}
+.notice-list b{color:var(--fg);font-weight:600}
+
+.alt{margin-top:var(--s-md);padding:var(--s-md) var(--s-lg);border-left:3px solid var(--primary);
+background:var(--weak-bg);border-radius:0 var(--r-lg) var(--r-lg) 0;font-size:13px;line-height:20px;color:var(--weak-fg)}
+
+.inline-map{display:inline-flex;align-items:center;min-height:36px;margin-top:var(--s-sm);
+padding:7px 11px;border-radius:var(--r-btn);background:var(--surface);color:var(--weak-fg);
+text-decoration:none;font-size:12.5px;font-weight:600}
+.inline-map:hover{background:var(--weak-bg)}
+.slot .gmap{display:flex;width:max-content;max-width:100%;margin-left:auto}
+
+/* 날짜별 카테고리 탭 (JS가 생성) */
+.catbox-day{margin-top:var(--s-md)}
+.ctabs{display:flex;gap:var(--s-sm);overflow-x:auto;scrollbar-width:none;padding-bottom:var(--s-md)}
+.ctabs::-webkit-scrollbar{display:none}
+.ctab{flex:none;height:38px;padding:0 var(--s-lg);border:1px solid var(--border);background:var(--canvas);
+color:var(--body);border-radius:10px;font:600 14px/1 var(--font);cursor:pointer}
+.ctab.active{background:var(--fg);border-color:var(--fg);color:var(--canvas)}
+.ctab:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.cpanel{display:none}.cpanel.active{display:block}
+.crow{display:flex;justify-content:space-between;align-items:center;gap:var(--s-md);
+background:var(--canvas);border:1px solid var(--border);border-radius:var(--r-lg);
+padding:12px var(--s-lg);margin-bottom:var(--s-sm)}
+.crow .cinfo{min-width:0}
+.crow .cname{font-size:15px;line-height:22px;font-weight:600}
+.crow .cmeta{font-size:12.5px;line-height:19px;color:var(--muted);margin-top:3px}
+.crow .btn{flex:none;min-height:36px;padding:0 13px;font-size:17px}
+
+.tab{position:relative}
+.tab.today::before{content:'';position:absolute;top:6px;right:7px;width:6px;height:6px;
+border-radius:50%;background:var(--danger)}
+.footer{margin:var(--s-xl) 2px 0;padding-top:var(--s-lg);border-top:1px solid var(--border);
+font-size:13px;line-height:20px;color:var(--muted)}
+
+/* 원본 hero 를 토스 primary 블록으로 */
+.hero{background:var(--primary-solid);color:var(--on-primary);border-radius:var(--r-xl);
+padding:var(--s-xl);margin-bottom:var(--s-md)}
+.hero h1{font-size:28px;line-height:38px;font-weight:700;margin:0 0 var(--s-md);letter-spacing:-1px;color:var(--on-primary)}
+.hero p{font-size:14px;line-height:21px;margin:3px 0;color:var(--on-primary)}
+.hero b{font-weight:600}
+@media print{.footer{border:0}}
+</style>
+</head>
+<body>
+<div class="sitebar"><div class="in">
+  <a class="back" href="index.html" aria-label="홈으로">←</a>
+  <span class="ttl">⭐ 여행 일정</span>
+</div></div>
+
+<div class="wrap">
+<section class="hero"><h1>호주 여행일기 🦘</h1><p><b>2026.09.15(화) 출국 · 09.22(화) 친구 귀국</b></p><p>이동경로 : 인천 → 브리즈번 → 골드코스트 → 브리즈번</p><p>셋이 함께 7일, 이후 2명은 워홀 전환</p></section>
+
+<div class="card"><h3>📢 알림장</h3><ol class="notice-list"><li>하루 한 끼만 외식</li><li><b>골코 숙소는 Wi‑Fi가 없습니다</b> — 유심·데이터 필수</li><li>골코 숙소는 호스트(Christine)와 주방·라운지를 함께 쓰는 에어비앤비</li><li><b>4일차 Magic Men</b> — 나가기 전 <b>티켓 스크린샷 저장 + 여권 지참 + 드레스코드</b> (숙소에 Wi‑Fi 없음)</li><li>일정·식당·관광 자유롭게 수정 가능</li></ol></div>
+
+<div class="tabwrap"><nav class="tabs" role="tablist">
+<button class="tab active" role="tab" aria-selected="true" aria-controls="d0" data-day="d0">출국</button>
+<button class="tab" role="tab" aria-selected="false" aria-controls="d1" data-day="d1">1일차</button>
+<button class="tab" role="tab" aria-selected="false" aria-controls="d2" data-day="d2">2일차</button>
+<button class="tab" role="tab" aria-selected="false" aria-controls="d3" data-day="d3">3일차</button>
+<button class="tab" role="tab" aria-selected="false" aria-controls="d4" data-day="d4">4일차</button>
+<button class="tab" role="tab" aria-selected="false" aria-controls="d5" data-day="d5">5일차</button>
+<button class="tab" role="tab" aria-selected="false" aria-controls="d6" data-day="d6">6일차</button>
+<button class="tab" role="tab" aria-selected="false" aria-controls="d7" data-day="d7">7일차</button>
+</nav></div>
+<main>
+    <section id="d0" class="day active" role="tabpanel">
+      <div class="dayhead"><h2>출국</h2><div class="date">9월 15일 화요일</div><span class="badge">인천 출발 · 기내 1박</span></div>
+      <div class="content-grid">
+        <div>
+          <div class="card"><h3>🗓 상세 일정</h3><div class="timeline"><div class="slot"><div class="time">오후</div><div><b>공항 이동 · 탑승 수속</b><span class="small">여권, 비자(WHV) 승인서, 숙소 예약 확인서, 여행자보험 증서를 휴대폰과 인쇄본 둘 다 준비.</span></div></div><div class="slot"><div class="time">21:30</div><div><b>인천 출발</b><span class="small">기내식 제공. 도착 후 바로 쓸 호주 주소(12 Whiting Street, Labrador QLD 4215)를 메모해 두기.</span></div></div><div class="slot"><div class="time">기내</div><div><b>기내 1박</b><span class="small">입국신고서 작성. 육류·유제품·씨앗·과일 등 반입 금지 식품이 가방에 없는지 확인하고, 있으면 반드시 신고.</span></div></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="d1" class="day" role="tabpanel">
+      <div class="dayhead"><h2>1일차</h2><div class="date">9월 16일 수요일</div><span class="badge">도착일 · 골드코스트</span></div>
+      <div class="content-grid">
+        <div>
+          <div class="card"><h3>🗓 상세 일정</h3><div class="timeline"><div class="slot"><div class="time">08:00</div><div><b>브리즈번 공항 도착</b><span class="small">입국심사 → 수하물 → 세관. 성수기엔 심사만 1시간 넘게 걸리기도 하니 서두르지 않아도 됩니다. 신고 대상 식품이 있으면 반드시 신고 라인으로.</span></div></div><div class="slot"><div class="time">공항</div><div><b>유심 개통 · Go Card 구매</b><span class="small">데이터가 켜지면 <b>에어비앤비 메시지부터 확인</b> — Christine이 도착일 아침에 주소와 체크인 안내를 보내주기로 했어요. Go Card는 공항 역·매점에서 구매하고 충전까지 완료. 공항 구간(Airtrain)은 별도 요금이라 현장 안내를 확인하세요.</span></div></div><div class="slot"><div class="time">이동</div><div><b>골드코스트 Labrador 이동</b><span class="small">Airtrain으로 Helensvale → 트램·버스 환승, 또는 공항 셔틀. 이동에만 1시간 30분~2시간. 숙소 앞 Frank St · Imperial St 정류장이 도보 100m.</span></div></div><div class="slot"><div class="time">14:00</div><div><b>Champelli Palms 체크인</b><span class="small">12 Whiting Street, Labrador QLD 4215 · Frank St 코너의 파란회색 3층 건물. 출발 전 Christine에게 "곧 도착" 메시지 한 통. 캐리어는 침대 위에 올리지 말 것(베드버그 방역비 청구).</span><a class="inline-map" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Champelli%20Palms%2012%20Whiting%20Street%20Labrador%20QLD%204215">📍 숙소 지도 확인</a></div></div><div class="slot"><div class="time">늦은 점심</div><div><b>Charis Seafoods (오늘의 외식 1끼)</b><span class="small">371 Marine Parade, Labrador · 19:00까지 영업이라 늦게 가도 여유. 숙소에서 브로드워터 쪽으로 가깝고, 피시앤칩스를 야외 벤치에서 — 갈매기 주의.</span><a class="inline-map" data-notour target="_blank" href="https://www.google.com/maps/search/?api=1&query=Charis%20Seafoods%20371%20Marine%20Parade%20Labrador%20QLD">📍 지도 확인</a></div></div><div class="slot"><div class="time">관광</div><div><b>브로드워터(Broadwater) 산책</b><span class="small">숙소에서 해변까지 도보 50m. 시차·피로 회복에 가벼운 산책이 최고.</span><a class="inline-map" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Broadwater%20Parklands%20Southport%20QLD">📍 지도 확인</a></div></div><div class="slot"><div class="time">마트</div><div><b>Woolworths 장보기</b><span class="small">빵, 달걀, 우유, 과일, 요거트, 파스타, 소스, 냉동식품, 물. 주방에 전기밥솥·오븐·조리도구가 다 있으니 첫날 넉넉히.</span></div></div><div class="slot"><div class="time">저녁</div><div><b>숙소식 · 근처 펍에서 맥주 한 잔</b><span class="small">시차 적응을 위해 무리하지 않기. 수영장·스파는 21:00까지 — 비치타월은 침실에 있어요.</span></div></div></div></div>
+
+    <div class="card hotel">
+      <div class="hotel-title"><div><h3>🏨 Champelli Palms</h3><div class="address">12 Whiting Street, Labrador QLD 4215 · 에어비앤비 · 호스트 Christine</div></div></div>
+      <a class="inline-map" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Champelli%20Palms%2012%20Whiting%20Street%20Labrador%20QLD%204215">›</a>
+      <div class="info-row">
+        <div class="info-box"><span>체크인</span><b>9/16(수) 14:00 이후</b></div>
+        <div class="info-box"><span>체크아웃</span><b>9/20(일) 10:00 이전</b></div>
+      </div>
+      <div class="info-row">
+        <div class="info-box"><span>숙박</span><b>4박 · 1~4일차</b></div>
+        <div class="info-box"><span>게스트 정원</span><b>3명</b></div>
+      </div>
+      <div class="section-label">기본 제공·이용 가능</div><div class="pill-wrap"><span class="pill">✓ 주방 공유(전기밥솥·오븐·전자레인지)</span><span class="pill">✓ 식기·조리도구·커피메이커</span><span class="pill">✓ 세탁기·건조기 무료</span><span class="pill">✓ 다리미·빨래건조대</span><span class="pill">✓ 수건·침구·화장지·세면용품</span><span class="pill">✓ 비치타월(침실)</span><span class="pill">✓ 라운지 에어컨 · 천장 선풍기</span><span class="pill">✓ 수영장·스파 08:00~21:00</span><span class="pill">✓ 발코니·야외 식사공간</span><span class="pill">✓ 공용 가스 바비큐</span><span class="pill">✓ 무료 노상 주차</span><span class="pill">✓ 짐 보관 서비스</span><span class="pill">✓ 금고 · 침실문 잠금</span></div>
+      <div class="section-label">⚠️ 이용규칙 · 꼭 지킬 것</div><div class="pill-wrap"><span class="pill check">Wi‑Fi 없음 — 데이터 사용</span><span class="pill check">호스트와 주방·라운지 공유</span><span class="pill check">숙소·발코니 전면 금연·금베이핑</span><span class="pill check">파티·이벤트 금지</span><span class="pill check">반려동물 불가</span><span class="pill check">캐리어를 침대 위에 올리지 않기</span><span class="pill check">외출 시 발코니 문 잠그기</span><span class="pill check">외출 시 소등·에어컨 OFF</span><span class="pill check">열쇠 분실 시 $200</span><span class="pill check">열쇠 실내 방치 시 매니저 개문 $20</span><span class="pill check">욕실 쓰레기는 드라이브웨이 옆 대형 은색통에</span><span class="pill check">빌딩 매니저 전화 금지 — 호스트에게 메시지</span></div>
+      <div class="tip"><b>체크인 팁 — 호스트와 협의 완료</b><br>Christine에게 <b>14:00쯤 도착</b>이라고 전달했고, <b>더 일찍 와도 괜찮다</b>는 답을 받았습니다. 입국심사나 연착으로 늦어져도 문제없지만, 반대로 빨리 끝나면 메시지 한 통 보내고 먼저 가도 됩니다.<br><b>도착일 아침에 Christine이 주소와 체크인 세부 안내를 메시지로 보내주기로 했으니, 공항에서 유심을 켜자마자 에어비앤비 앱부터 확인하세요.</b> 짐 보관 서비스도 있으니 만약을 대비해 알아두면 좋고, 열쇠는 한 세트만 제공되니 일행 중 담당을 정해두세요.</div>
+      <div class="tip"><b>교통 팁</b><br>숙소에서 <b>Frank St · Imperial St 정류장까지 도보 100m</b>. <b>704번</b>을 타면 남쪽 Southport(→트램으로 Surfers Paradise·Broadbeach)와 Sea World 방향, 북쪽으로는 <b>Helensvale역</b>에서 무비월드·드림월드행 버스로 환승합니다. Go Card는 공항에서 사두면 편해요.</div>
+      <div class="tip"><b>체크아웃(9/20) 팁</b><br><b>10:00 이전</b>에 나가야 합니다. 열쇠는 <b>주방 벤치</b>에 두고, 욕실 쓰레기를 비우고, 모든 조명과 에어컨을 끄고 나오세요.</div>
+    </div>
+    <div class="card"><h3>🛒 숙소 근처 마트</h3><div class="market"><strong>Woolworths Labrador</strong><p>177 Government Road, Labrador · 숙소에서 3~4km, 가장 무난한 대형 장보기</p><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Woolworths%20Labrador%20177%20Government%20Road%20Labrador%20QLD">마트 지도 열기</a></div><div class="market"><strong>ALDI</strong><p>Labrador·Biggera Waters 방면 · 식비를 가장 아낄 수 있는 선택</p><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=ALDI%20Labrador%20Gold%20Coast%20QLD">마트 지도 열기</a></div><div class="market"><strong>Harbour Town DFO</strong><p>숙소 북쪽 4km · 마트·아울렛·영화관·식당을 한 번에</p><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Harbour%20Town%20Premium%20Outlets%20Biggera%20Waters%20QLD">마트 지도 열기</a></div><div class="market"><strong>Coles Australia Fair</strong><p>223–225 Scarborough Street, Southport · 704번으로 남쪽 Southport 갈 때</p><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Coles%20Australia%20Fair%20Southport">마트 지도 열기</a></div></div>
+
+        </div>
+        <div>
+          <div class="card"><h3>🍽 오늘의 외식 1끼 후보</h3><div class="food"><strong>Charis Seafoods</strong><div class="tags">1순위 · 점심 확정 · 피시앤칩스</div><p>371 Marine Parade, Labrador · 매일 07:00~19:00. 브로드워터를 보며 먹는 도착일 첫 끼.</p><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Charis%20Seafoods%20371%20Marine%20Parade%20Labrador%20QLD">식당 지도</a></div><div class="food"><strong>Australia Fair 푸드코트</strong><div class="tags">대안 · 가성비</div><p>Southport · 비가 오거나 실내가 나을 때 실패 확률 낮은 선택.</p><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Australia%20Fair%20Shopping%20Centre%20Southport%20food%20court">식당 지도</a></div><div class="food"><strong>Southport Chinatown</strong><div class="tags">대안 · 아시아식</div><p>Southport · 쌀밥이나 국물류가 당길 때 현장에서 선택.</p><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Southport%20Chinatown%20Scarborough%20Street">식당 지도</a></div></div>
+
+<div class="card" data-cat="bar" data-label="🍺 펍"><h3>🍺 숙소 근처 펍 · 가볍게 한 잔</h3>
+<div class="food"><strong>Grand Hotel Labrador</strong><div class="tags">1순위 · 숙소에서 도보권</div><p>Labrador · 호스트가 안내한 걸어갈 수 있는 로컬 펍. 도착일에 무리 없이 맥주 한 잔.</p><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Grand%20Hotel%20Labrador%20QLD">펍 지도</a></div>
+<div class="food"><strong>Southport Sharks</strong><div class="tags">클럽하우스 · 식사도 가능</div><p>Southport · 저렴한 펍 식사와 넓은 좌석.</p><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Southport%20Sharks%20Musgrave%20Avenue%20Southport">펍 지도</a></div>
+<div class="food"><strong>Harbour Town 주변 펍</strong><div class="tags">대안 · 현장 선택</div><p>Biggera Waters · 숙소 북쪽, 장보기와 겸할 때.</p><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=pub%20Biggera%20Waters%20Harbour%20Town%20Gold%20Coast">펍 지도</a></div>
+</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="d2" class="day" role="tabpanel">
+      <div class="dayhead"><h2>2일차</h2><div class="date">9월 17일 목요일</div><span class="badge">은행 개설 · 야생 캥거루 · The Spit</span></div>
+      <div class="content-grid">
+        <div>
+          <div class="card"><h3>🗓 상세 일정</h3><div class="timeline"><div class="slot"><div class="time">식사</div><div><b>숙소식 아침</b><span class="small">여권, 비자 승인서, 현지 주소와 전화번호 준비.</span></div></div><div class="slot"><div class="time">은행</div><div><b>은행 계좌 개설</b>
+<span class="small">여권·비자 승인서·호주 주소·현지 전화번호 준비. 계좌 개설 후 BSB와 Account Number 저장.</span>
+<div class="maps">
+<a class="inline-map" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Commonwealth%20Bank%20Australia%20Fair%20Southport%20QLD">🏦 CommBank Australia Fair</a>
+<a class="inline-map" target="_blank" href="https://www.google.com/maps/search/?api=1&query=ANZ%20Southport%20QLD">🏦 ANZ Southport</a>
+<a class="inline-map" target="_blank" href="https://www.google.com/maps/search/?api=1&query=NAB%20Southport%20QLD">🏦 NAB Southport</a>
+</div></div></div><div class="slot"><div class="time">관광</div><div><b>Coombabah Lakelands 야생 캥거루</b><span class="small">Rain Tree Glen, Coombabah · 06:00~18:00(게이트 18:00 폐문) · 무료. 화장실·쓰레기통이 없으니 물과 모자를 챙기고, 캥거루는 이른 아침이나 늦은 오후에 더 잘 보여요.</span><a class="inline-map" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Coombabah%20Lakelands%20Conservation%20Area%20Rain%20Tree%20Glen%20Coombabah%20QLD">📍 Coombabah Lakelands 지도</a></div></div><div class="slot"><div class="time">이동</div><div><b>Main Beach · The Spit</b>
+<span class="small">숙소에서 704번으로 남쪽 20분. Surfers Paradise 같은 번잡함 없이 한적한 해변이에요. 브로드워터와 바다 사이 좁은 반도라 <b>방파제(Seaway)에서 배 드나드는 것</b>도 볼 수 있어요.</span>
+<div class="maps"><a class="inline-map" target="_blank" href="https://www.google.com/maps/search/?api=1&query=The%20Spit%20Gold%20Coast%20Seaway%20Main%20Beach%20QLD">📍 The Spit (Gold Coast Seaway)</a>
+<a class="inline-map" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Doug%20Jennings%20Park%20The%20Spit%20Main%20Beach%20QLD">📍 Doug Jennings Park</a>
+<a class="inline-map" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Tedder%20Avenue%20Main%20Beach%20Gold%20Coast%20QLD">📍 Tedder Avenue</a></div></div></div><div class="slot"><div class="time">노을</div><div><b>브로드워터 일몰</b><span class="small">9월 중순 일몰은 대략 17:30 전후. <b>골드코스트 해변은 동향이라 바다로 노을이 지지 않아요.</b> Doug Jennings Park처럼 <b>서쪽 브로드워터를 보는 자리</b>에서 봐야 제대로 보입니다.</span></div></div><div class="slot"><div class="time">저녁</div><div><b>저녁 외식 (오늘의 한 끼)</b><span class="small">Tedder Avenue 식당가에서 해결하거나, 숙소로 돌아오는 길에 Southport에서 — 식당 탭 참고.</span></div></div><div class="slot"><div class="time">밤</div><div><b>숙소 복귀</b><span class="small">다음 날 무비월드 때문에 08:00 전에 출발해야 하니 오늘은 일찍 정리하는 게 좋아요.</span></div></div></div><div class="alt"><b>대안 코스</b><br>은행 업무가 길어지면 캥거루를 포기하지 말고 <b>The Spit를 빼세요</b> — Surfers Paradise는 4일차에 어차피 갑니다. 반대로 캥거루가 최우선이면 오전에 먼저 다녀오고 은행을 오후로 옮겨도 됩니다(은행은 보통 평일 16:00 전후 마감). 비가 오면 The Spit 대신 북쪽 <b>Harbour Town DFO</b> 실내 쇼핑으로 대체.</div></div>
+
+        </div>
+        <div>
+          <div class="card"><h3>🍽 오늘의 외식 1끼 후보</h3><div class="food"><strong>Tedder Avenue 식당가</strong><div class="tags">1순위 · The Spit에서 가장 가까움</div><p>Main Beach · 카페·비스트로가 모인 거리. 현장에서 분위기 보고 고르기 좋아요.</p><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Tedder%20Avenue%20restaurants%20Main%20Beach%20Gold%20Coast">식당 지도</a></div><div class="food"><strong>Marina Mirage</strong><div class="tags">마리나 뷰 · 분위기</div><p>Main Beach · 요트 정박지를 보며 먹는 옵션. 가격대는 조금 있는 편.</p><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Marina%20Mirage%20Main%20Beach%20Gold%20Coast">식당 지도</a></div><div class="food"><strong>Southport Chinatown</strong><div class="tags">가성비 · 돌아오는 길</div><p>Southport · 704번으로 숙소 돌아오는 길에 들르기 좋음.</p><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Southport%20Chinatown%20Scarborough%20Street">식당 지도</a></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="d3" class="day" role="tabpanel">
+      <div class="dayhead"><h2>3일차</h2><div class="date">9월 18일 금요일</div><span class="badge">테마파크 올데이</span></div>
+      <div class="content-grid">
+        <div>
+          <div class="card"><h3>🗓 상세 일정</h3><div class="timeline"><div class="slot"><div class="time">07:00</div><div><b>숙소식 든든하게 + 짐 챙기기</b><span class="small">물, 선크림, 모자, 얇은 겉옷(9월 아침은 서늘하고 낮엔 따뜻). 물놀이 기구용 <b>갈아입을 옷과 지퍼백</b>도 챙기세요.</span></div></div><div class="slot"><div class="time">08:00</div><div><b>Movie World 이동 (약 1시간)</b><span class="small">숙소 앞에서 버스로 <b>Helensvale역</b> → 테마파크행 버스 환승. <b>게이트 09:30 오픈</b>이라 8시엔 출발해야 여유 있습니다.</span></div></div><div class="slot"><div class="time">09:30</div><div><b>Movie World 입장 → DC Rivals 직행</b><span class="small">게이트 열리면 인사도 나중에 하고 <b>DC Rivals HyperCoaster부터</b>. 오전 첫 1시간이 하루 중 대기가 가장 짧습니다. 어트랙션은 대략 10:00~17:00 운영.</span><a class="inline-map" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Warner%20Bros%20Movie%20World%20Gold%20Coast%20QLD">📍 Movie World 지도</a></div></div><div class="slot"><div class="time">11:30</div><div><b>이른 점심 (오늘의 외식 1끼)</b><span class="small">12~13시가 피크라 <b>11:30에 먹거나 14:00로 미루면</b> 줄이 확 짧아집니다 — 식당 탭 참고.</span></div></div><div class="slot"><div class="time">15:30</div><div><b>Star Parade</b><span class="small">메인 스트리트에서 캐릭터 퍼레이드. <b>퍼레이드 시간에는 인기 롤코 대기가 짧아지니</b>, 퍼레이드를 볼지 그때 롤코를 한 번 더 탈지 정하세요. 시간은 당일 앱에서 재확인.</span></div></div><div class="slot"><div class="time">오후</div><div><b>Wild West Falls · 물놀이는 마지막에</b><span class="small">확실히 젖습니다. 오후 늦게 타야 말릴 시간이 있어요.</span></div></div><div class="slot"><div class="time">17:00</div><div><b>폐장 · 숙소 복귀</b><span class="small">돌아가는 길도 1시간. 기념품은 폐장 직전 메인 스트리트에서.</span></div></div><div class="slot"><div class="time">저녁</div><div><b>숙소 복귀 · 휴식</b><span class="small">테마파크 하루면 체력이 바닥납니다. 씻고 일찍 쉬면서 다음 날 Magic Men 공연에 체력을 남겨두세요.</span></div></div></div>
+
+<div class="tip"><b>🎢 추천 라이드 — 이 순서로</b><br>
+<b>1. DC Rivals HyperCoaster</b> — 남반구에서 가장 높고·길고·빠른 하이퍼코스터(61m, 1,268m, 115km/h). 89도 <b>오버버티컬 낙하</b>가 압권이고, 세계에 몇 없는 <b>뒤보기 좌석(rear-facing)</b>이 있어요. 아래 트랙이 안 보이는 채로 떨어져서 체감이 완전히 다릅니다. <b>가장 인기 = 가장 긴 줄</b>이니 무조건 첫 타로.<br>
+<b>2. Superman Escape</b> — 발사형. 2초 만에 시속 100km. 짧지만 강렬.<br>
+<b>3. Green Lantern Coaster</b> — 급경사 낙하로 유명한 인버티드 코스터.<br>
+<b>4. SCOOBY-DOO! Spooky Coaster</b> — 2025년 12월 400만 달러 리뉴얼로 재개장한 실내 다크라이드 코스터. <b>사실상 신상</b>이라 놓치지 마세요.<br>
+<b>5. BATWING Spaceshot</b> — 60m 수직 발사 타워. 순간 무중력.<br>
+<b>6. The Flash: Speed Force / Doomsday Destroyer</b> — 남는 시간에.<br>
+<b>7. Wild West Falls Adventure Ride</b> — 물놀이 급류. 젖으니 오후에.<br>
+<b>+ Wizard of Oz 구역</b> (2025~26 신규) — Flight of the Wicked Witch, Kansas Twister. 강도는 약한 패밀리형이라 쉬어가는 코스로 좋아요.</div>
+
+<div class="tip"><b>💡 알아두면 편한 것</b><br>
+<b>락커는 거의 필수</b>입니다. 대형 코스터는 소지품 반입이 안 돼요. Main Street Mercantile 옆과 Green Lantern Coaster 옆에 있고 대형 기준 <b>$15~25</b>입니다. 셋이 하나 빌려 나눠 쓰면 됩니다.<br>
+<b>공식 앱</b>으로 실시간 대기시간과 쇼 시간표를 확인하세요 — 동선이 완전히 달라집니다.<br>
+<b>2026년 9월은 정기 점검 휴장 라이드가 없습니다.</b> 발표된 점검 일정이 전부 2~7월이라 운이 좋아요(당일 앱에서 한 번 더 확인).<br>
+<b>키 제한</b>이 있는 기구가 많으니 문제되면 입구 안내판을 확인하세요.</div></div>
+
+        </div>
+        <div>
+          <div class="card"><h3>🍽 파크 내부 외식 1끼 후보</h3><div class="food"><strong>Gotham City Cafe</strong><div class="tags">1순위 · 파크 내 버거 맛집</div><p>배트맨 구역. 파크에서 가장 평이 좋은 버거로 꼽히는 곳. 무난하게 실패 없는 선택.</p><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Gotham%20City%20Cafe%20Movie%20World%20Gold%20Coast">식당 지도</a></div><div class="food"><strong>Main St. Slice</strong><div class="tags">가성비 · 뉴욕식 피자</div><p>큼직한 피자 한 조각 + 갈릭브레드 + 음료 세트. 셋이 각자 한 조각씩이면 빠르고 저렴합니다.</p><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Main%20Street%20Movie%20World%20Gold%20Coast">식당 지도</a></div><div class="food"><strong>Stars Terrace</strong><div class="tags">신규 · 제대로 앉아서</div><p>할리우드 황금기 인테리어의 프리미엄 다이닝. 더티소다·디저트가 유명해요. 다리 쉬면서 먹고 싶을 때.</p><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Stars%20Terrace%20Movie%20World%20Gold%20Coast">식당 지도</a></div><div class="food"><strong>Dirty Harry Bar & Grill</strong><div class="tags">멕시칸 · 든든함</div><p>타코·부리토·나초. 샌프란시스코 테마로 양이 푸짐한 편.</p><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Dirty%20Harry%20Bar%20and%20Grill%20Movie%20World%20Gold%20Coast">식당 지도</a></div><div class="food"><strong>Rick’s Café Americain</strong><div class="tags">카사블랑카 테마 · 시즌 한정</div><p>영화 테마 인테리어가 예쁜 곳. 다만 <b>상시 운영이 아니라</b> 당일 열었는지 확인이 필요합니다.</p><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Ricks%20Cafe%20Movie%20World%20Oxenford%20Gold%20Coast">식당 지도</a></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="d4" class="day" role="tabpanel">
+      <div class="dayhead"><h2>4일차</h2><div class="date">9월 19일 토요일</div><span class="badge">18:00 Magic Men (예약 완료)</span></div>
+      <div class="content-grid">
+        <div>
+          <div class="card"><h3>🗓 상세 일정</h3><div class="timeline"><div class="slot"><div class="time">식사</div><div><b>숙소식 브런치</b><span class="small">밤 일정 대비 늦잠 허용. 오늘 입을 옷을 미리 정해두세요 — 드레스코드 있습니다.</span></div></div><div class="slot"><div class="time">오후</div><div><b>Surfers Paradise 산책·쇼핑</b><span class="small">해변, Cavill Avenue, 기념품 구경. 공연장이 있는 Orchid Ave 바로 옆이라 위치를 미리 봐두면 좋아요.</span><a class="inline-map" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Surfers%20Paradise%20Beach%20Gold%20Coast%20QLD">📍 Surfers Paradise 지도</a></div></div><div class="slot"><div class="time">선택</div><div><b>SkyPoint 전망대 (Q1)</b><span class="small">Surfers Paradise 안에 있어 이동이 없습니다. 77층 전망대에서 해안선 전체가 보여요. 유료라 갈지 말지만 정하면 됩니다.</span><a class="inline-map" target="_blank" href="https://www.google.com/maps/search/?api=1&query=SkyPoint%20Observation%20Deck%20Q1%20Surfers%20Paradise">📍 SkyPoint 지도</a></div></div><div class="slot"><div class="time">16:30</div><div><b>이른 저녁 외식 1끼</b><span class="small"><b>공연에 핑거푸드와 샴페인이 포함</b>이니 너무 무겁게 먹지 마세요. 늦어도 17:20에는 식당에서 일어나기.</span></div></div><div class="slot"><div class="time">17:30</div><div><b>Magic Men 공연장 도착 — Cocktails Nightclub</b><span class="small">Shop 3/15 Orchid Ave, Surfers Paradise QLD 4217 · 토요일 밤 Orchid Ave는 붐빕니다. 18:00 시작이니 <b>17:30까지</b> 도착하세요.</span><a class="inline-map" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Cocktails%20Nightclub%20Shop%203%2F15%20Orchid%20Avenue%20Surfers%20Paradise%20QLD%204217">📍 공연장 지도</a></div></div><div class="slot"><div class="time">18:00</div><div><b>Magic Men 쇼 (약 3시간)</b><span class="small">예약번호 <b>1422883451</b> · 성인 3명 · 좌석 지정제. 21:00 전후 종료되고 끝나면 같은 자리에서 해산합니다.</span></div></div><div class="slot"><div class="time">밤</div><div><b>근처 클럽 또는 귀가</b><span class="small">Orchid Avenue에 클럽이 몰려 있어 걸어서 이동 가능 — 클럽 탭 참고. 다만 <b>다음 날 10:00 체크아웃 + 브리즈번 이동</b>이니 무리는 금물. 늦으면 우버로 귀가하세요.</span></div></div></div>
+
+<div class="tip"><b>🎭 Magic Men 예약 정보 (완료)</b><br>
+<b>일시</b> 2026년 9월 19일(토) 18:00 시작 · 약 3시간<br>
+<b>장소</b> Cocktails Nightclub, Shop 3/15 Orchid Ave, Surfers Paradise QLD 4217<br>
+<b>인원</b> 성인 3명 · <b>예약번호</b> 1422883451 · <b>상품코드</b> 324246P3<br>
+<b>포함</b> 입장권 · 웰컴 샴페인 1잔 · 핑거푸드<br>
+<b>입장</b> 문 앞에서 티켓만 보여주면 됩니다. <b>좌석은 지정 배정</b>이라 일찍 간다고 자리가 바뀌지는 않아요.</div>
+
+<div class="tip"><b>⚠️ 친구들에게 꼭 공유할 것</b><br>
+<b>1. 티켓을 미리 저장하세요.</b> 골드코스트 숙소는 <b>Wi‑Fi가 없습니다.</b> 나가기 전에 티켓을 <b>스크린샷·PDF로 저장</b>해두고 휴대폰 배터리도 채워두세요.<br>
+<b>2. 여권을 챙기세요.</b> 나이트클럽 입장이라 신분 확인을 할 수 있습니다. 호주에서는 <b>여권이 가장 확실</b>하고, 한국 운전면허증은 통하지 않습니다.<br>
+<b>3. 드레스코드 — "dress to impress".</b> 클럽이라 슬리퍼·운동복·모자는 입장이 거절될 수 있어요. 셋이 미리 맞춰두면 좋습니다.<br>
+<b>4. 17:30까지 도착.</b> 18:00 정시 시작이고 토요일 저녁 Orchid Ave는 혼잡합니다.<br>
+<b>5. 저녁은 가볍게.</b> 샴페인 한 잔과 핑거푸드가 나옵니다.<br>
+<b>6. 취소는 9/18(금) 18:00까지</b> 해야 전액 환불됩니다.<br>
+<b>7. 다음 날은 이사날.</b> 10:00 체크아웃하고 브리즈번까지 2시간 이동합니다. 뒤풀이는 적당히.</div></div>
+
+        </div>
+        <div>
+          <div class="card"><h3>🍽 오늘의 외식 1끼 후보</h3><div class="food"><strong>Betty’s Burgers</strong><div class="tags">무난 · 유명</div><p>공연 전 빠르게 먹기 좋은 선택.</p><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Betty%27s%20Burgers%20Surfers%20Paradise">식당 지도</a></div><div class="food"><strong>Cocohut Taste of Thailand</strong><div class="tags">태국식 · 가성비</div><p>여럿이 메뉴를 나눠 먹기 좋음.</p><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Cocohut%20Taste%20of%20Thailand%20Surfers%20Paradise">식당 지도</a></div><div class="food"><strong>Shiraz Persian Restaurant</strong><div class="tags">푸짐 · 인기</div><p>고기와 밥 조합이 당길 때.</p><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Shiraz%20Persian%20Restaurant%20Surfers%20Paradise">식당 지도</a></div></div>
+
+<div class="card"><h3>🎉 공연 후 근처 클럽 추천</h3>
+<div class="food"><strong>Pump Nightclub</strong><div class="tags">EDM · 20대 · 공연장 바로 근처</div><p>15 Orchid Avenue, Surfers Paradise QLD 4217</p><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Pump%20Nightclub%2015%20Orchid%20Avenue%20Surfers%20Paradise">클럽 지도</a></div>
+<div class="food"><strong>The Bedroom Nightclub</strong><div class="tags">팝·댄스 · 젊은 분위기</div><p>26 Orchid Avenue, Surfers Paradise QLD 4217</p><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=The%20Bedroom%20Nightclub%2026%20Orchid%20Avenue%20Surfers%20Paradise">클럽 지도</a></div>
+<div class="food"><strong>Asylum Nightclub</strong><div class="tags">EDM·힙합 · 클럽형 분위기</div><p>15 Orchid Avenue, Surfers Paradise QLD 4217</p><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Asylum%20Nightclub%2015%20Orchid%20Avenue%20Surfers%20Paradise">클럽 지도</a></div>
+</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="d5" class="day" role="tabpanel">
+      <div class="dayhead"><h2>5일차</h2><div class="date">9월 20일 일요일</div><span class="badge">체크인 + 시내</span></div>
+      <div class="content-grid">
+        <div>
+          <div class="card"><h3>🗓 상세 일정</h3><div class="timeline"><div class="slot"><div class="time">아침</div><div><b>숙소식 + 짐 싸기</b><span class="small">남은 냉장 식재료를 최대한 소진. 브리즈번 숙소에서 다시 사면 되니 애매한 건 버리고 가기.</span></div></div><div class="slot"><div class="time">10:00</div><div><b>Champelli Palms 체크아웃</b><span class="small">10:00 이전 필수. 열쇠는 주방 벤치에, 욕실 쓰레기 비우기, 조명·에어컨 전부 끄기.</span></div></div><div class="slot"><div class="time">이동</div><div><b>브리즈번 이동 (약 2시간)</b><span class="small">704번 또는 트램으로 Helensvale역 → 기차로 Roma Street역. 숙소가 Roma Street 바로 옆이라 짐 들고 환승하기 가장 편한 경로예요.</span></div></div><div class="slot"><div class="time">짐 보관</div><div><b>City Backpackers HQ 도착</b><span class="small">14:00 전에 도착하면 얼리 체크인은 안 되지만 <b>수하물 보관실</b>에 짐을 맡기고 근처에서 점심을 해결할 수 있어요.</span><a class="inline-map" target="_blank" href="https://www.google.com/maps/search/?api=1&query=City%20Backpackers%20HQ%20380%20Upper%20Roma%20Street%20Brisbane">📍 숙소 지도 확인</a></div></div><div class="slot"><div class="time">14:00</div><div><b>체크인</b><span class="small">380 Upper Roma Street, Brisbane QLD 4000 · 락커 자물쇠와 수건 제공 여부를 프런트에서 바로 확인.</span></div></div><div class="slot"><div class="time">마트</div><div><b>브리즈번 장보기</b><span class="small"><b>Coles가 숙소 바로 길 건너편</b>이라 도보 1분. 아침거리·간식·물 위주로 가볍게 — 골코처럼 많이 살 필요 없습니다. 공용 주방·공용 냉장고니 봉지에 이름 써서 보관하세요.</span></div></div><div class="slot"><div class="time">저녁</div><div><b>Howard Smith Wharves · Felons Brewing</b>
+<span class="small">스토리 브리지 아래 강변 다이닝 지구. Felons는 그 안의 강변 브루어리 — 저녁 외식을 여기서 해결하면 동선이 깔끔해요.</span>
+<div class="maps"><a class="inline-map" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Howard%20Smith%20Wharves%20Brisbane">📍 Howard Smith Wharves</a>
+<a class="inline-map" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Felons%20Brewing%20Co%20Howard%20Smith%20Wharves%20Brisbane">📍 Felons Brewing</a></div></div></div><div class="slot"><div class="time">식사</div><div><b>저녁 외식 (오늘의 한 끼)</b><span class="small">Felons 또는 Julius Pizzeria 등 — 식당 탭 참고.</span></div></div></div><div class="alt"><b>오늘은 이동일이라 가볍게</b><br>체크아웃 → 2시간 이동 → 체크인 → 장보기만으로도 하루가 찹니다. <b>South Bank Parklands는 6일차에 제대로 넣어뒀으니</b> 오늘은 무리하지 말고 강변 저녁으로 마무리하세요. 체력이 남으면 숙소 옆 Roma Street Parkland를 한 바퀴 돌아도 좋아요.</div></div>
+
+    <div class="card hotel">
+      <div class="hotel-title"><div><h3>🏨 City Backpackers HQ</h3><div class="address">380 Upper Roma Street, Brisbane QLD 4000 · 5일차~ 숙박</div></div></div>
+      <a class="inline-map" target="_blank" href="https://www.google.com/maps/search/?api=1&query=City%20Backpackers%20HQ%20380%20Upper%20Roma%20Street%20Brisbane">›</a>
+      <div class="info-row">
+        <div class="info-box"><span>체크인</span><b>14:00 이후</b></div>
+        <div class="info-box"><span>체크아웃</span><b>10:00 이전</b></div>
+      </div>
+      <div class="info-row">
+        <div class="info-box"><span>체크인 마감</span><b>23:00 (리셉션 23:30 종료)</b></div>
+        <div class="info-box"><span>공항까지</span><b>약 20분 (Airtrain)</b></div>
+      </div>
+      <div class="section-label">기본 제공·이용 가능</div><div class="pill-wrap"><span class="pill">✓ 무료 Wi‑Fi (전 객실·무료)</span><span class="pill">✓ 공용 주방</span><span class="pill">✓ 전망 좋은 야외 수영장</span><span class="pill">✓ 루프탑·테라스</span><span class="pill">✓ 바 · 풀사이드 바 · 해피아워</span><span class="pill">✓ 셀프 세탁실 · 세탁 서비스</span><span class="pill">✓ 짐 보관 · 락커 · 금고</span><span class="pill">✓ 객실 에어컨 · 리넨 · 세면도구</span><span class="pill">✓ 무료 주차</span><span class="pill">✓ 당구·탁구·다트·오락실</span><span class="pill">✓ 무료 영화 · 도서관 · 요가실</span><span class="pill">✓ 자전거 · 여행 안내소</span><span class="pill">✓ 현금인출기 · 편의점</span><span class="pill">✓ 24시간 경비 · CCTV</span></div>
+      <div class="section-label">⚠️ 알아둘 것</div><div class="pill-wrap"><span class="pill check">성인 전용 숙소</span><span class="pill check">4인 여성전용 도미토리 · 공용 욕실</span><span class="pill check">3명 같은 방 요청 완료 — 도착 시 재확인</span><span class="pill check">23:00 이후 체크인 불가</span><span class="pill check">수건 포함·대여 여부</span><span class="pill check">세탁기·건조기 사용 요금</span><span class="pill check">락커 자물쇠 제공 여부</span><span class="pill check">귀중품은 금고에</span></div>
+      <div class="tip"><b>위치 팁 — 여기가 진짜 강점</b><br><b>길 건너편이 바로 Coles</b>라 장보기가 도보 1분이고, 같은 건물 단지에 영화관도 있어요. <b>Roma Street역</b>이 가까워 공항(Airtrain 약 20분)·골드코스트 기차 모두 편하고, CBD까지 걸어서 20분입니다.</div>
+      <div class="tip"><b>체크인 팁</b><br>얼리 체크인은 없지만 <b>짐 보관 서비스</b>가 있어 14:00 전 도착해도 짐만 맡기면 됩니다. <b>체크인 마감이 23:00, 리셉션은 23:30에 닫으니</b> 밤 늦게 들어오는 날에도 시간을 넘기지 마세요. Wi‑Fi와 주차는 모두 무료(0 AUD)입니다.</div>
+      <div class="tip"><b>골코 숙소와 다른 점</b><br>여긴 <b>Wi‑Fi가 무료로 잘 됩니다</b>(골코 Champelli Palms는 Wi‑Fi 없음). 대신 도미토리라 <b>주방·욕실이 공용</b>이니 식재료에 이름을 쓰고 귀중품은 락커·금고에 넣어두세요.</div>
+    </div>
+    <div class="card"><h3>🛒 숙소 근처 마트</h3><div class="market"><strong>Coles The Barracks</strong><p>숙소 바로 길 건너편 · 도보 1분 · 같은 단지에 영화관도 있음</p><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Coles%20The%20Barracks%20Petrie%20Terrace%20Brisbane">마트 지도 열기</a></div><div class="market"><strong>Woolworths Metro Tank Street</strong><p>414 George Street · CBD 이동 중 소량 장보기</p><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Woolworths%20Metro%20Tank%20Street%20414%20George%20Street%20Brisbane">마트 지도 열기</a></div><div class="market"><strong>Coles Brisbane CBD</strong><p>Uptown, Elizabeth Street · 시내 관광과 함께 장보기</p><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Coles%20Uptown%20Brisbane%20Elizabeth%20Street">마트 지도 열기</a></div></div>
+
+        </div>
+        <div>
+          <div class="card"><h3>🍽 오늘의 외식 1끼 후보</h3><div class="food"><strong>Julius Pizzeria</strong><div class="tags">유명 · 쉐어</div><p>피자와 파스타를 나눠 먹기 좋은 인기 후보.</p><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Julius%20Pizzeria%20South%20Brisbane">식당 지도</a></div><div class="food"><strong>Caxton Street 펍 식사</strong><div class="tags">숙소 인근 · 당일 스페셜</div><p>멀리 걷기 싫은 날 현장 할인 메뉴 확인.</p><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Caxton%20Street%20restaurants%20Brisbane">식당 지도</a></div><div class="food"><strong>Roti Place</strong><div class="tags">가성비 · 말레이시아</div><p>밥, 면, 로티류로 든든하게.</p><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Roti%20Place%20Brisbane%20CBD">식당 지도</a></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="d6" class="day" role="tabpanel">
+      <div class="dayhead"><h2>6일차</h2><div class="date">9월 21일 월요일</div><span class="badge">CBD → South Bank → 강변</span></div>
+      <div class="content-grid">
+        <div>
+          <div class="card"><h3>🗓 상세 일정</h3><div class="timeline"><div class="slot"><div class="time">아침</div><div><b>숙소식</b><span class="small">걷는 게 많은 날이라 출발 전 든든히. 편한 신발 필수.</span></div></div><div class="slot"><div class="time">오전</div><div><b>Queen Street Mall · Brisbane City Hall</b>
+<span class="small"><b>기념품은 오늘 다 사두세요</b> — 내일은 친구 비행기가 오전이라 쇼핑할 시간이 없습니다. 마트 간식(팀탐·베지마이트·마카다미아)은 Coles가 훨씬 쌉니다. City Hall 안 Museum of Brisbane은 무료이고 시계탑 투어도 있어요.</span>
+<div class="maps"><a class="inline-map" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Queen%20Street%20Mall%20Brisbane">📍 Queen Street Mall</a>
+<a class="inline-map" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Brisbane%20City%20Hall">📍 Brisbane City Hall</a></div></div></div><div class="slot"><div class="time">식사</div><div><b>한 끼 외식 (오늘의 한 끼)</b><span class="small">South Bank에 도착해서 먹으면 동선이 딱 맞아요 — 식당 탭이 전부 South Bank 근처입니다.</span></div></div><div class="slot"><div class="time">오후</div><div><b>City Botanic Gardens</b><span class="small">CBD 남동쪽 끝 강변 식물원. 상시 개방·무료. 여기 끝에서 <b>Goodwill Bridge</b>로 강을 건너면 바로 South Bank예요.</span><a class="inline-map" target="_blank" href="https://www.google.com/maps/search/?api=1&query=City%20Botanic%20Gardens%20Brisbane">📍 지도 확인</a></div></div><div class="slot"><div class="time">오후</div><div><b>South Bank Parklands</b>
+<span class="small">오늘의 하이라이트. <b>Streets Beach</b> 인공해변, Brisbane Sign, 아치형 부겐빌레아 산책로. 바로 옆 <b>QAGOMA·Queensland Museum</b>은 상설전 무료(17:00 마감)라 시간 되면 하나만 골라 들어가세요.</span>
+<div class="maps"><a class="inline-map" target="_blank" href="https://www.google.com/maps/search/?api=1&query=South%20Bank%20Parklands%20Brisbane">📍 South Bank Parklands</a>
+<a class="inline-map" target="_blank" href="https://www.google.com/maps/search/?api=1&query=QAGOMA%20Brisbane">📍 QAGOMA</a>
+<a class="inline-map" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Queensland%20Museum%20Kurilpa%20Brisbane">📍 Queensland Museum</a></div></div></div><div class="slot"><div class="time">해질녘</div><div><b>Kangaroo Point · Story Bridge</b>
+<span class="small">South Bank에서 강변을 따라 동쪽으로 이어서 걸으면 됩니다. Kangaroo Point 절벽 전망대에서 CBD 스카이라인이 가장 잘 보이고, 해 질 무렵이 제일 예뻐요. 보행 전용 다리로 CBD 쪽으로 건너올 수 있습니다.</span>
+<div class="maps"><a class="inline-map" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Kangaroo%20Point%20Cliffs%20Lookout%20Brisbane">📍 Kangaroo Point Cliffs</a>
+<a class="inline-map" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Story%20Bridge%20Brisbane">📍 Story Bridge</a></div></div></div><div class="slot"><div class="time">밤</div><div><b>Fortitude Valley 구경 또는 가벼운 펍</b><span class="small">셋이 함께하는 마지막 밤. 월요일이라 조용하지만 거리 구경과 펍 한 잔 하기엔 충분해요. <b>다만 내일 친구 비행기가 오전이라 새벽에 나가야 합니다</b> — 일찍 들어와서 짐부터 싸두세요.</span><a class="inline-map" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Fortitude%20Valley%20Brisbane">📍 Fortitude Valley 지도</a></div></div></div><div class="alt"><b>오늘은 걷는 날</b><br>Queen St Mall → Botanic Gardens → Goodwill Bridge → South Bank → Kangaroo Point → Story Bridge가 <b>강을 따라 한 줄로 이어지는 코스</b>라 총 5~6km를 걷게 됩니다. 편한 신발 필수, 물 챙기기. 힘들면 South Bank에서 <b>CityHopper 무료 페리</b>로 이동하거나, 박물관 한 곳에서 쉬어가세요. 반대로 체력이 남으면 Story Bridge에서 <b>Brisbane Riverwalk</b>로 New Farm까지 이어 걸을 수 있어요.</div></div>
+
+        </div>
+        <div>
+          <div class="card"><h3>🍽 오늘의 외식 1끼 후보</h3><div class="food"><strong>Mrs Luu’s Vietnamese Canteen</strong><div class="tags">가성비 · 반미·쌀국수</div><p>간단하고 든든한 한 끼.</p><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Mrs%20Luu%27s%20Vietnamese%20Canteen%20South%20Bank%20Brisbane">식당 지도</a></div><div class="food"><strong>P’nut Street Noodles</strong><div class="tags">아시아식 · 캐주얼</div><p>면과 볶음밥 등 취향 맞추기 쉬움.</p><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=P%27nut%20Street%20Noodles%20South%20Bank%20Brisbane">식당 지도</a></div><div class="food"><strong>Ahmet’s Turkish Restaurant</strong><div class="tags">유명 · 쉐어</div><p>피데와 터키식 메뉴를 나눠 먹기.</p><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Ahmet%27s%20Turkish%20Restaurant%20South%20Bank%20Brisbane">식당 지도</a></div></div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="d7" class="day" role="tabpanel">
+      <div class="dayhead"><h2>7일차</h2><div class="date">9월 22일 화요일</div><span class="badge">친구 귀국 · 워홀 전환 시작</span></div>
+      <div class="content-grid">
+        <div>
+          <div class="card"><h3>🗓 상세 일정</h3><div class="timeline"><div class="slot"><div class="time">전날 밤</div><div><b>친구 짐은 전날 다 싸두기</b><span class="small">새벽에 나가야 하니 6일차 밤에 미리 완료. 공용 냉장고에 둔 것 회수, 액체류는 위탁수하물로, <b>여권·항공권·지갑·유심은 손가방</b>에. 도미토리라 새벽에 조용히 움직여야 하는 것도 감안하세요.</span></div></div><div class="slot"><div class="time">새벽</div><div><b>기상 · 친구 체크아웃</b><span class="small"><b>출발 3시간 전 공항 도착</b> 기준으로 역산 → Airtrain 20분 + 역까지 도보 + 여유 30분. 예를 들어 <b>10:00 비행기면 06:00쯤 숙소를 나서야</b> 합니다. 리셉션이 안 열려 있을 수 있으니 <b>전날 프런트에 새벽 체크아웃 방법을 미리 물어보세요.</b></span></div></div><div class="slot"><div class="time">이른 아침</div><div><b>Roma Street역 → 공항 배웅</b><span class="small">숙소에서 <b>Roma Street역까지 도보</b>, Airtrain으로 공항까지 약 20분. <b>Airtrain 첫차 시간을 전날 반드시 확인하세요</b> — 너무 이르면 운행 전일 수 있고, 그럴 땐 우버가 유일한 방법입니다. 배웅을 공항까지 갈지 역에서 인사할지도 미리 정해두면 덜 허둥댑니다.</span><a class="inline-map" data-notour target="_blank" href="https://www.google.com/maps/search/?api=1&query=Roma%20Street%20Station%20Brisbane">📍 Roma Street역</a></div></div><div class="slot"><div class="time">오전</div><div><b>남는 2명 — 숙소 복귀 · 휴식</b><span class="small">새벽에 나갔으니 한숨 자고 시작해도 됩니다. 여기서부터는 여행이 아니라 생활이에요.</span></div></div><div class="slot"><div class="time">오후</div><div><b>TFN(세금번호) 신청</b><span class="small">ATO 온라인 신청, <b>무료</b>. 여권·비자·호주 주소·현지 전화번호가 필요합니다. 2일차에 만든 계좌의 <b>BSB·계좌번호</b>도 함께 정리해두면 일 구했을 때 바로 제출할 수 있어요.</span></div></div><div class="slot"><div class="time">오후</div><div><b>State Library of Queensland</b><span class="small">South Bank에 있는 무료 도서관. Wi‑Fi·전원·열람석이 있어 이력서 손보기와 구직 지원에 좋습니다.</span><a class="inline-map" target="_blank" href="https://www.google.com/maps/search/?api=1&query=State%20Library%20of%20Queensland%20South%20Bank%20Brisbane">📍 지도 확인</a></div></div><div class="slot"><div class="time">식사</div><div><b>둘이 먹는 첫 끼</b><span class="small">CBD — 식당 탭 참고. 이제부터는 외식보다 숙소식 비중을 올려야 예산이 버팁니다.</span></div></div><div class="slot"><div class="time">저녁</div><div><b>다음 주 계획 세우기</b><span class="small">장기 숙소(주 단위 셰어하우스), 구직 지역, 지원 현황표 정리. <b>City Backpackers HQ 예약이 언제까지인지</b>부터 확인하고 그 다음 숙소를 잡으세요.</span></div></div></div><div class="alt"><b>배웅 후가 진짜 시작</b><br>친구를 보내고 나면 갑자기 허전해집니다. 첫날부터 무리해서 구직에 매달리기보다, TFN 신청 하나만 확실히 끝내고 나머지는 천천히 가세요.</div></div>
+
+        </div>
+        <div>
+          <div class="card"><h3>🍽 오늘의 외식 1끼 후보</h3><div class="food"><strong>Govindas Brisbane CBD</strong><div class="tags">가성비 · 채식</div><p>식비를 아끼면서 든든하게.</p><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Govindas%20Brisbane%20CBD">식당 지도</a></div><div class="food"><strong>Jackpot Dining</strong><div class="tags">중식 · 캐주얼</div><p>밥과 면류를 빠르게 해결.</p><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Jackpot%20Dining%20Brisbane%20CBD">식당 지도</a></div><div class="food"><strong>Brisbane City Markets</strong><div class="tags">운영일 확인 · 현장 선택</div><p>열리는 날이면 푸드 스톨에서 선택.</p><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Brisbane%20City%20Markets">식당 지도</a></div></div>
+        </div>
+      </div>
+    </section>
+</main>
+<div class="footer">골드코스트 숙소(Champelli Palms)는 에어비앤비 예약 확인 정보를, 브리즈번 숙소는 공식·예약 페이지의 2026년 공개 안내를 바탕으로 정리했습니다.</div>
+</div>
+<button class="toTop" aria-label="맨 위로">↑</button>
+<script>
+const daysEl=[...document.querySelectorAll('.day')];
+const allTabs=[...document.querySelectorAll('.tab')];
+const order=allTabs.map(t=>t.dataset.day);
+const tabLabel=id=>document.querySelector('.tab[data-day="'+id+'"]')?.textContent.trim()||id;
+
+function showDay(id,scroll){
+  if(!daysEl.some(x=>x.id===id))return;
+  daysEl.forEach(x=>x.classList.toggle('active',x.id===id));
+  allTabs.forEach(x=>{const on=x.dataset.day===id;x.classList.toggle('active',on);x.setAttribute('aria-selected',on);});
+  if(scroll){
+    const at=allTabs.find(x=>x.dataset.day===id);
+    if(at)at.scrollIntoView({inline:'center',block:'nearest'});
+    const d=document.getElementById(id);
+    if(d)d.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+}
+
+// ── 공통 헬퍼
+const esc=s=>(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const rowHTML=(name,meta,href)=>
+  '<div class="crow"><div class="cinfo"><div class="cname">'+esc(name)+'</div>'+
+  (meta?'<div class="cmeta">'+esc(meta)+'</div>':'')+'</div>'+
+  (href?'<a class="btn" target="_blank" href="'+esc(href)+'" aria-label="지도 열기">›</a>':'')+'</div>';
+const cleanName=t=>t.replace(/^\s*📍\s*/,'').replace(/\s*지도\s*$/,'').trim();
+// 관광지 보강 정보 [매칭어, 표시명, 설명(장소 성격·운영시간·휴무)]
+const tourInfo=[
+  ['Broadwater',['Broadwater Parklands','해변가 공원 · 상시 개방 · 무료 · 산책·피크닉']],
+  ['Coombabah',['Coombabah Lakelands Conservation Area','야생 캥거루·습지 보호구역 · 06:00~18:00(게이트 폐문) · 무료 · 화장실·쓰레기통 없음']],
+  ['Burleigh',['Burleigh Heads','해변+국립공원 곶 산책로 · 공원 상시(대략 일몰까지) · 무료']],
+  ['Movie World',['Warner Bros. Movie World','테마파크 · 게이트 09:30, 어트랙션 대략 10:00~17:00(시즌별 변동) · Star Parade 15:30 · 입장권 필요']],
+  ['Surfers Paradise',['Surfers Paradise','해변+Cavill Ave 쇼핑거리 · 해변 상시 · 상점은 대체로 밤까지']],
+  ['The Spit',['The Spit · Gold Coast Seaway','브로드워터와 바다 사이 반도 · 상시 개방 · 무료 · 방파제에서 선박 구경·서핑']],
+  ['Doug Jennings',['Doug Jennings Park','The Spit 북쪽 끝 잔디공원 · 상시 개방 · 무료 · 서쪽 브로드워터 일몰 명소']],
+  ['Tedder',['Tedder Avenue (Main Beach)','카페·레스토랑 거리 · 매장별 영업시간 상이 · Surfers보다 한적']],
+  ['SkyPoint',['SkyPoint 전망대 (Q1)','77층 전망대 · 유료 · 대체로 오전~밤 운영 · Surfers Paradise 안에 위치']],
+  ['Magic Men',['Magic Men @ Cocktails Nightclub','남성 퍼포먼스 쇼 · 9/19(토) 18:00 시작, 약 3시간 · 좌석 지정 · 예약 완료(3인)']],
+  ['Queen Street',['Queen Street Mall','보행자 쇼핑몰 · 상점 대체로 09:00~17:30(목 야간, 일요일 단축)']],
+  ['City Hall',['Brisbane City Hall','시청·King George Square · Museum of Brisbane(무료, 매일 10:00~17:00·금 ~19:00)·시계탑 투어']],
+  ['Howard Smith',['Howard Smith Wharves','강변 다이닝·바 복합지구 · 야외 상시 개방(매장별 영업시간 상이)']],
+  ['Felons',['Felons Brewing Co.','Howard Smith Wharves 내 강변 브루어리 · 점심~밤 영업 · 저녁엔 대기 발생']],
+  ['Kangaroo Point',['Kangaroo Point Cliffs','강변 절벽 전망대·산책로 · 상시 개방 · 무료 · CBD와 보행교로 연결']],
+  ['Story Bridge',['Story Bridge','브리즈번 상징 다리 · 보행 통행 무료 · 브리지클라임은 유료 예약제']],
+  ['Roma Street',['Roma Street Parkland','도심 정원 공원 · 상시 개방 · 무료']],
+  ['State Library',['State Library of Queensland','무료 공공도서관(South Bank) · Wi‑Fi·전원·열람석 · 대체로 10:00~17:00(요일별 상이)']],
+  ['South Bank',['South Bank Parklands','강변 공원·Streets Beach 인공해변 · 상시 개방 · 무료']],
+  ['QAGOMA',['QAGOMA (현대미술관)','미술관 · 매일 10:00~17:00 · 무료(특별전 유료) · 성금요일·크리스마스 휴관, Anzac Day 12:00 개관']],
+  ['Queensland Museum',['Queensland Museum Kurilpa','자연사 박물관 · 매일 09:30~17:00 · 무료(특별전 유료) · 크리스마스·성금요일 등 휴관']],
+  ['Old Government',['Old Government House','역사 가옥 박물관(무료) · 화~금 10:00~16:00, 일 10:00~14:00 · 월·토·일부 공휴일 휴관']],
+  ['William Robinson',['William Robinson Gallery','미술 갤러리(Old Gov House 내) · 화~금 10:00~16:00, 일 10:00~14:00 · 무료']],
+  ['Botanic',['City Botanic Gardens','도심 식물원 · 상시 개방 · 무료 · 강변 산책로']],
+  ['Riverwalk',['Brisbane Riverwalk','강 위 보행·자전거 산책로(New Farm~CBD) · 상시 · 무료']],
+  ['Fortitude Valley',['Fortitude Valley','나이트라이프 지구 · 저녁~심야 · 클럽·바 밀집']],
+];
+function extractTour(timeline,hotelHref){
+  if(!timeline)return '';
+  const rows=[];
+  const add=(name,href,note)=>{
+    const hit=tourInfo.find(t=>name.includes(t[0]));
+    rows.push(rowHTML(hit?hit[1][0]:name, hit?hit[1][1]:note, href));
+  };
+  timeline.querySelectorAll('.slot').forEach(slot=>{
+    const links=[...slot.querySelectorAll('.inline-map')].filter(a=>{
+      const t=a.textContent;
+      if(t.includes('🏦')||t.includes('숙소')||t.includes('마트'))return false;
+      if(a.hasAttribute('data-notour'))return false;
+      if(hotelHref&&a.href===hotelHref)return false;
+      return true;
+    });
+    if(!links.length)return;
+    const note=slot.querySelector('.small')?.textContent.trim()||'';
+    if(links.length===1){
+      const title=slot.querySelector('b')?.textContent.trim()||cleanName(links[0].textContent);
+      add(title,links[0].href,note);
+    }else links.forEach(a=>add(cleanName(a.textContent),a.href,note));
+  });
+  return rows.join('');
+}
+
+// 날짜별 카테고리 탭박스 — 기존 카드를 이동/재사용해 그 날짜 것만 표시
+daysEl.forEach(day=>{
+  const grid=day.querySelector('.content-grid');
+  if(!grid)return;
+  const cards=[...grid.querySelectorAll('.card')];
+  const has=kw=>cards.find(c=>c.querySelector('h3')?.textContent.includes(kw));
+  const timeline=has('상세 일정');
+  const hotel=grid.querySelector('.card.hotel');
+  const martCard=has('마트'), foodCard=has('외식'), clubCard=has('클럽');
+  const hotelHref=hotel?.querySelector('.inline-map')?.href||'';
+  const rowsFrom=(card,sel,metaSel)=>[...card.querySelectorAll('.'+sel)].map(el=>
+    rowHTML(el.querySelector('strong').textContent.trim(), metaSel?(el.querySelector(metaSel)?.textContent.trim()||''):'', el.querySelector('.btn')?.href||'')).join('');
+  const cats=[];
+  if(hotel)cats.push({key:'stay',label:'🏨 숙소',node:hotel});
+  if(martCard)cats.push({key:'mart',label:'🛒 마트',html:rowsFrom(martCard,'market','p')});
+  if(foodCard)cats.push({key:'food',label:'🍽 식당',html:rowsFrom(foodCard,'food','p')});
+  if(clubCard)cats.push({key:'club',label:'🎉 클럽',html:rowsFrom(clubCard,'food','.tags')});
+  grid.querySelectorAll('.card[data-cat]').forEach(c=>cats.push({key:c.dataset.cat,label:c.dataset.label,html:rowsFrom(c,'food','p')}));
+  const tour=extractTour(timeline,hotelHref);
+  if(tour)cats.push({key:'tour',label:'🗺 관광',html:tour});
+  if(!cats.length){grid.replaceWith(...(timeline?[timeline]:[]));return;}
+  const box=document.createElement('div');box.className='catbox-day';
+  const tabs=document.createElement('div');tabs.className='ctabs';tabs.setAttribute('role','tablist');
+  const panels=[];
+  cats.forEach((c,i)=>{
+    const b=document.createElement('button');
+    b.className='ctab'+(i?'':' active');b.dataset.cat=c.key;b.textContent=c.label;
+    b.setAttribute('role','tab');b.setAttribute('aria-selected',i?'false':'true');
+    tabs.appendChild(b);
+    const p=document.createElement('div');p.className='cpanel'+(i?'':' active');p.dataset.cat=c.key;
+    if(c.node)p.appendChild(c.node);else p.innerHTML=c.html;
+    panels.push(p);
+  });
+  box.appendChild(tabs);panels.forEach(p=>box.appendChild(p));
+  grid.replaceWith(...(timeline?[timeline,box]:[box]));
+});
+
+// 타임라인: 지도 링크가 1개인 슬롯은 › 아이콘으로 통일하고 우측 하단 배치
+document.querySelectorAll('.timeline .slot').forEach(slot=>{
+  const links=slot.querySelectorAll('.inline-map');
+  if(links.length===1){links[0].textContent='›';links[0].setAttribute('aria-label','지도 열기');links[0].classList.add('gmap');}
+});
+// 다중 링크(장소명) 앞의 📍 제거
+document.querySelectorAll('.maps .inline-map').forEach(a=>{a.textContent=a.textContent.replace(/^\s*📍\s*/,'');});
+
+// 이전/다음 날짜 버튼 생성
+daysEl.forEach(day=>{
+  const i=order.indexOf(day.id), prev=order[i-1], next=order[i+1];
+  const nav=document.createElement('div');nav.className='daynav';
+  nav.innerHTML=
+    '<button class="prev" '+(prev?'data-day="'+prev+'"':'disabled')+'>'+(prev?'<span class="dir">← 이전</span><span class="lbl">'+tabLabel(prev)+'</span>':'')+'</button>'+
+    '<button class="next" '+(next?'data-day="'+next+'"':'disabled')+'>'+(next?'<span class="dir">다음 →</span><span class="lbl">'+tabLabel(next)+'</span>':'')+'</button>';
+  day.appendChild(nav);
+});
+
+// 탭 + 이전/다음 버튼 공통 처리 (이벤트 위임)
+document.addEventListener('click',e=>{
+  const el=e.target.closest('[data-day]');
+  if(el)showDay(el.dataset.day,true);
+});
+
+// 여행 기간 중이면 '오늘' 날짜 자동 선택·표시
+const tripStart=new Date(2026,8,15);
+const now=new Date();
+const idx=Math.round((new Date(now.getFullYear(),now.getMonth(),now.getDate())-tripStart)/86400000);
+if(idx>=0&&idx<8){
+  const id='d'+idx;
+  const tab=allTabs.find(t=>t.dataset.day===id);
+  if(tab)tab.classList.add('today');
+  showDay(id,false);
+}
+
+// per-day 카테고리 탭 클릭 (박스별 독립 상태)
+document.addEventListener('click',e=>{
+  const t=e.target.closest('.ctab');if(!t)return;
+  const box=t.closest('.catbox-day');if(!box)return;
+  box.querySelectorAll('.ctab').forEach(x=>{const on=x===t;x.classList.toggle('active',on);x.setAttribute('aria-selected',on);});
+  box.querySelectorAll('.cpanel').forEach(p=>p.classList.toggle('active',p.dataset.cat===t.dataset.cat));
+});
+
+// 맨 위로 버튼
+const toTop=document.querySelector('.toTop');
+addEventListener('scroll',()=>toTop.classList.toggle('show',scrollY>420),{passive:true});
+toTop.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
+</script>
+<div class="sos"><div class="in">
+  <a class="em" href="tel:000">🚨 긴급 000</a>
+  <a href="index.html">🏠 홈</a>
+</div></div>
+<script src="assets/app.js"></script>
+</body>
+</html>
