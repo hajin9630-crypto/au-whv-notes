@@ -315,10 +315,23 @@ color:var(--body);border-radius:999px;font:600 13px/1 var(--font);cursor:pointer
 .rescount{font-size:13px;line-height:20px;color:var(--muted)}
 .emptyres{padding:var(--s-xxl) var(--s-lg);text-align:center;color:var(--muted);font-size:15px}
 
-/* 공장 목록 행 */
+/* 공장·농장 목록 행.
+   164개를 훑는 목록이라 기본은 4줄로 접어두고, ＋ 를 눌러야 상세가 펼쳐진다.
+   전에는 모든 필드를 펼쳐놔서 한 화면에 3.7개밖에 안 들어갔다. */
 .flist{display:grid;gap:var(--s-sm)}
-.frow{display:grid;grid-template-columns:46px 1fr;gap:var(--s-md);align-items:start;
+.frow{display:grid;grid-template-columns:46px 1fr auto;gap:var(--s-md);align-items:start;
 padding:var(--s-md) var(--s-lg);border:1px solid var(--border);border-radius:var(--r-lg);background:var(--canvas)}
+.fmain{min-width:0}
+.fmore{display:none}
+.frow.open .fmore{display:block}
+.fexp{flex:none;width:44px;height:44px;margin:-4px -8px 0 0;border:0;background:transparent;
+color:var(--muted);font:400 18px/1 var(--font);cursor:pointer;border-radius:var(--r-btn)}
+.fexp:hover{background:var(--surface);color:var(--fg)}
+.fexp:focus-visible{outline:2px solid var(--primary);outline-offset:-2px}
+.frow.open .fexp{color:var(--fg)}
+/* 농장은 시급보다 시즌이 먼저다 */
+.szn{display:inline-block;margin-left:var(--s-sm);padding:2px 7px;border-radius:var(--r-sm);
+background:var(--surface);color:var(--body);font-size:12px;font-weight:600}
 /* 80개가 전부 같은 파란 칩이면 파랑이 아무것도 구분해주지 않는다 */
 .frow .st{font-size:11px;line-height:16px;font-weight:700;color:var(--body);background:var(--surface);
 border-radius:var(--r-sm);padding:3px 0;text-align:center}

@@ -137,19 +137,23 @@
     if (!list) return;
     var input = document.getElementById(inputId);
     var chips = document.querySelectorAll('.chip[' + chipAttr + ']');
+    var monChips = list.parentElement.querySelectorAll('.chip[data-mo]');
     var count = document.getElementById(countId);
     var empty = document.getElementById(emptyId);
     var rows = Array.prototype.slice.call(list.querySelectorAll('.frow'));
     var state = 'ALL';
-    var key = chipAttr.replace('data-', '');
+    var month = 'ALL';
 
     function run() {
       var q = (input && input.value || '').trim().toLowerCase();
       var shown = 0;
       rows.forEach(function (r) {
         var okState = state === 'ALL' || r.dataset.st === state;
+        /* data-mon 은 "9,10,11" 형태. 부분일치(1 이 11 에 걸리는 것)를 막으려 배열로 비교한다. */
+        var okMonth = month === 'ALL' ||
+          (r.dataset.mon || '').split(',').indexOf(month) > -1;
         var okText = !q || r.textContent.toLowerCase().indexOf(q) > -1;
-        var vis = okState && okText;
+        var vis = okState && okMonth && okText;
         r.style.display = vis ? '' : 'none';
         if (vis) shown++;
       });
@@ -165,6 +169,23 @@
         state = c.getAttribute(chipAttr);
         run();
       });
+    });
+    monChips.forEach(function (c) {
+      c.addEventListener('click', function () {
+        monChips.forEach(function (x) { x.classList.remove('active'); });
+        c.classList.add('active');
+        month = c.getAttribute('data-mo');
+        run();
+      });
+    });
+    /* 행 펼치기 — 164개라 이벤트를 하나만 걸고 위임한다 */
+    list.addEventListener('click', function (e) {
+      var btn = e.target.closest('.fexp');
+      if (!btn) return;
+      var row = btn.closest('.frow');
+      var open = row.classList.toggle('open');
+      btn.textContent = open ? '－' : '＋';
+      btn.setAttribute('aria-label', open ? '상세 닫기' : '상세 보기');
     });
     run();
   }
