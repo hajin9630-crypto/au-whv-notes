@@ -235,6 +235,15 @@ text-decoration:none;color:var(--fg);font-size:15px;font-weight:600;background:v
 .linklist a small{display:block;font-size:13px;line-height:19px;font-weight:400;color:var(--muted);margin-top:1px}
 .linklist a .arw{color:var(--muted);flex:none}
 
+/* 섹션 안에서 블록 묶음을 가르는 소제목.
+   h3 는 카드 제목이 이미 쓰고 있어 별도 클래스로 뒀다. */
+.grouphead{display:flex;align-items:baseline;flex-wrap:wrap;gap:var(--s-md);
+margin:var(--s-xl) 0 var(--gap-block);font-size:16px;line-height:24px;font-weight:600;color:var(--fg)}
+.grouphead:first-of-type{margin-top:0}
+.grouphead .n{font-size:13px;font-weight:600;color:var(--body);
+background:var(--surface);border-radius:var(--r-md);padding:2px 8px}
+.grouphead .d{font-size:13px;font-weight:400;color:var(--muted)}
+
 /* ---- job / facts card ---- */
 .grid{display:grid;gap:var(--gap-block);margin-bottom:var(--gap-block)}
 @media(min-width:720px){.grid.two{grid-template-columns:1fr 1fr}}
