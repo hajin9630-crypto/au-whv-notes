@@ -130,16 +130,18 @@
     });
   })();
 
-  /* ---------- 공장 목록 검색 · 주별 필터 ---------- */
-  (function () {
-    var list = document.getElementById('flist');
+  /* ---------- 목록 검색 · 주별 필터 (공장 · 농장) ----------
+     두 목록이 같은 페이지에 있어 id 와 data 속성을 나눠 각각 독립으로 돌린다. */
+  function initList(listId, inputId, countId, emptyId, chipAttr) {
+    var list = document.getElementById(listId);
     if (!list) return;
-    var input = document.getElementById('fsearch');
-    var chips = document.querySelectorAll('.chip[data-st]');
-    var count = document.getElementById('fcount');
+    var input = document.getElementById(inputId);
+    var chips = document.querySelectorAll('.chip[' + chipAttr + ']');
+    var count = document.getElementById(countId);
+    var empty = document.getElementById(emptyId);
     var rows = Array.prototype.slice.call(list.querySelectorAll('.frow'));
-    var empty = document.getElementById('fempty');
     var state = 'ALL';
+    var key = chipAttr.replace('data-', '');
 
     function run() {
       var q = (input && input.value || '').trim().toLowerCase();
@@ -160,12 +162,14 @@
       c.addEventListener('click', function () {
         chips.forEach(function (x) { x.classList.remove('active'); });
         c.classList.add('active');
-        state = c.dataset.st;
+        state = c.getAttribute(chipAttr);
         run();
       });
     });
     run();
-  })();
+  }
+  initList('flist', 'fsearch', 'fcount', 'fempty', 'data-st');
+  initList('flist2', 'fsearch2', 'fcount2', 'fempty2', 'data-st2');
 
   /* ---------- 기입란 자동 저장 ---------- */
   document.querySelectorAll('.fillin [data-f]').forEach(function (el) {

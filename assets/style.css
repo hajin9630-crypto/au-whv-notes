@@ -302,12 +302,13 @@ gap:var(--s-md);min-height:52px;padding:var(--s-md) 0;font-size:15px;line-height
 .filterbar{display:grid;gap:var(--s-md);margin-bottom:var(--s-lg)}
 .search{display:flex;align-items:center;gap:var(--s-md);height:48px;padding:0 var(--s-lg);
 border:1px solid var(--border);border-radius:var(--r-lg);background:var(--surface)}
-.search input{flex:1;min-width:0;border:0;background:transparent;font:400 16px/1 var(--font);
-color:var(--fg);outline:none}
+/* 입력칸이 바 높이를 꽉 채워야 어디를 눌러도 포커스가 잡힌다 */
+.search input{flex:1;min-width:0;align-self:stretch;border:0;background:transparent;
+font:400 16px/1 var(--font);color:var(--fg);outline:none}
 .search input::placeholder{color:var(--muted)}
 .chips{display:flex;gap:var(--s-sm);overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
 .chips::-webkit-scrollbar{display:none}
-.chip{flex:none;height:40px;padding:0 15px;border:1px solid var(--border);background:var(--canvas);
+.chip{flex:none;height:44px;padding:0 16px;border:1px solid var(--border);background:var(--canvas);
 color:var(--body);border-radius:999px;font:600 13px/1 var(--font);cursor:pointer}
 .chip.active{background:var(--primary-solid);border-color:var(--primary-solid);color:var(--on-primary)}
 .chip:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
