@@ -200,6 +200,25 @@
     el.addEventListener('input', function () { LS.set(k, el.value); });
   });
 
+  /* ---------- 플랜 타임라인 선택형(탭) ---------- */
+  document.querySelectorAll('.planslider').forEach(function (slider) {
+    var nav = slider.previousElementSibling;
+    while (nav && !nav.classList.contains('slidernav')) { nav = nav.previousElementSibling; }
+    var pills = nav ? Array.prototype.slice.call(nav.querySelectorAll('.pill')) : [];
+    var slides = Array.prototype.slice.call(slider.querySelectorAll('.planslide'));
+
+    function activate(id) {
+      pills.forEach(function (p) { p.classList.toggle('active', p.dataset.slide === id); });
+      slides.forEach(function (s) { s.classList.toggle('active', s.id === id); });
+    }
+    pills.forEach(function (p) {
+      p.addEventListener('click', function () { activate(p.dataset.slide); });
+    });
+    /* 이미 active 인 슬라이드가 없으면 첫 슬라이드를 연다 */
+    var opened = slides.some(function (s) { return s.classList.contains('active'); });
+    if (!opened && slides.length) activate(slides[0].id);
+  });
+
   /* ---------- 맨 위로 ---------- */
   (function () {
     var btn = document.querySelector('.toTop');

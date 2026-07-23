@@ -252,6 +252,17 @@ background:var(--surface);border-radius:var(--r-md);padding:2px 8px}
 .job{border:1px solid var(--border);border-radius:var(--r-xl);padding:var(--s-xl);background:var(--canvas)}
 .job .top{display:flex;justify-content:space-between;align-items:flex-start;gap:var(--s-md)}
 .job .top .bset{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end;flex:none;max-width:60%}
+/* 플랜 타임라인 슬라이더 */
+.slidernav{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.slidernav .pill{appearance:none;border:1px solid var(--border);background:var(--surface);color:var(--body);border-radius:999px;padding:7px 14px;font:600 13px/1 var(--font);cursor:pointer;white-space:nowrap}
+.slidernav .pill:hover{border-color:var(--weak-fg)}
+.slidernav .pill.active{background:var(--weak-bg);color:var(--weak-fg);border-color:transparent}
+.planslider{display:block}
+.planslide{display:none;background:var(--canvas);border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--s-lg)}
+.planslide.active{display:block}
+.planslide>h3{margin:0 0 4px;font-size:18px;line-height:26px}
+.planslide .plsub{color:var(--muted);font-size:13px;line-height:20px;margin-bottom:12px}
+.planslide .tablewrap{margin-top:4px}
 .job h3{font-size:18px;line-height:26px;font-weight:600;margin:0}
 .job .where{font-size:13px;line-height:20px;color:var(--muted);margin-top:2px}
 .facts{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);
