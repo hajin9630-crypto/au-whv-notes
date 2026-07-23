@@ -476,11 +476,11 @@ font-size:13px;line-height:20px;color:var(--muted)}
 @media(max-width:520px){
   .hero h1{font-size:30px;line-height:40px}
   .card,.job{padding:var(--s-lg)}
-  .wrap{padding-left:var(--s-md);padding-right:var(--s-md)}
-  .sitebar{padding:0 var(--s-md)}
-  .tabwrap{margin-left:calc(var(--s-md) * -1);margin-right:calc(var(--s-md) * -1);padding:0 var(--s-md)}
-  .subtabs{margin-left:calc(var(--s-md) * -1);margin-right:calc(var(--s-md) * -1);
-    padding-left:var(--s-md);padding-right:var(--s-md)}
+  .wrap{padding-left:14px;padding-right:14px}
+  .sitebar{padding:0 14px}
+  .tabwrap{margin-left:-14px;margin-right:-14px;padding:0 14px}
+  .subtabs{margin-left:-14px;margin-right:-14px;
+    padding-left:14px;padding-right:14px}
   .dday .big{font-size:38px;line-height:46px}
   .job .top{flex-wrap:wrap}
   .job .top .bset{max-width:100%;justify-content:flex-start;flex-basis:100%}
