@@ -169,7 +169,8 @@ ol.num li{margin-bottom:var(--s-sm)}ol.num li:last-child{margin-bottom:0}
 ol.num li b{color:var(--fg);font-weight:600}
 
 /* ---- checklist ---- */
-.check{display:flex;gap:var(--s-md);align-items:flex-start;padding:var(--s-md) 0;
+/* 한 줄짜리 항목도 터치 타겟 44px 이상을 유지한다 (설명 없는 체크는 짧아진다) */
+.check{display:flex;gap:var(--s-md);align-items:flex-start;padding:var(--s-md) 0;min-height:44px;
 border-bottom:1px solid var(--border);cursor:pointer}
 .check:last-child{border-bottom:0;padding-bottom:0}
 .check input{appearance:none;flex:none;width:22px;height:22px;margin:1px 0 0;
