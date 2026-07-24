@@ -473,6 +473,13 @@ background:var(--canvas);color:var(--fg);font:400 15px/23px var(--font);padding:
 font-size:13px;line-height:20px;color:var(--muted)}
 .foot a{color:var(--muted)}
 
+/* 긴급 영어 문장 리스트 */
+.phrases{list-style:none;margin:0;padding:0}
+.phrases li{padding:11px 0;border-top:1px solid var(--border)}
+.phrases li:first-child{border-top:0}
+.phrases b{display:block;font-size:15px;line-height:22px;font-weight:600}
+.phrases .ko{display:block;color:var(--muted);font-size:13px;line-height:19px;margin-top:2px}
+
 @media(max-width:520px){
   .hero h1{font-size:30px;line-height:40px}
   .card,.job{padding:var(--s-lg)}
