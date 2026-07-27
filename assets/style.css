@@ -375,6 +375,7 @@ padding:var(--s-xl);margin-bottom:var(--s-md)}
 .dday .phase{display:inline-block;margin-top:var(--s-lg);padding:6px 12px;border-radius:999px;
 background:#ffffff33;font-size:13px;font-weight:600}
 
+.subhead{font-size:13px;line-height:19px;font-weight:600;color:var(--muted);margin:var(--s-lg) 0 var(--s-md)}
 .menugrid{display:grid;gap:var(--s-md);grid-template-columns:1fr 1fr}
 @media(min-width:640px){.menugrid{grid-template-columns:repeat(3,1fr)}}
 .mcard{display:flex;flex-direction:column;gap:var(--s-xs);min-height:104px;
@@ -472,6 +473,17 @@ background:var(--canvas);color:var(--fg);font:400 15px/23px var(--font);padding:
 .foot{margin-top:var(--s-xxl);padding-top:var(--s-lg);border-top:1px solid var(--border);
 font-size:13px;line-height:20px;color:var(--muted)}
 .foot a{color:var(--muted)}
+
+/* 월별 시즌 그리드 */
+.mtable{border-collapse:collapse;font-size:12px;line-height:16px;min-width:720px;width:100%}
+.mtable th,.mtable td{border:1px solid var(--border);padding:5px 3px;text-align:center;white-space:nowrap}
+.mtable thead th{background:var(--surface);font-weight:600}
+.mtable td.lbl{text-align:left;white-space:normal;min-width:118px;font-weight:600}
+.mtable td.crop{text-align:left;white-space:normal;color:var(--muted);min-width:92px;font-weight:400}
+.mtable td.grp{color:var(--muted);font-weight:400}
+.mtable td.on{background:var(--ok-bg)}
+.mlegend{display:flex;align-items:center;gap:8px;margin:10px 0 0;font-size:12px;color:var(--muted)}
+.mlegend .sw{display:inline-block;width:18px;height:12px;border:1px solid var(--border);background:var(--ok-bg);border-radius:2px}
 
 /* 긴급 영어 문장 리스트 */
 .phrases{list-style:none;margin:0;padding:0}
