@@ -320,6 +320,8 @@ gap:var(--s-md);min-height:52px;padding:var(--s-md) 0;font-size:15px;line-height
 .acc .body{padding:0 0 var(--s-lg);font-size:15px;line-height:23px;color:var(--body)}
 .acc .body p:first-child{margin-top:0}
 .acc .body p:last-child{margin-bottom:0}
+.acc>summary .qen{display:block;color:var(--muted);font-size:12.5px;line-height:17px;font-weight:400;margin-top:3px}
+.acc .body .lbl{display:inline-block;font-size:11px;font-weight:700;color:var(--weak-fg);background:var(--weak-bg);border-radius:6px;padding:1px 6px;margin-right:6px;vertical-align:1px}
 
 /* ---- 검색 / 필터 (공장 목록) ---- */
 .filterbar{display:grid;gap:var(--s-md);margin-bottom:var(--s-lg)}
