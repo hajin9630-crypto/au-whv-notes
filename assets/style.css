@@ -487,6 +487,25 @@ font-size:13px;line-height:20px;color:var(--muted)}
 .mlegend{display:flex;align-items:center;gap:8px;margin:10px 0 0;font-size:12px;color:var(--muted)}
 .mlegend .sw{display:inline-block;width:18px;height:12px;border:1px solid var(--border);background:var(--ok-bg);border-radius:2px}
 
+/* ---- 레쥬메 샘플 ----
+   pre.resume 는 원문 줄바꿈을 그대로 살려 복사해도 깨지지 않게 <pre> 로 둔다.
+   시각 강조는 <b> 로만 주고, 복사(textContent)에는 태그가 안 딸려간다. */
+.resumebox{border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;
+background:var(--canvas);margin-bottom:var(--gap-block)}
+.resumebox .rbar{display:flex;align-items:center;justify-content:space-between;gap:var(--s-md);
+padding:var(--s-md) var(--s-lg);background:var(--surface);border-bottom:1px solid var(--border)}
+.resumebox .rbar b{font-size:14px;line-height:21px;font-weight:600}
+.copybtn{flex:none;display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 16px;
+border:1px solid var(--border);border-radius:var(--r-btn);background:var(--canvas);
+color:var(--weak-fg);font:600 13px/1 var(--font);cursor:pointer}
+.copybtn:hover{background:var(--weak-bg)}
+.copybtn:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.copybtn.done{color:var(--ok);background:var(--ok-bg);border-color:transparent}
+pre.resume{margin:0;padding:var(--s-lg);white-space:pre-wrap;word-break:break-word;
+font:400 14px/22px var(--font);color:var(--fg)}
+pre.resume b{font-weight:600;color:var(--fg)}
+@media print{.copybtn{display:none}pre.resume{font-size:12px;line-height:19px}}
+
 /* 긴급 영어 문장 리스트 */
 .phrases{list-style:none;margin:0;padding:0}
 .phrases li{padding:11px 0;border-top:1px solid var(--border)}

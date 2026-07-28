@@ -231,6 +231,36 @@
     });
   })();
 
+  /* ---------- 레쥬메 복사 ---------- */
+  document.querySelectorAll('.copybtn').forEach(function (btn) {
+    var lbl = btn.querySelector('.lbl') || btn;
+    var timer = null;
+    function flash() {
+      var prev = lbl.textContent;
+      btn.classList.add('done');
+      lbl.textContent = '복사됨 ✓';
+      clearTimeout(timer);
+      timer = setTimeout(function () { btn.classList.remove('done'); lbl.textContent = prev; }, 1600);
+    }
+    btn.addEventListener('click', function () {
+      var box = btn.closest('.resumebox');
+      var pre = box && box.querySelector('pre.resume');
+      if (!pre) return;
+      var text = pre.textContent;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(flash, selectFallback);
+      } else { selectFallback(); }
+      function selectFallback() {
+        var r = document.createRange();
+        r.selectNodeContents(pre);
+        var s = window.getSelection();
+        s.removeAllRanges(); s.addRange(r);
+        try { document.execCommand('copy'); flash(); } catch (e) {}
+        s.removeAllRanges();
+      }
+    });
+  });
+
   /* ---------- D-day ---------- */
   (function () {
     var el = document.getElementById('dday');
