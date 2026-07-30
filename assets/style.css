@@ -19,7 +19,7 @@
 /* primary(#3182f6) 는 흰 글씨를 얹으면 3.6:1 밖에 안 나온다.
    히어로·D-day 처럼 파란 면 위에 본문 크기 글씨를 올리는 곳은 이 색을 쓴다 (5.3:1) */
 --primary-solid:#1b64da;
---ok:#0f7b6c;--ok-bg:#e5f4f1;
+--ok:#0f7b6c;--ok-bg:#e5f4f1;--fac-bg:#e3edfd;--res-bg:#f1e6fb;
 --warn-fg:#a8590a;--warn-bg:#fdf3e6;
 --r-sm:4px;--r-md:6px;--r-btn:7px;--r-lg:14px;--r-xl:16px;
 --s-xs:4px;--s-sm:6px;--s-md:8px;--s-lg:16px;--s-xl:24px;--s-xxl:32px;
@@ -34,7 +34,7 @@
 --canvas:#17171c;--fg:#f2f4f6;--body:#b0b8c1;--muted:#8b95a1;
 --surface:#202127;--border:#2e3138;--weak-bg:#1c2b41;--weak-fg:#82b3fb;
 --danger:#f4707c;--danger-bg:#33191d;
---ok:#57c4b0;--ok-bg:#122a27;
+--ok:#57c4b0;--ok-bg:#122a27;--fac-bg:#16233f;--res-bg:#281a3a;
 --warn-fg:#e0a35c;--warn-bg:#2e2314;
 --tabbar:#17171cf2}}
 
@@ -484,8 +484,15 @@ font-size:13px;line-height:20px;color:var(--muted)}
 .mtable td.crop{text-align:left;white-space:normal;color:var(--muted);min-width:92px;font-weight:400}
 .mtable td.grp{color:var(--muted);font-weight:400}
 .mtable td.on{background:var(--ok-bg)}
-.mlegend{display:flex;align-items:center;gap:8px;margin:10px 0 0;font-size:12px;color:var(--muted)}
+.mtable tr.fac td.on{background:var(--fac-bg)}
+.mtable tr.res td.on{background:var(--res-bg)}
+.mtable td.yr{background:repeating-linear-gradient(45deg,var(--fac-bg) 0 5px,transparent 5px 10px)}
+.mlegend{display:flex;align-items:center;gap:14px;margin:10px 0 0;font-size:12px;color:var(--muted);flex-wrap:wrap}
+.mlegend span{display:inline-flex;align-items:center;gap:8px}
 .mlegend .sw{display:inline-block;width:18px;height:12px;border:1px solid var(--border);background:var(--ok-bg);border-radius:2px}
+.mlegend .sw.fac{background:var(--fac-bg)}
+.mlegend .sw.res{background:var(--res-bg)}
+.mlegend .sw.yr{background:repeating-linear-gradient(45deg,var(--fac-bg) 0 4px,transparent 4px 8px)}
 
 /* ---- 레쥬메 샘플 ----
    pre.resume 는 원문 줄바꿈을 그대로 살려 복사해도 깨지지 않게 <pre> 로 둔다.
