@@ -283,4 +283,85 @@
       phase.textContent = n <= 7 ? '여행 중' : (n <= 100 ? '정착 중' : '세컨 진행 중');
     }
   })();
+
+  /* ---------- 햄버거 카테고리 메뉴 ---------- */
+  (function () {
+    var bar = document.querySelector('.sitebar .in');
+    if (!bar) return; // 사이드바 없는 페이지(홈 등)는 건너뜀
+
+    var CATS = [
+      { t: '홈', h: 'index.html', i: '🏠' },
+      { g: '여행' },
+      { t: '여행 일정', h: 'travel.html', i: '✈️' },
+      { t: '여행 추천', h: 'travel_spots.html', i: '🗺️' },
+      { g: '일자리' },
+      { t: '정착 일정', h: 'plan.html', i: '🗓️' },
+      { t: '정착 기본', h: 'start.html', i: '🚀' },
+      { t: '세컨 모음', h: 'second.html', i: '🌾' },
+      { t: '내 루트', h: 'route.html', i: '🧭' },
+      { t: '바리스타', h: 'barista.html', i: '☕' },
+      { t: 'FIFO 광산', h: 'fifo.html', i: '⛏️' },
+      { t: '자격증', h: 'certs.html', i: '🎫' },
+      { t: '에이지드 케어', h: 'agedcare.html', i: '👩‍⚕️' },
+      { g: '레쥬메 · 면접' },
+      { t: '업종별 레쥬메', h: 'resume.html', i: '📄' },
+      { t: '업종별 면접', h: 'interview.html', i: '🎤' },
+      { g: '생활' },
+      { t: '집 관련', h: 'house.html', i: '🏡' },
+      { t: '중고차', h: 'car.html', i: '🚗' },
+      { t: '약 · 병원 · 보험', h: 'health.html', i: '💊' },
+      { t: '긴급 영어', h: 'english.html', i: '💬' },
+      { g: '안전' },
+      { t: '주의사항', h: 'safety.html', i: '🚨' }
+    ];
+
+    var cur = (location.pathname.split('/').pop() || 'index.html');
+
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'navtoggle';
+    btn.setAttribute('aria-label', '카테고리 메뉴');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.innerHTML = '<span></span><span></span><span></span>';
+    bar.appendChild(btn);
+
+    var ov = document.createElement('div');
+    ov.className = 'navdrawer-ov';
+
+    var dr = document.createElement('nav');
+    dr.className = 'navdrawer';
+    dr.setAttribute('aria-label', '카테고리');
+    dr.setAttribute('aria-hidden', 'true');
+
+    var html = '<div class="nd-head"><b>카테고리</b>' +
+      '<button type="button" class="nd-x" aria-label="닫기">✕</button></div>';
+    CATS.forEach(function (c) {
+      if (c.g) { html += '<div class="nd-g">' + c.g + '</div>'; return; }
+      var isCur = (c.h === cur);
+      html += '<a class="nd-a' + (isCur ? ' cur' : '') + '" href="' + c.h + '"' +
+        (isCur ? ' aria-current="page"' : '') + '>' +
+        '<span class="nd-i">' + c.i + '</span>' + c.t + '</a>';
+    });
+    dr.innerHTML = html;
+
+    document.body.appendChild(ov);
+    document.body.appendChild(dr);
+
+    function open() {
+      document.body.classList.add('nav-open');
+      btn.setAttribute('aria-expanded', 'true');
+      dr.setAttribute('aria-hidden', 'false');
+    }
+    function close() {
+      document.body.classList.remove('nav-open');
+      btn.setAttribute('aria-expanded', 'false');
+      dr.setAttribute('aria-hidden', 'true');
+    }
+    btn.addEventListener('click', open);
+    ov.addEventListener('click', close);
+    dr.querySelector('.nd-x').addEventListener('click', close);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && document.body.classList.contains('nav-open')) close();
+    });
+  })();
 })();

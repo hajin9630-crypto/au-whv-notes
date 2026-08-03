@@ -534,3 +534,32 @@ pre.resume b{font-weight:600;color:var(--fg)}
 }
 @media print{.sitebar,.tabwrap,.sos,.toTop,.minebar{display:none}
   .panel,.subpanel{display:block !important}}
+
+/* ---------- 햄버거 카테고리 메뉴 ---------- */
+.navtoggle{margin-left:auto;display:inline-flex;flex-direction:column;justify-content:center;gap:4px;
+  width:44px;height:44px;margin-right:-10px;padding:0 11px;border:0;background:none;cursor:pointer;border-radius:var(--r-btn)}
+.navtoggle:hover{background:var(--surface)}
+.navtoggle span{display:block;height:2px;border-radius:2px;background:var(--fg)}
+.navdrawer-ov{position:fixed;inset:0;z-index:70;background:rgba(0,0,0,.4);
+  opacity:0;visibility:hidden;transition:opacity .2s}
+.navdrawer{position:fixed;top:0;right:0;z-index:71;height:100%;width:min(84vw,320px);
+  background:var(--canvas);border-left:1px solid var(--border);box-shadow:-8px 0 30px rgba(0,0,0,.18);
+  transform:translateX(100%);transition:transform .22s ease;overflow-y:auto;-webkit-overflow-scrolling:touch}
+body.nav-open{overflow:hidden}
+body.nav-open .navdrawer{transform:none}
+body.nav-open .navdrawer-ov{opacity:1;visibility:visible}
+.nd-head{position:sticky;top:0;display:flex;align-items:center;justify-content:space-between;
+  height:52px;padding:0 var(--s-lg);background:var(--tabbar);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border)}
+.nd-head b{font-size:16px;font-weight:700}
+.nd-x{width:36px;height:36px;margin-right:-8px;border:0;background:none;cursor:pointer;
+  font-size:18px;color:var(--muted);border-radius:var(--r-btn)}
+.nd-x:hover{background:var(--surface)}
+.nd-g{font-size:12px;font-weight:700;letter-spacing:.4px;color:var(--muted);
+  padding:var(--s-lg) var(--s-lg) var(--s-xs)}
+.nd-a{display:flex;align-items:center;gap:var(--s-md);padding:11px var(--s-lg);
+  color:var(--fg);text-decoration:none;font-size:15px;font-weight:500}
+.nd-a:hover{background:var(--surface)}
+.nd-a .nd-i{width:22px;text-align:center;font-size:17px}
+.nd-a.cur{color:var(--weak-fg);font-weight:700;background:var(--weak-bg)}
+@media print{.navtoggle,.navdrawer,.navdrawer-ov{display:none}}
