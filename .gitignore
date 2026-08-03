@@ -1,6 +1,8 @@
 # 로컬 미리보기 서버만 제외 (.claude/skills 는 저장소에 포함)
 .claude/serve.js
 .claude/launch.json
+# 에디터 로컬 설정 (Live Server 포트 등) — 개인 개발환경이라 제외
+.vscode/
 
 # OS
 Thumbs.db
