@@ -99,6 +99,9 @@ color:var(--body);border-radius:10px;font:600 14px/1 var(--font);cursor:pointer}
 .subtab.active{background:var(--fg);border-color:var(--fg);color:var(--canvas)}
 .subtab:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
 .subpanel{display:none}.subpanel.active{display:block}
+/* 다른 페이지로 넘어가는 탭 링크 (예: 영어공부) */
+a.subtab{display:inline-flex;align-items:center;gap:5px;text-decoration:none}
+a.subtab.tablink{border-color:transparent;color:var(--weak-fg);background:var(--weak-bg)}
 
 /* ---- section ---- */
 .sec{padding-top:var(--s-xxl)}
