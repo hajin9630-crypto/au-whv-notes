@@ -59,7 +59,7 @@ overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 /* ---- hero ---- */
 .hero{padding:var(--s-xxl) 0 var(--s-xl)}
 .hero .eyebrow{font-size:14px;line-height:21px;font-weight:600;color:var(--weak-fg)}
-.hero h1{font-size:36px;line-height:46px;font-weight:700;margin:var(--s-md) 0 var(--s-lg);letter-spacing:-1px}
+.hero h1{font-size:36px;line-height:42px;font-weight:700;margin:var(--s-md) 0 var(--s-lg);letter-spacing:-0.02em}
 .hero p{font-size:16px;line-height:24px;color:var(--body);margin:0 0 var(--s-md)}
 .metarow{display:flex;flex-wrap:wrap;gap:var(--s-sm);margin-top:var(--s-lg)}
 
@@ -105,14 +105,14 @@ a.subtab.tablink{border-color:transparent;color:var(--weak-fg);background:var(--
 
 /* ---- section ---- */
 .sec{padding-top:var(--s-xxl)}
-.sec>h2{font-size:24px;line-height:34px;font-weight:600;margin:0 0 var(--gap-block);letter-spacing:-.5px}
+.sec>h2{font-size:24px;line-height:30px;font-weight:600;margin:0 0 var(--gap-block);letter-spacing:-0.02em}
 .sec>.lead{font-size:15px;line-height:23px;color:var(--body);margin:0 0 var(--s-lg)}
 
 /* ---- card ---- */
 .card{background:var(--canvas);border:1px solid var(--border);border-radius:var(--r-xl);
 padding:var(--s-xl);margin-bottom:var(--gap-block)}
 .card.quiet{background:var(--surface);border-color:transparent}
-.card h3{font-size:18px;line-height:26px;font-weight:600;margin:0 0 var(--s-md)}
+.card h3{font-size:18px;line-height:25px;font-weight:600;margin:0 0 var(--s-md)}
 .card h4{font-size:15px;line-height:22px;font-weight:600;margin:var(--s-lg) 0 var(--s-md)}
 .card p{font-size:15px;line-height:23px;color:var(--body);margin:0 0 var(--s-md)}
 .card p:last-child,.card ul:last-child,.card ol:last-child{margin-bottom:0}
@@ -323,7 +323,7 @@ gap:var(--s-md);min-height:52px;padding:var(--s-md) 0;font-size:15px;line-height
 .acc .body{padding:0 0 var(--s-lg);font-size:15px;line-height:23px;color:var(--body)}
 .acc .body p:first-child{margin-top:0}
 .acc .body p:last-child{margin-bottom:0}
-.acc>summary .qen{display:block;color:var(--muted);font-size:12.5px;line-height:17px;font-weight:400;margin-top:3px}
+.acc>summary .qen{display:block;color:var(--muted);font-size:12.5px;line-height:18px;font-weight:400;margin-top:3px}
 .acc .body .lbl{display:inline-block;font-size:11px;font-weight:700;color:var(--weak-fg);background:var(--weak-bg);border-radius:6px;padding:1px 6px;margin-right:6px;vertical-align:1px}
 
 /* ---- 검색 / 필터 (공장 목록) ---- */
@@ -375,7 +375,7 @@ border-radius:var(--r-sm);padding:3px 0;text-align:center}
 padding:var(--s-xl);margin-bottom:var(--s-md)}
 /* opacity 를 낮추면 대비가 같이 깎여서 흰색을 그대로 쓴다 */
 .dday .lab{font-size:14px;line-height:21px;font-weight:600}
-.dday .big{font-size:44px;line-height:52px;font-weight:700;letter-spacing:-1.5px;margin:var(--s-sm) 0}
+.dday .big{font-size:44px;line-height:52px;font-weight:700;letter-spacing:-0.03em;margin:var(--s-sm) 0}
 .dday .sub{font-size:14px;line-height:21px}
 .dday .phase{display:inline-block;margin-top:var(--s-lg);padding:6px 12px;border-radius:999px;
 background:#ffffff33;font-size:13px;font-weight:600}
@@ -389,7 +389,7 @@ background:var(--canvas);text-decoration:none;color:var(--fg)}
 .mcard:hover{background:var(--surface)}
 .mcard:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
 .mcard .ico{font-size:24px;line-height:1;margin-bottom:var(--s-xs)}
-.mcard b{font-size:16px;line-height:23px;font-weight:600}
+.mcard b{font-size:16px;line-height:22px;font-weight:600}
 .mcard small{font-size:12px;line-height:18px;color:var(--muted)}
 .mcard.wide{grid-column:1/-1;flex-direction:row;align-items:center;gap:var(--s-lg);min-height:0}
 .mcard.wide .ico{margin:0;font-size:28px}
@@ -524,7 +524,7 @@ pre.resume b{font-weight:600;color:var(--fg)}
 .phrases .ko{display:block;color:var(--muted);font-size:13px;line-height:19px;margin-top:2px}
 
 @media(max-width:520px){
-  .hero h1{font-size:30px;line-height:40px}
+  .hero h1{font-size:30px;line-height:38px}
   .card,.job{padding:var(--s-lg)}
   .wrap{padding-left:14px;padding-right:14px}
   .sitebar{padding:0 14px}
